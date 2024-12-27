@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="C:/Users/Admin/Desktop/ptud_2024.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/ptud_2023/src/javaapplication2/ptud_2024.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/ptud_2023/.project"/>
+        <file path="/ptud_2023/.classpath"/>
+        <javaElement handleIdentifier="=ptud_2023/src"/>
+        <file path="/ptud_2023/JavaApplication2.iml"/>
+        <file path="/ptud_2023/manifest.mf"/>
+        <file path="/ptud_2023/build.xml"/>
+        <file path="/ptud_2023/.gitignore"/>
+    </selectedElements>
+</jardesc>
