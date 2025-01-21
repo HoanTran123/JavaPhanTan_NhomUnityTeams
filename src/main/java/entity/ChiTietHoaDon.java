@@ -9,11 +9,13 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ChiTietHoaDon {
     @Id
+    @EqualsAndHashCode.Include
     @ManyToOne
     @JoinColumn(name = "idHD")
     private HoaDon hoaDon;
 
     @Id
+    @EqualsAndHashCode.Include
     @ManyToOne
     @JoinColumn(name = "idThuoc")
     private Thuoc thuoc;

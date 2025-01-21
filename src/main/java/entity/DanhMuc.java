@@ -1,9 +1,10 @@
-package modal;
+package entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.EqualsAndHashCode;
 
 import java.util.Set;
 @Data
@@ -12,8 +13,10 @@ import java.util.Set;
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class DanhMuc {
     @Id
+    @EqualsAndHashCode.Include
     @Column(columnDefinition = "varchar(45)", unique = true, nullable = false)
     private String idDM;
 

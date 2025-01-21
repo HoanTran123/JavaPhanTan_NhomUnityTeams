@@ -5,25 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/connectDB/JDBCConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/NhanVien_dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/datafaker/TaiKhoan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/iuh/fit/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/testCRUD/testNhanVien.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/ChiTietDoiTra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/ChiTietHoaDon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/ChiTietPhieuDatHang.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/DanhMuc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/DoiTra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/DonViTinh.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/HoaDon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/KhachHang.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/NhaCungCap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/PhieuDatHang.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/PhieuNhap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/TaiKhoan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Thuoc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/VaiTro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/XuatXu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +46,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -62,6 +73,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -73,20 +87,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "D:/HocKyII_2024/JavaPhanTan_NhomUnityTeams/src/main/java/iuh/fit/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:Runner.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Hoan&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Java/jdk-17&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;D:/HocKyII_2024/JavaPhanTan_NhomUnityTeams/src/main/java/iuh/fit/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
+    ]
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Runner" />
+      <module name="JavaPhanTan_NhomUnityTeams.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Runner" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -104,6 +149,28 @@
       <option name="presentableId" value="Default" />
       <updated>1737283955840</updated>
       <workItem from="1737283956551" duration="1647000" />
+      <workItem from="1737359364639" duration="7000" />
+      <workItem from="1737360670396" duration="446000" />
+      <workItem from="1737361145749" duration="187000" />
+      <workItem from="1737362342016" duration="892000" />
+      <workItem from="1737363272212" duration="74000" />
+      <workItem from="1737371583921" duration="1298000" />
+      <workItem from="1737372923019" duration="753000" />
+      <workItem from="1737448236918" duration="971000" />
+      <workItem from="1737449237341" duration="699000" />
+      <workItem from="1737450452316" duration="515000" />
+      <workItem from="1737451016740" duration="1254000" />
+      <workItem from="1737452289825" duration="1975000" />
+      <workItem from="1737454279742" duration="2238000" />
+      <workItem from="1737456546029" duration="1226000" />
+      <workItem from="1737457860101" duration="1201000" />
+      <workItem from="1737460396231" duration="3494000" />
+      <workItem from="1737464275538" duration="2111000" />
+      <workItem from="1737466419420" duration="1527000" />
+      <workItem from="1737469082658" duration="775000" />
+      <workItem from="1737470399317" duration="840000" />
+      <workItem from="1737471342793" duration="1481000" />
+      <workItem from="1737472846841" duration="2219000" />
     </task>
     <servers />
   </component>
@@ -120,5 +187,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
