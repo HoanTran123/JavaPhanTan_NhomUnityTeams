@@ -1374,7 +1374,7 @@
     </schema>
     <schema id="515" parent="1" name="qlthuoc">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-01-22.09:47:00</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-01-22.14:48:32</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </schema>
     <schema id="516" parent="1" name="sys">
