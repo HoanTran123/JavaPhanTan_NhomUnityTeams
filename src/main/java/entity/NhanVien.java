@@ -21,6 +21,7 @@ public class NhanVien {
     private String gioiTinh;
     private int namSinh;
     private Date ngayVaoLam;
+    private String chucVu;
 
     @OneToMany(mappedBy = "nhanVien")
     private List<PhieuNhap> phieuNhap;
