@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/KhachHang_dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/testCRUD/TestKhachHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/NhanVien_dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/NhanVien_dao.java" afterDir="false" />
-    </list>
+    <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +70,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Hoan",
+    "git-widget-placeholder": "Huy",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Program Files/Java/jdk-17",
