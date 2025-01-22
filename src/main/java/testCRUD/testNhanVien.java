@@ -69,7 +69,7 @@ public class testNhanVien {
                         NhanVienUpdate.setEmail(scanner.nextLine());
                         
                         System.out.print("Nhập Chức vụ mới: ");
-                        NhanVienUpdate.setEmail(scanner.nextLine());
+                        NhanVienUpdate.setChucVu(scanner.nextLine());
 
                         if (nv_dao.update(NhanVienUpdate)) {
                             System.out.println("Cập nhật Nhân Viên thành công.");
