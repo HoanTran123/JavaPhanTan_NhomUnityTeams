@@ -3,20 +3,19 @@ package dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import lombok.AllArgsConstructor;
-import entity.NhanVien;
+import entity.KhachHang;
 
 import java.util.List;
 
 @AllArgsConstructor
-public class NhanVien_dao {
-
+public class KhachHang_dao {
     private EntityManager em;
 
-    public boolean save(NhanVien nhanVien) {
+    public boolean save(KhachHang khachHang) {
         EntityTransaction tr = em.getTransaction();
         try {
             tr.begin();
-            em.persist(nhanVien);
+            em.persist(khachHang);
             tr.commit();
             return true;
         } catch (Exception ex) {
@@ -28,11 +27,11 @@ public class NhanVien_dao {
         return false;
     }
 
-    public boolean update(NhanVien nhanVien) {
+    public boolean update(KhachHang khachHang) {
         EntityTransaction tr = em.getTransaction();
         try {
             tr.begin();
-            em.merge(nhanVien);
+            em.merge(khachHang);
             tr.commit();
             return true;
         } catch (Exception ex) {
@@ -44,13 +43,13 @@ public class NhanVien_dao {
         return false;
     }
 
-    public boolean delete(String idNV) {
+    public boolean delete(String idKH) {
         EntityTransaction tr = em.getTransaction();
         try {
             tr.begin();
-            NhanVien nhanVien = em.find(NhanVien.class, idNV);
-            if (nhanVien != null) {
-                em.remove(nhanVien);
+            KhachHang khachHang = em.find(KhachHang.class, idKH);
+            if (khachHang != null) {
+                em.remove(khachHang);
                 tr.commit();
                 return true;
             }
@@ -63,19 +62,19 @@ public class NhanVien_dao {
         return false;
     }
 
-    public List<NhanVien> findAll() {
-        String query = "SELECT nv FROM NhanVien nv";
-        return em.createQuery(query, NhanVien.class).getResultList();
+    public List<KhachHang> findAll() {
+        String query = "SELECT kh FROM KhachHang kh";
+        return em.createQuery(query, KhachHang.class).getResultList();
     }
 
-    public NhanVien findById(String maNV) {
-        return em.find(NhanVien.class, maNV);
+    public KhachHang findById(String idKH) {
+        return em.find(KhachHang.class, idKH);
     }
 
-    public List<NhanVien> findByName(String hoTen) {
-        String query = "SELECT nv FROM NhanVien nv WHERE nv.hoTen LIKE :hoTen";
-        return em.createQuery(query, NhanVien.class)
+    public List<KhachHang> findByName(String hoTen) {
+        String query = "SELECT kh FROM KhachHang kh WHERE kh.hoTen LIKE :hoTen";
+        return em.createQuery(query, KhachHang.class)
                 .setParameter("hoTen", "%" + hoTen + "%")
                 .getResultList();
     }
-}
+} 
