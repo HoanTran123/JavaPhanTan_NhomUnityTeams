@@ -1,26 +1,21 @@
 package entity;
-<<<<<<< HEAD
-public class HoaDon {
-
-}
-=======
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class HoaDon {
+public class PhieuNhap {
     @Id
     @EqualsAndHashCode.Include
-    private String idHD;
+    private String idPN;
 
-    private Date thoiGian;
+    private Timestamp thoiGian;
     private Double tongTien;
 
     @ManyToOne
@@ -28,10 +23,9 @@ public class HoaDon {
     private NhanVien nhanVien;
 
     @ManyToOne
-    @JoinColumn(name = "idKH")
-    private KhachHang khachHang;
+    @JoinColumn(name = "idNCC")
+    private NhaCungCap nhaCungCap;
 
-    @OneToMany(mappedBy = "hoaDon")
-    private List<ChiTietHoaDon> chiTietHoaDon;
-} 
->>>>>>> origin/Hoan
+    @OneToMany(mappedBy = "phieuNhap")
+    private List<ChiTietPhieuNhap> chiTietPhieuNhap;
+}

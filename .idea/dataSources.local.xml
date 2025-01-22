@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="dataSourceStorageLocal" created-in="IU-243.23654.117">
+=======
+  <component name="dataSourceStorageLocal" created-in="IU-243.22562.218">
+>>>>>>> origin/Hoan
     <data-source name="QLThuoc@localhost" uuid="81eee738-49ef-4ad1-9b2c-e561ff3e3cd1">
       <database-info product="MariaDB" version="11.6.2-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.3.3" dbms="MARIADB" exact-version="11.6.2" exact-driver-version="3.3">
         <extra-name-characters>#@</extra-name-characters>
@@ -15,6 +19,7 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+<<<<<<< HEAD
     <data-source name="thuocdb@localhost" uuid="4c81976f-388e-4b05-8f8a-227403d624d8">
       <database-info product="MySQL" version="8.4.4" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.3.3" dbms="MYSQL" exact-version="8.4.4" exact-driver-version="3.3">
         <extra-name-characters>#@</extra-name-characters>
@@ -25,5 +30,7 @@
       <user-name>root</user-name>
       <schema-mapping />
     </data-source>
+=======
+>>>>>>> origin/Hoan
   </component>
 </project>
