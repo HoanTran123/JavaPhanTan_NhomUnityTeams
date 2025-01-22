@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/datafaker/DataGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/ChiTietPhieuNhap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datafaker/TaiKhoan.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datafaker/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datafaker/DataGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +172,8 @@
       <workItem from="1737534917104" duration="11000" />
       <workItem from="1737534940642" duration="67000" />
       <workItem from="1737535187550" duration="438000" />
-      <workItem from="1737535634463" duration="244000" />
+      <workItem from="1737535634463" duration="1507000" />
+      <workItem from="1737537396844" duration="1485000" />
     </task>
     <servers />
   </component>

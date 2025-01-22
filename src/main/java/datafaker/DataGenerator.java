@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.Random;
+
 
 public class DataGenerator {
     private final Faker faker;
@@ -124,13 +124,13 @@ public class DataGenerator {
         return vaiTro;
     }
 
-    public TaiKhoan generateTK(NhanVien nhanVien, VaiTro vaiTro) {
+    public TaiKhoan generateTK(NhanVien nhanVien) {
         TaiKhoan taiKhoan = new TaiKhoan();
         taiKhoan.setIdTK("TK" + nhanVien.getIdNV());
         taiKhoan.setUsername(faker.name().username());
         taiKhoan.setPassword(faker.internet().password(8, 16));
         taiKhoan.setNhanVien(nhanVien);
-        taiKhoan.setVaiTro(vaiTro);
+        taiKhoan.setVaiTro( new VaiTro());
         return taiKhoan;
     }
 
@@ -269,7 +269,12 @@ public class DataGenerator {
                 em.persist(nhanVien);
                 em.flush();
 
+                VaiTro vaiTro = generateVaiTro();
+                em.persist(vaiTro);
+                em.flush();
+
                 TaiKhoan taiKhoan = generateTK(nhanVien);
+                taiKhoan.setVaiTro(vaiTro);
                 em.persist(taiKhoan);
                 em.flush();
 
@@ -288,7 +293,7 @@ public class DataGenerator {
 
                 for (int j = 0; j < 10; j++) {
                     ChiTietHoaDon chiTietHoaDon = generateChiTietHD(thuocList.get(j), hoaDon);
-                    em.persist(chiTietHoaDon);
+                    em.persist(chiTietHoaDon.getHoaDon());
                     em.flush();
                 }
                 tr.commit();
@@ -299,13 +304,6 @@ public class DataGenerator {
         } finally {
             em.close();
         }
-    }
-    private TaiKhoan generateTK(NhanVien nhanVien) {
-        TaiKhoan taiKhoan = new TaiKhoan();
-        taiKhoan.setUsername(faker.name().username());
-        taiKhoan.setPassword(faker.internet().password());
-        taiKhoan.setNhanVien(nhanVien);
-        return taiKhoan;
     }
 
     public static void main(String[] args) {
