@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="" />
+    <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/NhaCungCap_dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/NhaCungCap_dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/Thuoc_dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/Thuoc_dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testCRUD/testNhaCungCap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testCRUD/testNhaCungCap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testCRUD/testThuoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testCRUD/testThuoc.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,6 +72,8 @@
     "Gradle.JavaPhanTan_NhomUnityTeams [:Runner.main()].executor": "Run",
     "Gradle.JavaPhanTan_NhomUnityTeams [:datafaker.DataGenerator.main()].executor": "Run",
     "Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.TestKhachHang.main()].executor": "Run",
+    "Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.testNhaCungCap.main()].executor": "Run",
+    "Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.testThuoc.main()].executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -73,17 +82,17 @@
     "git-widget-placeholder": "Huy",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Program Files/Java/jdk-17",
+    "last_opened_file_path": "C:/Users/ACER/Downloads/gradle-8.12",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "D:/HocKyII_2024/JavaPhanTan_NhomUnityTeams/src/main/java/iuh/fit/Main.java",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -92,7 +101,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Application.TestKhachHang">
+  <component name="RunManager" selected="Application.testThuoc">
     <configuration name="DataGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="datafaker.DataGenerator" />
       <module name="JavaPhanTan_NhomUnityTeams.main" />
@@ -126,8 +135,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="testNhaCungCap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testCRUD.testNhaCungCap" />
+      <module name="JavaPhanTan_NhomUnityTeams.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testCRUD.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testThuoc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testCRUD.testThuoc" />
+      <module name="JavaPhanTan_NhomUnityTeams.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testCRUD.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.testNhaCungCap" />
+        <item itemvalue="Application.testThuoc" />
         <item itemvalue="Application.TestKhachHang" />
         <item itemvalue="Application.DataGenerator" />
         <item itemvalue="Application.Runner" />
@@ -137,8 +174,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
       </set>
     </attachedChunks>
   </component>
@@ -187,6 +224,7 @@
       <workItem from="1737537396844" duration="1837000" />
       <workItem from="1737539376407" duration="7000" />
       <workItem from="1737554890205" duration="1785000" />
+      <workItem from="1737562860886" duration="728000" />
     </task>
     <servers />
   </component>
