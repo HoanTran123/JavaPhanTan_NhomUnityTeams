@@ -20,4 +20,6 @@ public class NhaCungCap {
 
     @OneToMany(mappedBy = "nhaCungCap")
     private List<PhieuNhap> phieuNhap;
+
+
 }

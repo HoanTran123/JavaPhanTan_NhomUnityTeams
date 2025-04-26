@@ -1,4 +1,4 @@
-package dao.impl;
+package dao.remote;
 
 import entity.KhachHang;
 
@@ -35,4 +35,6 @@ public interface IKhachHangDAO extends Remote {
     boolean update(KhachHang kh) throws RemoteException;
 
     boolean delete(KhachHang kh) throws RemoteException;
+
+    List<KhachHang> getAllKhachHang();
 }
