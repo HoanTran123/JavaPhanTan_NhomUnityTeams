@@ -82,10 +82,21 @@ public class MainFrame extends JFrame {
         JPanel toolbarPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         toolbarPanel.setOpaque(false);
 
-        JButton btnSettings = createToolbarButton("Cài đặt", "/icons/settings.png");
+        // Remove the "Cài đặt" button and only keep the "Đăng xuất" button
         JButton btnLogout = createToolbarButton("Đăng xuất", "/icons/logout.png");
 
-        toolbarPanel.add(btnSettings);
+        // Add logout functionality
+        btnLogout.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                this.dispose(); // Close the current frame
+                SwingUtilities.invokeLater(() -> {
+                    LoginFrame loginFrame = new LoginFrame(); // Return to the login screen
+                    loginFrame.setVisible(true);
+                });
+            }
+        });
+
         toolbarPanel.add(btnLogout);
         return toolbarPanel;
     }
@@ -219,13 +230,13 @@ public class MainFrame extends JFrame {
     private JButton createToolbarButton(String text, String iconPath) {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        button.setBackground(new Color(255, 255, 255, 150));
-        button.setForeground(Color.WHITE);
+        button.setBackground(new Color(0, 102, 204)); // Set a solid background color
+        button.setForeground(Color.WHITE); // Ensure the text is white for visibility
         button.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
         button.setFocusPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setBorderPainted(false);
-        button.setOpaque(false);
+        button.setOpaque(true); // Ensure the background color is applied
 
         ImageIcon icon = loadIcon(iconPath);
         if (icon != null) {
@@ -237,12 +248,12 @@ public class MainFrame extends JFrame {
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                button.setBackground(new Color(255, 255, 255, 200));
+                button.setBackground(new Color(0, 153, 255)); // Change background on hover
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                button.setBackground(new Color(255, 255, 255, 150));
+                button.setBackground(new Color(0, 102, 204)); // Revert background on exit
             }
         });
 
