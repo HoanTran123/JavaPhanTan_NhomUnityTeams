@@ -20,4 +20,16 @@ public class NhaCungCap {
 
     @OneToMany(mappedBy = "nhaCungCap")
     private List<PhieuNhap> phieuNhap;
+
+    // Add this constructor
+    public NhaCungCap(String idNCC, String tenNCC, String sdt, String diaChi) {
+        this.idNCC = idNCC;
+        this.tenNCC = tenNCC;
+        this.sdt = sdt;
+        this.diaChi = diaChi;
+    }
+
+    // Default constructor
+    public NhaCungCap() {
+    }
 }

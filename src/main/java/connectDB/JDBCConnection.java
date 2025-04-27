@@ -1,47 +1,25 @@
 package connectDB;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class JDBCConnection {
+    private static final String URL = "jdbc:mysql://localhost:3306/qlthuoc?useSSL=false&serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "sapassword";
 
-    static String url = "jdbc:sqlserver://localhost:1433;databasename=QLTHUOC;encrypt=true;trustServerCertificate=true;";
-    static String user = "sa";
-    static String password = "sapassword";
+    private static Connection connection;
 
-    public static PreparedStatement getStmt(String sql, Object... args) throws Exception {
-        Connection con = DriverManager.getConnection(url, user, password);
-        PreparedStatement stmt;
-        if (sql.trim().startsWith("{")) {
-            stmt = con.prepareCall(sql);
-        } else {
-            stmt = con.prepareStatement(sql);
-        }
-
-        for (int i = 0; i < args.length; i++) {
-            stmt.setObject(i + 1, args[i]);
-        }
-        return stmt;
-    }
-
-    public static int update(String sql, Object... args) {
-        try {
-            PreparedStatement stmt = JDBCConnection.getStmt(sql, args);
+    public static Connection getConnection() {
+        if (connection == null) {
             try {
-                return stmt.executeUpdate();
-            } finally {
-                stmt.getConnection().close();
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                System.out.println("✅ Database connected successfully!");
+            } catch (SQLException e) {
+                System.err.println("❌ Failed to connect database!");
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
+        return connection;
     }
-
-    public static ResultSet query(String sql, Object... args) throws Exception {
-        PreparedStatement stmt = JDBCConnection.getStmt(sql, args);
-        return stmt.executeQuery();
-    }
-
 }

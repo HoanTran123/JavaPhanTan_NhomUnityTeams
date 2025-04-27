@@ -1,10 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.Set;
 @Data
@@ -12,6 +9,8 @@ import java.util.Set;
 @Table
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class DanhMuc {
@@ -27,4 +26,8 @@ public class DanhMuc {
     // Quan hệ 1-n với thuốc
     @OneToMany(mappedBy = "danhmuc")
     private Set<Thuoc> thuoc;
+
+    public DanhMuc(String id, String name) {
+    }
 }
+
