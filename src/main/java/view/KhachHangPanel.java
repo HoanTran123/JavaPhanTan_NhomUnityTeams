@@ -8,8 +8,10 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class KhachHangPanel extends JPanel {
     private JTable table;
@@ -17,6 +19,7 @@ public class KhachHangPanel extends JPanel {
     private JTextField txtMaKH, txtHoTen, txtSDT, txtEmail, txtNgayThamGia, txtTongChiTieu;
     private JComboBox<String> cboGioiTinh;
     private KhachHangDAO khachHangDao;
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     public KhachHangPanel() {
         try {
@@ -70,12 +73,12 @@ public class KhachHangPanel extends JPanel {
         JPanel gridPanel = new JPanel(new GridLayout(2, 4, 15, 15));
         gridPanel.setBackground(Color.WHITE);
 
-        txtMaKH = createStyledTextField(false); // Non-editable
+        txtMaKH = createStyledTextField(false);
         txtHoTen = createStyledTextField(true);
         txtSDT = createStyledTextField(true);
         txtEmail = createStyledTextField(true);
-        cboGioiTinh = createStyledComboBox(new String[]{"Nam", "Nữ"});
-        txtNgayThamGia = createStyledTextField(false); // Non-editable
+        cboGioiTinh = createStyledComboBox(new String[]{"Nam", "Nữ", "Không xác định"});
+        txtNgayThamGia = createStyledTextField(false);
         txtTongChiTieu = createStyledTextField(true);
 
         JLabel[] labels = {
@@ -209,8 +212,8 @@ public class KhachHangPanel extends JPanel {
                         kh.getHoTen(),
                         kh.getSdt(),
                         kh.getEmail(),
-                        kh.getGioiTinh() != null && kh.getGioiTinh() ? "Nam" : "Nữ",
-                        kh.getNgayThamGia(),
+                        kh.getGioiTinh() == null ? "Không xác định" : (kh.getGioiTinh() ? "Nam" : "Nữ"),
+                        kh.getNgayThamGia() != null ? DATE_FORMAT.format(kh.getNgayThamGia()) : "",
                         kh.getTongChiTieu()
                 });
             }
@@ -221,26 +224,45 @@ public class KhachHangPanel extends JPanel {
     }
 
     private String generateCustomerId() {
-        return "KH" + String.format("%04d", (int) (Math.random() * 10000));
+        try {
+            int count = khachHangDao.countTotal() + 1;
+            return "KH" + String.format("%04d", count);
+        } catch (Exception e) {
+            return "KH" + String.format("%04d", (int) (Math.random() * 10000));
+        }
     }
 
     private void addKhachHang() {
         try {
-            if (txtHoTen.getText().isEmpty()) {
-                showWarning("Vui lòng nhập họ tên");
+            String hoTen = txtHoTen.getText().trim();
+            String sdt = txtSDT.getText().trim();
+            String email = txtEmail.getText().trim();
+            String tongChiTieuText = txtTongChiTieu.getText().trim();
+
+            // Validate input
+            if (hoTen.isEmpty()) {
+                showWarning("Vui lòng nhập họ tên!");
+                return;
+            }
+            if (!sdt.isEmpty() && !Pattern.matches("\\d{10,11}", sdt)) {
+                showWarning("Số điện thoại phải có 10-11 chữ số!");
+                return;
+            }
+            if (!email.isEmpty() && !Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", email)) {
+                showWarning("Email không hợp lệ!");
                 return;
             }
 
             KhachHang kh = new KhachHang();
-            kh.setIdKH(generateCustomerId()); // Automatically generate ID
-            kh.setHoTen(txtHoTen.getText());
-            kh.setSdt(txtSDT.getText());
-            kh.setEmail(txtEmail.getText());
-            kh.setGioiTinh(cboGioiTinh.getSelectedItem().equals("Nam"));
+            kh.setIdKH(generateCustomerId());
+            kh.setHoTen(hoTen);
+            kh.setSdt(sdt);
+            kh.setEmail(email);
+            String gioiTinh = (String) cboGioiTinh.getSelectedItem();
+            kh.setGioiTinh(gioiTinh.equals("Không xác định") ? null : gioiTinh.equals("Nam"));
             kh.setNgayThamGia(new Date());
-
             try {
-                kh.setTongChiTieu(Double.parseDouble(txtTongChiTieu.getText()));
+                kh.setTongChiTieu(tongChiTieuText.isEmpty() ? 0.0 : Double.parseDouble(tongChiTieuText));
             } catch (NumberFormatException e) {
                 kh.setTongChiTieu(0.0);
             }
@@ -271,13 +293,32 @@ public class KhachHangPanel extends JPanel {
                 return;
             }
 
-            kh.setHoTen(txtHoTen.getText());
-            kh.setSdt(txtSDT.getText());
-            kh.setEmail(txtEmail.getText());
-            kh.setGioiTinh(cboGioiTinh.getSelectedItem().equals("Nam"));
+            String hoTen = txtHoTen.getText().trim();
+            String sdt = txtSDT.getText().trim();
+            String email = txtEmail.getText().trim();
+            String tongChiTieuText = txtTongChiTieu.getText().trim();
 
+            // Validate input
+            if (hoTen.isEmpty()) {
+                showWarning("Vui lòng nhập họ tên!");
+                return;
+            }
+            if (!sdt.isEmpty() && !Pattern.matches("\\d{10,11}", sdt)) {
+                showWarning("Số điện thoại phải có 10-11 chữ số!");
+                return;
+            }
+            if (!email.isEmpty() && !Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", email)) {
+                showWarning("Email không hợp lệ!");
+                return;
+            }
+
+            kh.setHoTen(hoTen);
+            kh.setSdt(sdt);
+            kh.setEmail(email);
+            String gioiTinh = (String) cboGioiTinh.getSelectedItem();
+            kh.setGioiTinh(gioiTinh.equals("Không xác định") ? null : gioiTinh.equals("Nam"));
             try {
-                kh.setTongChiTieu(Double.parseDouble(txtTongChiTieu.getText()));
+                kh.setTongChiTieu(tongChiTieuText.isEmpty() ? 0.0 : Double.parseDouble(tongChiTieuText));
             } catch (NumberFormatException e) {
                 kh.setTongChiTieu(0.0);
             }
@@ -302,7 +343,7 @@ public class KhachHangPanel extends JPanel {
             }
 
             int confirm = JOptionPane.showConfirmDialog(this,
-                    "Bạn có chắc chắn muốn xóa khách hàng này?",
+                    "Bạn có chắc chắn muốn xóa khách hàng này? Các hóa đơn và phiếu đặt hàng liên quan cũng sẽ bị xóa!",
                     "Xác nhận xóa",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
@@ -319,7 +360,6 @@ public class KhachHangPanel extends JPanel {
             }
 
             khachHangDao.deleteRelatedRecords(idKH);
-
             if (khachHangDao.delete(kh)) {
                 showSuccess("Xóa khách hàng thành công!");
                 loadKhachHang();

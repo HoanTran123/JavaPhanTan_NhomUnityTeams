@@ -16,7 +16,6 @@
         <class>entity.DonViTinh</class>
         <class>entity.NhaCungCap</class>
         <class>entity.KhuyenMai</class>
-        <class>entity.ChiTietKhuyenMai</class>
         <class>entity.ChiTietPhieuNhap</class>
         <class>entity.HoaDon</class>
         <class>entity.TaiKhoan</class>

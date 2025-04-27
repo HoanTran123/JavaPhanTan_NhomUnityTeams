@@ -1,7 +1,7 @@
 package dao.impl;
 
+import entity.ChiTietPhieuNhap;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
@@ -9,22 +9,31 @@ import java.util.Map;
 
 public abstract class GenericDAO<T> {
 
-    @PersistenceContext
     protected EntityManager entityManager;
 
+
     public List<T> findMany(String query, Class<T> clazz, Object... params) {
+        if (entityManager == null) {
+            throw new IllegalStateException("EntityManager has not been set.");
+        }
         TypedQuery<T> typedQuery = entityManager.createQuery(query, clazz);
         setParameters(typedQuery, params);
         return typedQuery.getResultList();
     }
 
     public T findOne(String query, Class<T> clazz, Object... params) {
+        if (entityManager == null) {
+            throw new IllegalStateException("EntityManager has not been set.");
+        }
         TypedQuery<T> typedQuery = entityManager.createQuery(query, clazz);
         setParameters(typedQuery, params);
         return typedQuery.getSingleResult();
     }
 
     public List<T> findManyWithPagination(String query, Class<T> clazz, Map<String, Object> params, int offset, int limit) {
+        if (entityManager == null) {
+            throw new IllegalStateException("EntityManager has not been set.");
+        }
         TypedQuery<T> typedQuery = entityManager.createQuery(query, clazz);
         if (params != null) {
             params.forEach(typedQuery::setParameter);
@@ -35,12 +44,18 @@ public abstract class GenericDAO<T> {
     }
 
     public int count(String query, Object... params) {
+        if (entityManager == null) {
+            throw new IllegalStateException("EntityManager has not been set.");
+        }
         TypedQuery<Long> typedQuery = entityManager.createQuery(query, Long.class);
         setParameters(typedQuery, params);
         return typedQuery.getSingleResult().intValue();
     }
 
     public boolean add(T entity) {
+        if (entityManager == null) {
+            throw new IllegalStateException("EntityManager has not been set.");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(entity);
@@ -54,6 +69,9 @@ public abstract class GenericDAO<T> {
     }
 
     public boolean update(T entity) {
+        if (entityManager == null) {
+            throw new IllegalStateException("EntityManager has not been set.");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(entity);
@@ -67,6 +85,9 @@ public abstract class GenericDAO<T> {
     }
 
     public boolean delete(T entity) {
+        if (entityManager == null) {
+            throw new IllegalStateException("EntityManager has not been set.");
+        }
         try {
             entityManager.getTransaction().begin();
             entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
@@ -87,5 +108,11 @@ public abstract class GenericDAO<T> {
 
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    protected List<ChiTietPhieuNhap> findMany(String query, Class<ChiTietPhieuNhap> chiTietPhieuNhapClass, String idPN) {
+        TypedQuery<ChiTietPhieuNhap> typedQuery = entityManager.createQuery(query, chiTietPhieuNhapClass);
+        typedQuery.setParameter("idPN", idPN);
+        return typedQuery.getResultList();
     }
 }
