@@ -1374,817 +1374,824 @@
     </schema>
     <schema id="515" parent="1" name="qlthuoc">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-01-22.15:37:41</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-04-26.11:07:18</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </schema>
-    <schema id="516" parent="1" name="sys">
+    <schema id="516" parent="1" name="qlthuoc01">
+      <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
+    </schema>
+    <schema id="517" parent="1" name="sys">
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
-    <schema id="517" parent="1" name="thuocdb">
+    <schema id="518" parent="1" name="thuocdb">
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </schema>
-    <user id="518" parent="1" name="mariadb.sys">
+    <user id="519" parent="1" name="mariadb.sys">
       <Host>localhost</Host>
-    </user>
-    <user id="519" parent="1" name="root">
-      <Host>127.0.0.1</Host>
     </user>
     <user id="520" parent="1" name="root">
-      <Host>::1</Host>
+      <Host>127.0.0.1</Host>
     </user>
     <user id="521" parent="1" name="root">
-      <Host>desktop-p2pmsdv</Host>
+      <Host>::1</Host>
     </user>
     <user id="522" parent="1" name="root">
+      <Host>desktop-p2pmsdv</Host>
+    </user>
+    <user id="523" parent="1" name="root">
       <Host>localhost</Host>
     </user>
-    <table id="523" parent="515" name="chitietdoitra">
+    <table id="524" parent="515" name="chitietdoitra">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="524" parent="515" name="chitiethoadon">
+    <table id="525" parent="515" name="chitiethoadon">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="525" parent="515" name="chitietphieudathang">
+    <table id="526" parent="515" name="chitietphieudathang">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="526" parent="515" name="chitietphieunhap">
+    <table id="527" parent="515" name="chitietphieunhap">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="527" parent="515" name="danhmuc">
+    <table id="528" parent="515" name="danhmuc">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="528" parent="515" name="doitra">
+    <table id="529" parent="515" name="doitra">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="529" parent="515" name="donvitinh">
+    <table id="530" parent="515" name="donvitinh">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="530" parent="515" name="hoadon">
+    <table id="531" parent="515" name="hoadon">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="531" parent="515" name="khachhang">
+    <table id="532" parent="515" name="khachhang">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="532" parent="515" name="nhacungcap">
+    <table id="533" parent="515" name="nhacungcap">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="533" parent="515" name="nhanvien">
+    <table id="534" parent="515" name="nhanvien">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="534" parent="515" name="phieudathang">
+    <table id="535" parent="515" name="phieudathang">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="535" parent="515" name="phieunhap">
+    <table id="536" parent="515" name="phieunhap">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="536" parent="515" name="taikhoan">
+    <table id="537" parent="515" name="taikhoan">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="537" parent="515" name="thuoc">
+    <table id="538" parent="515" name="thuoc">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="538" parent="515" name="vaitro">
+    <table id="539" parent="515" name="vaitro">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <table id="539" parent="515" name="xuatxu">
+    <table id="540" parent="515" name="xuatxu">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_uca1400_ai_ci</CollationName>
     </table>
-    <column id="540" parent="523" name="donGia">
+    <column id="541" parent="524" name="donGia">
       <Position>1</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="541" parent="523" name="soLuong">
+    <column id="542" parent="524" name="soLuong">
       <Position>2</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="542" parent="523" name="idDT">
+    <column id="543" parent="524" name="idDT">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="543" parent="523" name="idThuoc">
+    <column id="544" parent="524" name="idThuoc">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="544" parent="523" name="id">
+    <column id="545" parent="524" name="id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>bigint(20)|0s</StoredType>
     </column>
-    <foreign-key id="545" parent="523" name="FKflysck0g1xs0ddeqs32653d2y">
+    <foreign-key id="546" parent="524" name="FKflysck0g1xs0ddeqs32653d2y">
       <ColNames>idDT</ColNames>
       <RefColNames>idDT</RefColNames>
       <RefTableName>doitra</RefTableName>
     </foreign-key>
-    <foreign-key id="546" parent="523" name="FK4kap426u1nb75f5wkbri82ydj">
+    <foreign-key id="547" parent="524" name="FK4kap426u1nb75f5wkbri82ydj">
       <ColNames>idThuoc</ColNames>
       <RefColNames>idThuoc</RefColNames>
       <RefTableName>thuoc</RefTableName>
     </foreign-key>
-    <index id="547" parent="523" name="PRIMARY">
+    <index id="548" parent="524" name="PRIMARY">
       <ColNames>idDT</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="548" parent="523" name="FK4kap426u1nb75f5wkbri82ydj">
+    <index id="549" parent="524" name="FK4kap426u1nb75f5wkbri82ydj">
       <ColNames>idThuoc</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="549" parent="523" name="PRIMARY">
+    <key id="550" parent="524" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="550" parent="524" name="donGia">
+    <column id="551" parent="525" name="donGia">
       <Position>1</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="551" parent="524" name="soLuong">
+    <column id="552" parent="525" name="soLuong">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="552" parent="524" name="idHD">
+    <column id="553" parent="525" name="idHD">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="553" parent="524" name="idThuoc">
+    <column id="554" parent="525" name="idThuoc">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="554" parent="524" name="id">
+    <column id="555" parent="525" name="id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>bigint(20)|0s</StoredType>
     </column>
-    <foreign-key id="555" parent="524" name="FKejf6wxmnfy005jit9otqmoohs">
+    <foreign-key id="556" parent="525" name="FKejf6wxmnfy005jit9otqmoohs">
       <ColNames>idHD</ColNames>
       <RefColNames>idHD</RefColNames>
       <RefTableName>hoadon</RefTableName>
     </foreign-key>
-    <foreign-key id="556" parent="524" name="FKq2lcfh1qdv36xy01w0jefshbo">
+    <foreign-key id="557" parent="525" name="FKq2lcfh1qdv36xy01w0jefshbo">
       <ColNames>idThuoc</ColNames>
       <RefColNames>idThuoc</RefColNames>
       <RefTableName>thuoc</RefTableName>
     </foreign-key>
-    <index id="557" parent="524" name="PRIMARY">
+    <index id="558" parent="525" name="PRIMARY">
       <ColNames>idHD
 idThuoc</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="558" parent="524" name="FKq2lcfh1qdv36xy01w0jefshbo">
+    <index id="559" parent="525" name="FKq2lcfh1qdv36xy01w0jefshbo">
       <ColNames>idThuoc</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="559" parent="524" name="PRIMARY">
+    <key id="560" parent="525" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="560" parent="525" name="donGia">
+    <column id="561" parent="526" name="donGia">
       <Position>1</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="561" parent="525" name="soLuong">
+    <column id="562" parent="526" name="soLuong">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="562" parent="525" name="idPDH">
+    <column id="563" parent="526" name="idPDH">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="563" parent="525" name="idThuoc">
+    <column id="564" parent="526" name="idThuoc">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="564" parent="525" name="id">
+    <column id="565" parent="526" name="id">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>bigint(20)|0s</StoredType>
     </column>
-    <foreign-key id="565" parent="525" name="FK3kar8g9qp4eedkhj8ec5oxgfo">
+    <foreign-key id="566" parent="526" name="FK3kar8g9qp4eedkhj8ec5oxgfo">
       <ColNames>idPDH</ColNames>
       <RefColNames>idPDH</RefColNames>
       <RefTableName>phieudathang</RefTableName>
     </foreign-key>
-    <foreign-key id="566" parent="525" name="FKj0yk7i1u8lthbvhjks2dgl6h3">
+    <foreign-key id="567" parent="526" name="FKj0yk7i1u8lthbvhjks2dgl6h3">
       <ColNames>idThuoc</ColNames>
       <RefColNames>idThuoc</RefColNames>
       <RefTableName>thuoc</RefTableName>
     </foreign-key>
-    <index id="567" parent="525" name="PRIMARY">
+    <index id="568" parent="526" name="PRIMARY">
       <ColNames>idPDH
 idThuoc</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="568" parent="525" name="FKj0yk7i1u8lthbvhjks2dgl6h3">
+    <index id="569" parent="526" name="FKj0yk7i1u8lthbvhjks2dgl6h3">
       <ColNames>idThuoc</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="569" parent="525" name="PRIMARY">
+    <key id="570" parent="526" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="570" parent="526" name="donGia">
+    <column id="571" parent="527" name="donGia">
       <Position>1</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="571" parent="526" name="soLuong">
+    <column id="572" parent="527" name="soLuong">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="572" parent="526" name="idThuoc">
+    <column id="573" parent="527" name="idThuoc">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="573" parent="526" name="idPN">
+    <column id="574" parent="527" name="idPN">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <foreign-key id="574" parent="526" name="FKbaadmybeq48ndk9t4t7xhtpax">
+    <foreign-key id="575" parent="527" name="FKbaadmybeq48ndk9t4t7xhtpax">
       <ColNames>idThuoc</ColNames>
       <RefColNames>idThuoc</RefColNames>
       <RefTableName>thuoc</RefTableName>
     </foreign-key>
-    <foreign-key id="575" parent="526" name="FKa6e67c6hx6hyl072f2e26jkfq">
+    <foreign-key id="576" parent="527" name="FKa6e67c6hx6hyl072f2e26jkfq">
       <ColNames>idPN</ColNames>
       <RefColNames>idPN</RefColNames>
       <RefTableName>phieunhap</RefTableName>
     </foreign-key>
-    <index id="576" parent="526" name="PRIMARY">
+    <index id="577" parent="527" name="PRIMARY">
       <ColNames>idPN
 idThuoc</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="577" parent="526" name="FKbaadmybeq48ndk9t4t7xhtpax">
+    <index id="578" parent="527" name="FKbaadmybeq48ndk9t4t7xhtpax">
       <ColNames>idThuoc</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="578" parent="526" name="PRIMARY">
+    <key id="579" parent="527" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="579" parent="527" name="idDM">
+    <column id="580" parent="528" name="idDM">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="580" parent="527" name="tenDM">
+    <column id="581" parent="528" name="tenDM">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="581" parent="527" name="PRIMARY">
+    <index id="582" parent="528" name="PRIMARY">
       <ColNames>idDM</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="582" parent="527" name="PRIMARY">
+    <key id="583" parent="528" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="583" parent="528" name="idDT">
+    <column id="584" parent="529" name="idDT">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="584" parent="528" name="thoiGian">
+    <column id="585" parent="529" name="thoiGian">
       <Position>2</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="585" parent="528" name="tongTien">
+    <column id="586" parent="529" name="tongTien">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="586" parent="528" name="idKH">
+    <column id="587" parent="529" name="idKH">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="587" parent="528" name="idPDH">
+    <column id="588" parent="529" name="idPDH">
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="588" parent="528" name="idNV">
+    <column id="589" parent="529" name="idNV">
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <foreign-key id="589" parent="528" name="FKox8q8o76gi0dr7b8mhhvnlv2i">
+    <foreign-key id="590" parent="529" name="FKox8q8o76gi0dr7b8mhhvnlv2i">
       <ColNames>idKH</ColNames>
       <RefColNames>idKH</RefColNames>
       <RefTableName>khachhang</RefTableName>
     </foreign-key>
-    <foreign-key id="590" parent="528" name="FK459xt1v6aljywvnd4iti3e648">
+    <foreign-key id="591" parent="529" name="FK459xt1v6aljywvnd4iti3e648">
       <ColNames>idPDH</ColNames>
       <RefColNames>idPDH</RefColNames>
       <RefTableName>phieudathang</RefTableName>
     </foreign-key>
-    <foreign-key id="591" parent="528" name="FK66dp1b1280b97r19edqex3n30">
+    <foreign-key id="592" parent="529" name="FK66dp1b1280b97r19edqex3n30">
       <ColNames>idNV</ColNames>
       <RefColNames>idNV</RefColNames>
       <RefTableName>nhanvien</RefTableName>
     </foreign-key>
-    <index id="592" parent="528" name="PRIMARY">
+    <index id="593" parent="529" name="PRIMARY">
       <ColNames>idDT</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="593" parent="528" name="UK7862agjypk89uybe2aid0xboh">
+    <index id="594" parent="529" name="UK7862agjypk89uybe2aid0xboh">
       <ColNames>idPDH</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="594" parent="528" name="FKox8q8o76gi0dr7b8mhhvnlv2i">
+    <index id="595" parent="529" name="FKox8q8o76gi0dr7b8mhhvnlv2i">
       <ColNames>idKH</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="595" parent="528" name="FK66dp1b1280b97r19edqex3n30">
+    <index id="596" parent="529" name="FK66dp1b1280b97r19edqex3n30">
       <ColNames>idNV</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="596" parent="528" name="PRIMARY">
+    <key id="597" parent="529" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="597" parent="528" name="UK7862agjypk89uybe2aid0xboh">
+    <key id="598" parent="529" name="UK7862agjypk89uybe2aid0xboh">
       <UnderlyingIndexName>UK7862agjypk89uybe2aid0xboh</UnderlyingIndexName>
     </key>
-    <column id="598" parent="529" name="idDVT">
+    <column id="599" parent="530" name="idDVT">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="599" parent="529" name="tenDVT">
+    <column id="600" parent="530" name="tenDVT">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="600" parent="529" name="PRIMARY">
+    <index id="601" parent="530" name="PRIMARY">
       <ColNames>idDVT</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="601" parent="529" name="PRIMARY">
+    <key id="602" parent="530" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="602" parent="530" name="idHD">
+    <column id="603" parent="531" name="idHD">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="603" parent="530" name="thoiGian">
+    <column id="604" parent="531" name="thoiGian">
       <Position>2</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="604" parent="530" name="tongTien">
+    <column id="605" parent="531" name="tongTien">
       <Position>3</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="605" parent="530" name="idKH">
+    <column id="606" parent="531" name="idKH">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="606" parent="530" name="idNV">
+    <column id="607" parent="531" name="idNV">
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <foreign-key id="607" parent="530" name="FKff69aoeev1twcbeucntyd6aqk">
+    <foreign-key id="608" parent="531" name="FKff69aoeev1twcbeucntyd6aqk">
       <ColNames>idKH</ColNames>
       <RefColNames>idKH</RefColNames>
       <RefTableName>khachhang</RefTableName>
     </foreign-key>
-    <foreign-key id="608" parent="530" name="FKilpn2b0laqtu8alhxrk5mc014">
+    <foreign-key id="609" parent="531" name="FKilpn2b0laqtu8alhxrk5mc014">
       <ColNames>idNV</ColNames>
       <RefColNames>idNV</RefColNames>
       <RefTableName>nhanvien</RefTableName>
     </foreign-key>
-    <index id="609" parent="530" name="PRIMARY">
+    <index id="610" parent="531" name="PRIMARY">
       <ColNames>idHD</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="610" parent="530" name="FKff69aoeev1twcbeucntyd6aqk">
+    <index id="611" parent="531" name="FKff69aoeev1twcbeucntyd6aqk">
       <ColNames>idKH</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="611" parent="530" name="FKilpn2b0laqtu8alhxrk5mc014">
+    <index id="612" parent="531" name="FKilpn2b0laqtu8alhxrk5mc014">
       <ColNames>idNV</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="612" parent="530" name="PRIMARY">
+    <key id="613" parent="531" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="613" parent="531" name="idKH">
+    <column id="614" parent="532" name="idKH">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="614" parent="531" name="gioiTinh">
+    <column id="615" parent="532" name="gioiTinh">
       <Position>2</Position>
-      <StoredType>varchar(255)|0s</StoredType>
+      <StoredType>bit(1)|0s</StoredType>
     </column>
-    <column id="615" parent="531" name="hangMuc">
+    <column id="616" parent="532" name="hangMuc">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="616" parent="531" name="hoTen">
+    <column id="617" parent="532" name="hoTen">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="617" parent="531" name="ngayThamGia">
+    <column id="618" parent="532" name="ngayThamGia">
       <Position>5</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="618" parent="531" name="sdt">
+    <column id="619" parent="532" name="sdt">
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="619" parent="531" name="tongChiTieu">
+    <column id="620" parent="532" name="tongChiTieu">
       <Position>7</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <index id="620" parent="531" name="PRIMARY">
+    <column id="621" parent="532" name="email">
+      <Position>8</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <index id="622" parent="532" name="PRIMARY">
       <ColNames>idKH</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="621" parent="531" name="PRIMARY">
+    <key id="623" parent="532" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="622" parent="532" name="idNCC">
+    <column id="624" parent="533" name="idNCC">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="623" parent="532" name="diaChi">
+    <column id="625" parent="533" name="diaChi">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="624" parent="532" name="sdt">
+    <column id="626" parent="533" name="sdt">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="625" parent="532" name="tenNCC">
+    <column id="627" parent="533" name="tenNCC">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="626" parent="532" name="PRIMARY">
+    <index id="628" parent="533" name="PRIMARY">
       <ColNames>idNCC</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="627" parent="532" name="PRIMARY">
+    <key id="629" parent="533" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="628" parent="533" name="idNV">
+    <column id="630" parent="534" name="idNV">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="629" parent="533" name="email">
+    <column id="631" parent="534" name="email">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="630" parent="533" name="gioiTinh">
+    <column id="632" parent="534" name="gioiTinh">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="631" parent="533" name="hoTen">
+    <column id="633" parent="534" name="hoTen">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="632" parent="533" name="namSinh">
+    <column id="634" parent="534" name="namSinh">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="633" parent="533" name="ngayVaoLam">
+    <column id="635" parent="534" name="ngayVaoLam">
       <Position>6</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="634" parent="533" name="sdt">
+    <column id="636" parent="534" name="sdt">
       <Position>7</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="635" parent="533" name="chucVu">
+    <column id="637" parent="534" name="chucVu">
       <Position>8</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="636" parent="533" name="PRIMARY">
+    <index id="638" parent="534" name="PRIMARY">
       <ColNames>idNV</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="637" parent="533" name="PRIMARY">
+    <key id="639" parent="534" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="638" parent="534" name="idPDH">
+    <column id="640" parent="535" name="idPDH">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="639" parent="534" name="diaChi">
+    <column id="641" parent="535" name="diaChi">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="640" parent="534" name="phuongThucThanhToan">
+    <column id="642" parent="535" name="phuongThucThanhToan">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="641" parent="534" name="thoiGian">
+    <column id="643" parent="535" name="thoiGian">
       <Position>4</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="642" parent="534" name="tongTien">
+    <column id="644" parent="535" name="tongTien">
       <Position>5</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="643" parent="534" name="trangThai">
+    <column id="645" parent="535" name="trangThai">
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="644" parent="534" name="idKH">
+    <column id="646" parent="535" name="idKH">
       <Position>7</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <foreign-key id="645" parent="534" name="FKl2xv3ie7r6tiv67wyc8fwpd30">
+    <foreign-key id="647" parent="535" name="FKl2xv3ie7r6tiv67wyc8fwpd30">
       <ColNames>idKH</ColNames>
       <RefColNames>idKH</RefColNames>
       <RefTableName>khachhang</RefTableName>
     </foreign-key>
-    <index id="646" parent="534" name="PRIMARY">
+    <index id="648" parent="535" name="PRIMARY">
       <ColNames>idPDH</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="647" parent="534" name="FKl2xv3ie7r6tiv67wyc8fwpd30">
+    <index id="649" parent="535" name="FKl2xv3ie7r6tiv67wyc8fwpd30">
       <ColNames>idKH</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="648" parent="534" name="PRIMARY">
+    <key id="650" parent="535" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="649" parent="535" name="idPN">
+    <column id="651" parent="536" name="idPN">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="650" parent="535" name="thoiGian">
+    <column id="652" parent="536" name="thoiGian">
       <Position>2</Position>
       <StoredType>datetime(6)|0s</StoredType>
     </column>
-    <column id="651" parent="535" name="tongTien">
+    <column id="653" parent="536" name="tongTien">
       <Position>3</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="652" parent="535" name="idNCC">
+    <column id="654" parent="536" name="idNCC">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="653" parent="535" name="idNV">
+    <column id="655" parent="536" name="idNV">
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <foreign-key id="654" parent="535" name="FK5csppn33cmbokeyd4ea9hl1xx">
+    <foreign-key id="656" parent="536" name="FK5csppn33cmbokeyd4ea9hl1xx">
       <ColNames>idNCC</ColNames>
       <RefColNames>idNCC</RefColNames>
       <RefTableName>nhacungcap</RefTableName>
     </foreign-key>
-    <foreign-key id="655" parent="535" name="FKp33lvtrbpk99qlylfpwrh35l9">
+    <foreign-key id="657" parent="536" name="FKp33lvtrbpk99qlylfpwrh35l9">
       <ColNames>idNV</ColNames>
       <RefColNames>idNV</RefColNames>
       <RefTableName>nhanvien</RefTableName>
     </foreign-key>
-    <index id="656" parent="535" name="PRIMARY">
+    <index id="658" parent="536" name="PRIMARY">
       <ColNames>idPN</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="657" parent="535" name="FK5csppn33cmbokeyd4ea9hl1xx">
+    <index id="659" parent="536" name="FK5csppn33cmbokeyd4ea9hl1xx">
       <ColNames>idNCC</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="658" parent="535" name="FKp33lvtrbpk99qlylfpwrh35l9">
+    <index id="660" parent="536" name="FKp33lvtrbpk99qlylfpwrh35l9">
       <ColNames>idNV</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="659" parent="535" name="PRIMARY">
+    <key id="661" parent="536" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="660" parent="536" name="idTK">
+    <column id="662" parent="537" name="idTK">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="661" parent="536" name="password">
+    <column id="663" parent="537" name="password">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="662" parent="536" name="username">
+    <column id="664" parent="537" name="username">
       <Position>3</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="663" parent="536" name="idNV">
+    <column id="665" parent="537" name="idNV">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="664" parent="536" name="idVT">
+    <column id="666" parent="537" name="idVT">
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <foreign-key id="665" parent="536" name="FKafbwtb68m5wob7g8vwxtm9e6q">
+    <foreign-key id="667" parent="537" name="FKafbwtb68m5wob7g8vwxtm9e6q">
       <ColNames>idNV</ColNames>
       <RefColNames>idNV</RefColNames>
       <RefTableName>nhanvien</RefTableName>
     </foreign-key>
-    <foreign-key id="666" parent="536" name="FKbj5gpguo563tw2lqnbohwjb1e">
+    <foreign-key id="668" parent="537" name="FKbj5gpguo563tw2lqnbohwjb1e">
       <ColNames>idVT</ColNames>
       <RefColNames>idVT</RefColNames>
       <RefTableName>vaitro</RefTableName>
     </foreign-key>
-    <index id="667" parent="536" name="PRIMARY">
+    <index id="669" parent="537" name="PRIMARY">
       <ColNames>idTK</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="668" parent="536" name="FKafbwtb68m5wob7g8vwxtm9e6q">
+    <index id="670" parent="537" name="FKafbwtb68m5wob7g8vwxtm9e6q">
       <ColNames>idNV</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="669" parent="536" name="FKbj5gpguo563tw2lqnbohwjb1e">
+    <index id="671" parent="537" name="FKbj5gpguo563tw2lqnbohwjb1e">
       <ColNames>idVT</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="670" parent="536" name="PRIMARY">
+    <key id="672" parent="537" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="671" parent="537" name="idThuoc">
+    <column id="673" parent="538" name="idThuoc">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="672" parent="537" name="donGia">
+    <column id="674" parent="538" name="donGia">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="673" parent="537" name="giaNhap">
+    <column id="675" parent="538" name="giaNhap">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>double|0s</StoredType>
     </column>
-    <column id="674" parent="537" name="hanSuDung">
+    <column id="676" parent="538" name="hanSuDung">
       <Position>4</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="675" parent="537" name="soLuongTon">
+    <column id="677" parent="538" name="soLuongTon">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="676" parent="537" name="tenThuoc">
+    <column id="678" parent="538" name="tenThuoc">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="677" parent="537" name="thanhPhan">
+    <column id="679" parent="538" name="thanhPhan">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="678" parent="537" name="idDM">
+    <column id="680" parent="538" name="idDM">
       <Position>8</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="679" parent="537" name="idDVT">
+    <column id="681" parent="538" name="idDVT">
       <Position>9</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="680" parent="537" name="idXX">
+    <column id="682" parent="538" name="idXX">
       <Position>10</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <foreign-key id="681" parent="537" name="FKsdtmqsc058b35x0t7b0cgq27m">
+    <foreign-key id="683" parent="538" name="FKsdtmqsc058b35x0t7b0cgq27m">
       <ColNames>idDM</ColNames>
       <RefColNames>idDM</RefColNames>
       <RefTableName>danhmuc</RefTableName>
     </foreign-key>
-    <foreign-key id="682" parent="537" name="FKoehkj6jt5iyghbsrdnebp7wwv">
+    <foreign-key id="684" parent="538" name="FKoehkj6jt5iyghbsrdnebp7wwv">
       <ColNames>idDVT</ColNames>
       <RefColNames>idDVT</RefColNames>
       <RefTableName>donvitinh</RefTableName>
     </foreign-key>
-    <foreign-key id="683" parent="537" name="FKeprjykhpu5rtj3wu7d2hgnhju">
+    <foreign-key id="685" parent="538" name="FKeprjykhpu5rtj3wu7d2hgnhju">
       <ColNames>idXX</ColNames>
       <RefColNames>idXX</RefColNames>
       <RefTableName>xuatxu</RefTableName>
     </foreign-key>
-    <index id="684" parent="537" name="PRIMARY">
+    <index id="686" parent="538" name="PRIMARY">
       <ColNames>idThuoc</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="685" parent="537" name="FKsdtmqsc058b35x0t7b0cgq27m">
+    <index id="687" parent="538" name="FKsdtmqsc058b35x0t7b0cgq27m">
       <ColNames>idDM</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="686" parent="537" name="FKoehkj6jt5iyghbsrdnebp7wwv">
+    <index id="688" parent="538" name="FKoehkj6jt5iyghbsrdnebp7wwv">
       <ColNames>idDVT</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="687" parent="537" name="FKeprjykhpu5rtj3wu7d2hgnhju">
+    <index id="689" parent="538" name="FKeprjykhpu5rtj3wu7d2hgnhju">
       <ColNames>idXX</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="688" parent="537" name="PRIMARY">
+    <key id="690" parent="538" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="689" parent="538" name="idVT">
+    <column id="691" parent="539" name="idVT">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="690" parent="538" name="ten">
+    <column id="692" parent="539" name="ten">
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="691" parent="538" name="PRIMARY">
+    <index id="693" parent="539" name="PRIMARY">
       <ColNames>idVT</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="692" parent="538" name="PRIMARY">
+    <key id="694" parent="539" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="693" parent="539" name="idXX">
+    <column id="695" parent="540" name="idXX">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(45)|0s</StoredType>
     </column>
-    <column id="694" parent="539" name="tenXX">
+    <column id="696" parent="540" name="tenXX">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="695" parent="539" name="PRIMARY">
+    <index id="697" parent="540" name="PRIMARY">
       <ColNames>idXX</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="696" parent="539" name="PRIMARY">
+    <key id="698" parent="540" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

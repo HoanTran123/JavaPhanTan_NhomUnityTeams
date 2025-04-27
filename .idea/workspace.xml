@@ -5,68 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ChiTietDoiTraDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ChiTietHoaDonDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ChiTietPhieuDatHangDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ChiTietPhieuNhapDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DanhMucDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DoiTraDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DonViTinhDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/GenericDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/HoaDonDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/KhachHangDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/KhuyenMaiDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/NhaCungCapDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/NhanVienDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/PhieuDatHangDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/PhieuNhapDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/TaiKhoanDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ThuocDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/VaiTroDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/XuatXuDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IChiTietDoiTraDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IChiTietHoaDonDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IChiTietPhieuDatHangDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IChiTietPhieuNhapDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IDanhMucDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IDoiTraDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IDonViTinhDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IHoaDonDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IKhachHangDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IKhuyenMaiDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/INhaCungCapDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/INhanVienDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IPhieuDatHangDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IPhieuNhapDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/ITaiKhoanDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IThuocDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IVaiTroDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IXuatXuDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/KhuyenMai.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rmi/RMIClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/rmi/RMIServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/util/HibernateUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/HoaDonPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/KhachHangPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/connectDB/JDBCConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/connectDB/JDBCConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/KhachHang_dao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/NhanVien_dao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/datafaker/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datafaker/DataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/DanhMuc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/DanhMuc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/KhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/KhachHang.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/NhaCungCap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/NhaCungCap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/VaiTro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/VaiTro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/iuh/fit/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testCRUD/TestKhachHang.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testCRUD/testNhanVien.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/HoaDonPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/HoaDonPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/KhachHangPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/KhachHangPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -322,7 +264,8 @@
       <workItem from="1745653877491" duration="12000" />
       <workItem from="1745654828377" duration="22000" />
       <workItem from="1745655377299" duration="3894000" />
-      <workItem from="1745660069606" duration="2445000" />
+      <workItem from="1745660069606" duration="4720000" />
+      <workItem from="1745664956499" duration="2462000" />
     </task>
     <servers />
   </component>

@@ -8,7 +8,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.Date;
 import java.util.List;
 
@@ -71,14 +70,13 @@ public class KhachHangPanel extends JPanel {
         JPanel gridPanel = new JPanel(new GridLayout(2, 4, 15, 15));
         gridPanel.setBackground(Color.WHITE);
 
-        txtMaKH = createStyledTextField();
-        txtHoTen = createStyledTextField();
-        txtSDT = createStyledTextField();
-        txtEmail = createStyledTextField();
+        txtMaKH = createStyledTextField(false); // Non-editable
+        txtHoTen = createStyledTextField(true);
+        txtSDT = createStyledTextField(true);
+        txtEmail = createStyledTextField(true);
         cboGioiTinh = createStyledComboBox(new String[]{"Nam", "Nữ"});
-        txtNgayThamGia = createStyledTextField();
-        txtTongChiTieu = createStyledTextField();
-        txtNgayThamGia.setEditable(false);
+        txtNgayThamGia = createStyledTextField(false); // Non-editable
+        txtTongChiTieu = createStyledTextField(true);
 
         JLabel[] labels = {
                 new JLabel("Mã KH:"), new JLabel("Họ Tên:"), new JLabel("SĐT:"),
@@ -112,13 +110,14 @@ public class KhachHangPanel extends JPanel {
         return panel;
     }
 
-    private JTextField createStyledTextField() {
+    private JTextField createStyledTextField(boolean editable) {
         JTextField field = new JTextField();
         field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         field.setBorder(BorderFactory.createCompoundBorder(
                 new MatteBorder(1, 1, 1, 1, new Color(220, 220, 220)),
                 new EmptyBorder(10, 12, 10, 12)
         ));
+        field.setEditable(editable);
         return field;
     }
 
@@ -221,15 +220,19 @@ public class KhachHangPanel extends JPanel {
         }
     }
 
+    private String generateCustomerId() {
+        return "KH" + String.format("%04d", (int) (Math.random() * 10000));
+    }
+
     private void addKhachHang() {
         try {
-            if (txtMaKH.getText().isEmpty() || txtHoTen.getText().isEmpty()) {
-                showWarning("Vui lòng nhập mã KH và họ tên");
+            if (txtHoTen.getText().isEmpty()) {
+                showWarning("Vui lòng nhập họ tên");
                 return;
             }
 
             KhachHang kh = new KhachHang();
-            kh.setIdKH(txtMaKH.getText());
+            kh.setIdKH(generateCustomerId()); // Automatically generate ID
             kh.setHoTen(txtHoTen.getText());
             kh.setSdt(txtSDT.getText());
             kh.setEmail(txtEmail.getText());
@@ -263,6 +266,11 @@ public class KhachHangPanel extends JPanel {
 
             String idKH = tableModel.getValueAt(selectedRow, 0).toString();
             KhachHang kh = khachHangDao.getById(idKH);
+            if (kh == null) {
+                showError("Khách hàng không tồn tại!");
+                return;
+            }
+
             kh.setHoTen(txtHoTen.getText());
             kh.setSdt(txtSDT.getText());
             kh.setEmail(txtEmail.getText());
@@ -305,6 +313,11 @@ public class KhachHangPanel extends JPanel {
 
             String idKH = tableModel.getValueAt(selectedRow, 0).toString();
             KhachHang kh = khachHangDao.getById(idKH);
+            if (kh == null) {
+                showError("Khách hàng không tồn tại!");
+                return;
+            }
+
             khachHangDao.deleteRelatedRecords(idKH);
 
             if (khachHangDao.delete(kh)) {
