@@ -152,6 +152,12 @@ public class MainFrame extends JFrame {
                     case 3:
                         showPanel(new ThuocPanel(hoaDonPanel));
                         break;
+                    case 4:
+                        showPanel(new PhieuNhapPanel());
+                        break;
+                    case 5:
+                        showPanel(new KhuyenMaiPanel());
+                        break;
                     default:
                         contentPanel.removeAll();
                         JLabel placeholder = new JLabel("💡 Vui lòng chọn một mục từ menu để hiển thị", SwingConstants.CENTER);

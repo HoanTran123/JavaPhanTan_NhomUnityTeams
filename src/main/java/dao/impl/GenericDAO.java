@@ -1,5 +1,6 @@
 package dao.impl;
 
+import entity.ChiTietPhieuNhap;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
@@ -107,4 +108,17 @@ public abstract class GenericDAO<T> {
             query.setParameter(i + 1, params[i]);
         }
     }
+<<<<<<< HEAD
+=======
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    protected List<ChiTietPhieuNhap> findMany(String query, Class<ChiTietPhieuNhap> chiTietPhieuNhapClass, String idPN) {
+        TypedQuery<ChiTietPhieuNhap> typedQuery = entityManager.createQuery(query, chiTietPhieuNhapClass);
+        typedQuery.setParameter("idPN", idPN);
+        return typedQuery.getResultList();
+    }
+>>>>>>> 3552a526a4fb72363bccecbeb7255e4bc8ea4ba2
 }

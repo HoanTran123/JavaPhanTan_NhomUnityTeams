@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.remote.IPhieuNhapDAO;
+import entity.ChiTietPhieuNhap;
 import entity.PhieuNhap;
 
 import java.rmi.RemoteException;
@@ -35,5 +36,13 @@ public class PhieuNhapDAO extends GenericDAO<PhieuNhap> implements IPhieuNhapDAO
     @Override
     public boolean delete(PhieuNhap phieuNhap) {
         return super.delete(phieuNhap);
+    }
+
+    public List<ChiTietPhieuNhap> getChiTietByPhieuNhap(String idPN) {
+        return findMany("SELECT c FROM ChiTietPhieuNhap c WHERE c.phieuNhap.idPN = ?1", ChiTietPhieuNhap.class, idPN);
+    }
+
+    public List<ChiTietPhieuNhap> findMany(String query, Class<ChiTietPhieuNhap> chiTietPhieuNhapClass, String idPN) {
+        return super.findMany(query, chiTietPhieuNhapClass, idPN);
     }
 }
