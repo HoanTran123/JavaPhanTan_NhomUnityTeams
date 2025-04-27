@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManager;
 import java.rmi.RemoteException;
 import java.util.*;
 
+import static util.HibernateUtil.getEntityManager;
+
 public class KhachHangDAO extends GenericDAO<KhachHang> implements IKhachHangDAO {
 
     public KhachHangDAO() throws RemoteException {
@@ -71,16 +73,14 @@ public class KhachHangDAO extends GenericDAO<KhachHang> implements IKhachHangDAO
     public KhachHang getById(String id) throws RemoteException {
         return findOne("SELECT k FROM KhachHang k WHERE k.idKH = ?1", KhachHang.class, id);
     }
+
     @Override
     public List<KhachHang> getAllKhachHang() {
-        KhachHangDAO dao;
         try {
-            dao = new KhachHangDAO();
-            return dao.getAll();
+            return getAll(); // Sử dụng phương thức hiện tại thay vì tạo instance mới
         } catch (RemoteException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error fetching all KhachHang: " + e.getMessage(), e);
         }
-        return new ArrayList<>();
     }
 
     @Override
@@ -88,19 +88,30 @@ public class KhachHangDAO extends GenericDAO<KhachHang> implements IKhachHangDAO
         super.setEntityManager(entityManager);
     }
 
-
-    public void deleteRelatedRecords(String idKH) {
-        entityManager.getTransaction().begin();
-        entityManager.createQuery("DELETE FROM HoaDon h WHERE h.khachHang.idKH = :idKH")
-                .setParameter("idKH", idKH)
-                .executeUpdate();
-        entityManager.createQuery("DELETE FROM PhieuDatHang p WHERE p.khachHang.idKH = :idKH")
-                .setParameter("idKH", idKH)
-                .executeUpdate();
-        entityManager.createQuery("DELETE FROM DoiTra d WHERE d.khachHang.idKH = :idKH")
-                .setParameter("idKH", idKH)
-                .executeUpdate();
-        entityManager.getTransaction().commit();
+    public void deleteRelatedRecords(String idKH) throws RemoteException {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createQuery("DELETE FROM ChiTietHoaDon c WHERE c.hoaDon.idHD IN (SELECT h.idHD FROM HoaDon h WHERE h.khachHang.idKH = :idKH)")
+                    .setParameter("idKH", idKH)
+                    .executeUpdate();
+            em.createQuery("DELETE FROM HoaDon h WHERE h.khachHang.idKH = :idKH")
+                    .setParameter("idKH", idKH)
+                    .executeUpdate();
+            em.createQuery("DELETE FROM PhieuDatHang p WHERE p.khachHang.idKH = :idKH")
+                    .setParameter("idKH", idKH)
+                    .executeUpdate();
+            em.createQuery("DELETE FROM DoiTra d WHERE d.khachHang.idKH = :idKH")
+                    .setParameter("idKH", idKH)
+                    .executeUpdate();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new RemoteException("Lỗi khi xóa bản ghi liên quan: " + e.getMessage());
+        } finally {
+            em.close();
+        }
     }
-
 }

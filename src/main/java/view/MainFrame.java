@@ -10,6 +10,7 @@ public class MainFrame extends JFrame {
     private JList<String> menuList;
     private JPanel contentPanel;
     private DefaultListModel<String> menuModel;
+    private HoaDonPanel hoaDonPanel; // Lưu trữ HoaDonPanel
 
     public MainFrame() {
         setTitle("Quản Lý Nhà Thuốc - UnityTeams");
@@ -18,7 +19,6 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // Set modern Look and Feel
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
             UIManager.put("nimbusBase", new Color(0, 102, 204));
@@ -33,7 +33,6 @@ public class MainFrame extends JFrame {
         add(createSidebarPanel(), BorderLayout.WEST);
         add(createContentPanel(), BorderLayout.CENTER);
 
-        // Select first menu item by default
         menuList.setSelectedIndex(0);
     }
 
@@ -142,13 +141,16 @@ public class MainFrame extends JFrame {
                         showPanel(new KhachHangPanel());
                         break;
                     case 1:
-                        showPanel(new HoaDonPanel());
+                        if (hoaDonPanel == null) {
+                            hoaDonPanel = new HoaDonPanel();
+                        }
+                        showPanel(hoaDonPanel);
                         break;
                     case 2:
                         showPanel(new NhaCungCapPanel());
                         break;
                     case 3:
-                        showPanel(new ThuocPanel());
+                        showPanel(new ThuocPanel(hoaDonPanel));
                         break;
                     default:
                         contentPanel.removeAll();
@@ -241,7 +243,6 @@ public class MainFrame extends JFrame {
             MainFrame frame = new MainFrame();
             frame.setVisible(true);
 
-            // Add window shadow effect (requires JNA library)
             try {
                 com.sun.jna.platform.WindowUtils.setWindowTransparent(frame, true);
             } catch (Exception e) {

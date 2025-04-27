@@ -3,18 +3,20 @@ package dao.impl;
 import dao.remote.IHoaDonDAO;
 import entity.HoaDon;
 import entity.KhachHang;
+import entity.NhanVien;
 import jakarta.persistence.EntityManager;
 import util.HibernateUtil;
 
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.logging.Handler;
 
 public class HoaDonDAO extends GenericDAO<HoaDon> implements IHoaDonDAO {
 
+    private EntityManager entityManager;
+
     public HoaDonDAO() throws RemoteException {
         super();
-        setEntityManager(HibernateUtil.getEntityManager());
+        this.entityManager = HibernateUtil.getEntityManager();
     }
 
     @Override
@@ -58,19 +60,28 @@ public class HoaDonDAO extends GenericDAO<HoaDon> implements IHoaDonDAO {
         return count("SELECT COUNT(h) FROM HoaDon h WHERE h.khachHang.idKH = ?1", customerId);
     }
 
-    public KhachHang getKhachHangById(String text) {
-        return findOne("SELECT k FROM KhachHang k WHERE k.idKH = ?1", KhachHang.class, text);
+    public KhachHang getKhachHangById(String id) throws RemoteException {
+        return findOne("SELECT k FROM KhachHang k WHERE k.idKH = ?1", KhachHang.class, id);
     }
 
-    private KhachHang findOne(String query, Class<KhachHang> khachHangClass, String text) {
-        // Implement the logic to execute the query and return a KhachHang object
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+    private KhachHang findOne(String query, Class<KhachHang> khachHangClass, String id) {
         return entityManager.createQuery(query, khachHangClass)
-                .setParameter(1, text)
+                .setParameter(1, id)
                 .getSingleResult();
+    }
+    @Override
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+        super.setEntityManager(entityManager);
     }
 
     public EntityManager getEntityManager() {
-        return HibernateUtil.getEntityManager();
+        return this.entityManager;
+    }
+
+    public NhanVien getNhanVienById(String maNV) {
+        return entityManager.createQuery("SELECT n FROM NhanVien n WHERE n.idNV = ?1", NhanVien.class)
+                .setParameter(1, maNV)
+                .getSingleResult();
     }
 }

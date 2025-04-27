@@ -1,45 +1,36 @@
 package entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@AllArgsConstructor
-@NoArgsConstructor
 public class NhanVien {
     @Id
     @EqualsAndHashCode.Include
     private String idNV;
 
     private String hoTen;
-    private String sdt;
-    private String email;
-    private String gioiTinh;
-    private int namSinh;
-    private Date ngayVaoLam;
-    private String chucVu;
 
-    @OneToMany(mappedBy = "nhanVien")
-    private List<PhieuNhap> phieuNhap;
+    @OneToMany(mappedBy = "nhanVien", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HoaDon> hoaDon = new ArrayList<>();
 
-    @OneToMany(mappedBy = "nhanVien")
-    private List<TaiKhoan> taiKhoan;
+    @OneToMany(mappedBy = "nhanVien", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DoiTra> doiTra = new ArrayList<>();
 
-    @OneToMany(mappedBy = "nhanVien")
-    private List<HoaDon> hoaDon;
+    @OneToMany(mappedBy = "nhanVien", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TaiKhoan> taiKhoan = new ArrayList<>();
 
-    @OneToMany(mappedBy = "nhanVien")
-    private List<DoiTra> doiTra;
-
-
-    public NhanVien(String idNV) {
+    @Override
+    public String toString() {
+        return "NhanVien{" +
+                "idNV='" + idNV + '\'' +
+                ", hoTen='" + hoTen + '\'' +
+                '}';
     }
 }
