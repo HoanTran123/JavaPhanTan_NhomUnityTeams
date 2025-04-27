@@ -2,10 +2,7 @@ package entity;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -16,6 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
 public class Thuoc {
     @Id
     @EqualsAndHashCode.Include

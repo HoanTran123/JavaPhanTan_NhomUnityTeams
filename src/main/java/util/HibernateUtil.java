@@ -31,4 +31,16 @@ public class HibernateUtil {
             emf.close();
         }
     }
+    public static void main(String[] args) {
+        try {
+            EntityManager em = HibernateUtil.getEntityManager();
+            System.out.println("EntityManager: " + (em != null ? "Initialized" : "Null"));
+            HibernateUtil.shutdown();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void shutdown() {
+    }
 }

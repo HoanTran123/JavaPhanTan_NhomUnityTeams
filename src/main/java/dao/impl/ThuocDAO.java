@@ -12,6 +12,7 @@ public class ThuocDAO extends GenericDAO<Thuoc> implements IThuocDAO {
 
     public ThuocDAO() throws RemoteException {
         super();
+        setEntityManager(HibernateUtil.getEntityManager());
     }
 
     @Override

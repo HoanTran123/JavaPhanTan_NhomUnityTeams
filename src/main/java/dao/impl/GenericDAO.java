@@ -11,7 +11,19 @@ public abstract class GenericDAO<T> {
 
     protected EntityManager entityManager;
 
-
+    public GenericDAO() {
+        if (entityManager == null) {
+            System.out.println("EntityManager is null in " + this.getClass().getName());
+        }
+    }
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+        if (entityManager == null) {
+            System.err.println("EntityManager set to null in " + this.getClass().getName());
+        } else {
+            System.out.println("EntityManager initialized in " + this.getClass().getName());
+        }
+    }
     public List<T> findMany(String query, Class<T> clazz, Object... params) {
         if (entityManager == null) {
             throw new IllegalStateException("EntityManager has not been set.");
@@ -20,7 +32,6 @@ public abstract class GenericDAO<T> {
         setParameters(typedQuery, params);
         return typedQuery.getResultList();
     }
-
     public T findOne(String query, Class<T> clazz, Object... params) {
         if (entityManager == null) {
             throw new IllegalStateException("EntityManager has not been set.");
@@ -106,9 +117,6 @@ public abstract class GenericDAO<T> {
         }
     }
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     protected List<ChiTietPhieuNhap> findMany(String query, Class<ChiTietPhieuNhap> chiTietPhieuNhapClass, String idPN) {
         TypedQuery<ChiTietPhieuNhap> typedQuery = entityManager.createQuery(query, chiTietPhieuNhapClass);

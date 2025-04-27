@@ -2,6 +2,7 @@ package dao.impl;
 
 import dao.remote.INhaCungCapDAO;
 import entity.NhaCungCap;
+import util.HibernateUtil;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -10,6 +11,7 @@ public class NhaCungCapDAO extends GenericDAO<NhaCungCap> implements INhaCungCap
 
     public NhaCungCapDAO() throws RemoteException {
         super();
+        setEntityManager(HibernateUtil.getEntityManager());
     }
 
     @Override

@@ -3,19 +3,25 @@ package dao.impl;
 import dao.remote.IPhieuNhapDAO;
 import entity.ChiTietPhieuNhap;
 import entity.PhieuNhap;
+import util.EntityManagerUtil;
+import util.HibernateUtil;
 
 import java.rmi.RemoteException;
 import java.util.List;
 
 public class PhieuNhapDAO extends GenericDAO<PhieuNhap> implements IPhieuNhapDAO {
 
-    public PhieuNhapDAO() throws RemoteException {
-        super();
+    public PhieuNhapDAO() {
+        setEntityManager(HibernateUtil.getEntityManager());
     }
 
-    @Override
-    public List<PhieuNhap> getAll() throws RemoteException {
-        return findMany("SELECT p FROM PhieuNhap p", PhieuNhap.class);
+    public List<PhieuNhap> getAll() {
+        return findMany("SELECT pn FROM PhieuNhap pn", PhieuNhap.class);
+    }
+
+    public List<ChiTietPhieuNhap> getChiTietByPhieuNhap(String idPN) {
+        return findMany("SELECT ct FROM ChiTietPhieuNhap ct WHERE ct.phieuNhap.idPN = :idPN",
+                ChiTietPhieuNhap.class, idPN);
     }
 
     @Override
@@ -38,9 +44,6 @@ public class PhieuNhapDAO extends GenericDAO<PhieuNhap> implements IPhieuNhapDAO
         return super.delete(phieuNhap);
     }
 
-    public List<ChiTietPhieuNhap> getChiTietByPhieuNhap(String idPN) {
-        return findMany("SELECT c FROM ChiTietPhieuNhap c WHERE c.phieuNhap.idPN = ?1", ChiTietPhieuNhap.class, idPN);
-    }
 
     public List<ChiTietPhieuNhap> findMany(String query, Class<ChiTietPhieuNhap> chiTietPhieuNhapClass, String idPN) {
         return super.findMany(query, chiTietPhieuNhapClass, idPN);
