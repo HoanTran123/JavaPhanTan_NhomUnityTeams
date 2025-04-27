@@ -11,9 +11,6 @@ public abstract class GenericDAO<T> {
 
     protected EntityManager entityManager;
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     public List<T> findMany(String query, Class<T> clazz, Object... params) {
         if (entityManager == null) {
@@ -108,8 +105,6 @@ public abstract class GenericDAO<T> {
             query.setParameter(i + 1, params[i]);
         }
     }
-<<<<<<< HEAD
-=======
 
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -120,5 +115,4 @@ public abstract class GenericDAO<T> {
         typedQuery.setParameter("idPN", idPN);
         return typedQuery.getResultList();
     }
->>>>>>> 3552a526a4fb72363bccecbeb7255e4bc8ea4ba2
 }

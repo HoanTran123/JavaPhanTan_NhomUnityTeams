@@ -10,7 +10,8 @@ public class MainFrame extends JFrame {
     private JList<String> menuList;
     private JPanel contentPanel;
     private DefaultListModel<String> menuModel;
-    private HoaDonPanel hoaDonPanel; // Lưu trữ HoaDonPanel
+    private HoaDonPanel hoaDonPanel;
+    private NhanVienPanel nhanVienPanel; // Added for NhanVienPanel
 
     public MainFrame() {
         setTitle("Quản Lý Nhà Thuốc - UnityTeams");
@@ -94,6 +95,7 @@ public class MainFrame extends JFrame {
         String[] menuItems = {
                 "Quản Lý Khách Hàng",
                 "Quản Lý Hóa Đơn",
+                "Quản Lý Nhân Viên", // Added
                 "Quản Lý Nhà Cung Cấp",
                 "Quản Lý Thuốc",
                 "Quản Lý Phiếu Nhập",
@@ -147,17 +149,32 @@ public class MainFrame extends JFrame {
                         showPanel(hoaDonPanel);
                         break;
                     case 2:
-                        showPanel(new NhaCungCapPanel());
+                        if (nhanVienPanel == null) {
+                            try {
+                                nhanVienPanel = new NhanVienPanel();
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                                JOptionPane.showMessageDialog(this, "Lỗi khi tải Quản Lý Nhân Viên: " + ex.getMessage(),
+                                        "Lỗi", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        showPanel(nhanVienPanel);
                         break;
                     case 3:
-                        showPanel(new ThuocPanel(hoaDonPanel));
+                        showPanel(new NhaCungCapPanel());
                         break;
                     case 4:
-                        showPanel(new PhieuNhapPanel());
+                        showPanel(new ThuocPanel(hoaDonPanel));
                         break;
                     case 5:
+                        showPanel(new PhieuNhapPanel());
+                        break;
+                    case 6:
                         showPanel(new KhuyenMaiPanel());
                         break;
+//                    case 7:
+//                        showPanel(new ThongKePanel());
+//                        break;
                     default:
                         contentPanel.removeAll();
                         JLabel placeholder = new JLabel("💡 Vui lòng chọn một mục từ menu để hiển thị", SwingConstants.CENTER);
