@@ -16,8 +16,10 @@ public class ThuocPanel extends JPanel {
     private DefaultTableModel tableModel;
     private JTextField txtMaThuoc, txtTenThuoc, txtThanhPhan, txtSoLuongTon, txtGiaNhap, txtDonGia, txtHanSuDung;
     private ThuocDAO thuocDao;
+    private HoaDonPanel hoaDonPanel; // Thêm tham chiếu đến HoaDonPanel
 
-    public ThuocPanel() {
+    public ThuocPanel(HoaDonPanel hoaDonPanel) {
+        this.hoaDonPanel = hoaDonPanel;
         try {
             thuocDao = new ThuocDAO();
             thuocDao.setEntityManager(HibernateUtil.getEntityManager());
@@ -167,13 +169,29 @@ public class ThuocPanel extends JPanel {
         btnThem.addActionListener(e -> addThuoc());
         btnSua.addActionListener(e -> updateThuoc());
         btnXoa.addActionListener(e -> deleteThuoc());
+        JButton btnThanhToan = createActionButton("Thanh Toán", new Color(0, 123, 255));
+        btnThanhToan.addActionListener(e -> openBanThuocDialog());
 
         buttonPanel.add(btnThem);
         buttonPanel.add(btnSua);
         buttonPanel.add(btnXoa);
         buttonPanel.add(btnLamMoi);
+        buttonPanel.add(btnThanhToan);
 
         return buttonPanel;
+    }
+
+    private void openBanThuocDialog() {
+        BanThuocDialog dialog = new BanThuocDialog(
+                (JFrame) SwingUtilities.getWindowAncestor(this),
+                () -> {
+                    if (hoaDonPanel != null) {
+                        hoaDonPanel.loadHoaDon();
+                    }
+                }
+        );
+        dialog.setVisible(true);
+        loadThuoc(); // Refresh the table after the dialog is closed
     }
 
     private JButton createActionButton(String text, Color bgColor) {

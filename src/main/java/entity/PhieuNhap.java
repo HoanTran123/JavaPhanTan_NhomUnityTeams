@@ -1,8 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -10,6 +9,8 @@ import java.util.List;
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class PhieuNhap {
     @Id
     @EqualsAndHashCode.Include
@@ -28,4 +29,8 @@ public class PhieuNhap {
 
     @OneToMany(mappedBy = "phieuNhap")
     private List<ChiTietPhieuNhap> chiTietPhieuNhap;
+    @Override
+    public String toString() {
+        return "PhieuNhap{idPN='" + idPN + "', thoiGian=" + thoiGian + ", tongTien=" + tongTien + "}";
+    }
 }

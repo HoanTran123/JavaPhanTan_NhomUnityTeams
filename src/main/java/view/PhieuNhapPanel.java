@@ -1,19 +1,13 @@
 package view;
 
 import dao.impl.PhieuNhapDAO;
-import dao.impl.ChiTietPhieuNhapDAO;
-import dao.impl.ThuocDAO;
 import dao.impl.NhaCungCapDAO;
 import entity.PhieuNhap;
-import entity.ChiTietPhieuNhap;
-import entity.Thuoc;
 import entity.NhaCungCap;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.time.LocalDate;
+import java.awt.event.*;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,37 +20,27 @@ public class PhieuNhapPanel extends JPanel {
     private JTextField txtSearch, txtIdPN;
     private JComboBox<NhaCungCap> cbNhaCungCap;
     private JDateChooser dateChooserNgayNhap;
-    private JTable detailTable;
-    private DefaultTableModel detailTableModel;
-    private JComboBox<Thuoc> cbThuoc;
-    private JTextField txtSoLuong, txtDonGia;
     private List<PhieuNhap> phieuNhapList;
-    private List<ChiTietPhieuNhap> chiTietList;
-    private List<Thuoc> thuocList;
     private List<NhaCungCap> nhaCungCapList;
     private PhieuNhapDAO phieuNhapDAO;
-    private ChiTietPhieuNhapDAO chiTietPhieuNhapDAO;
-    private ThuocDAO thuocDAO;
     private NhaCungCapDAO nhaCungCapDAO;
 
     public PhieuNhapPanel() {
         try {
-            setLayout(new BorderLayout());
-            setBackground(new Color(248, 249, 250));
+            setLayout(new GridBagLayout());
+            setBackground(new Color(245, 245, 245));
             phieuNhapList = new ArrayList<>();
-            chiTietList = new ArrayList<>();
-            thuocList = new ArrayList<>();
             nhaCungCapList = new ArrayList<>();
 
-            // Khởi tạo DAO
+            // Initialize DAOs
             phieuNhapDAO = new PhieuNhapDAO();
-            chiTietPhieuNhapDAO = new ChiTietPhieuNhapDAO();
-            thuocDAO = new ThuocDAO();
             nhaCungCapDAO = new NhaCungCapDAO();
 
-            // Load data
-            loadDataFromDatabase();
+            // Initialize UI components
             initComponents();
+
+            // Load data after initializing components
+            loadDataFromDatabase();
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Lỗi khởi tạo: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -64,40 +48,35 @@ public class PhieuNhapPanel extends JPanel {
     }
 
     private void initComponents() {
-        add(createTopPanel(), BorderLayout.NORTH);
-        add(createCenterPanel(), BorderLayout.CENTER);
-        add(createRightPanel(), BorderLayout.EAST);
-    }
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.BOTH;
 
-    private JPanel createTopPanel() {
-        JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(new Color(248, 249, 250));
-        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        // Search Panel
+        JPanel searchCard = new JPanel(new BorderLayout(8, 0));
+        searchCard.setBackground(Color.WHITE);
+        searchCard.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
-        JPanel searchPanel = new JPanel(new BorderLayout(10, 0));
-        searchPanel.setBackground(new Color(248, 249, 250));
+        txtSearch = createStyledTextField("Tìm kiếm phiếu nhập...");
+        txtSearch.setPreferredSize(new Dimension(300, 36));
 
-        txtSearch = new JTextField();
-        txtSearch.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        txtSearch.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(200, 200, 200)),
-                BorderFactory.createEmptyBorder(8, 8, 8, 8)
-        ));
-        txtSearch.setPreferredSize(new Dimension(400, 35));
-
-        JButton btnSearch = createStyledButton("Tìm kiếm", new Color(0, 102, 204));
+        JButton btnSearch = createStyledButton("Tìm", new Color(52, 152, 219));
         btnSearch.addActionListener(e -> searchPhieuNhap());
 
-        searchPanel.add(txtSearch, BorderLayout.CENTER);
-        searchPanel.add(btnSearch, BorderLayout.EAST);
+        searchCard.add(txtSearch, BorderLayout.CENTER);
+        searchCard.add(btnSearch, BorderLayout.EAST);
 
-        topPanel.add(searchPanel, BorderLayout.WEST);
-        return topPanel;
-    }
+        gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 1.0; gbc.weighty = 0.0;
+        add(searchCard, gbc);
 
-    private JPanel createCenterPanel() {
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.setBackground(new Color(248, 249, 250));
+        // Table Panel
+        JPanel tableCard = new JPanel(new BorderLayout());
+        tableCard.setBackground(Color.WHITE);
+        tableCard.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
         String[] columns = {"Mã PN", "Nhà Cung Cấp", "Ngày Nhập"};
         tableModel = new DefaultTableModel(columns, 0) {
@@ -108,127 +87,68 @@ public class PhieuNhapPanel extends JPanel {
         };
 
         table = new JTable(tableModel);
-        table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        table.setRowHeight(30);
+        table.setFont(new Font("Roboto", Font.PLAIN, 14));
+        table.setRowHeight(32);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
-        table.getTableHeader().setBackground(new Color(0, 102, 204));
+        table.setGridColor(new Color(230, 230, 230));
+        table.setShowGrid(true);
+        table.getTableHeader().setFont(new Font("Roboto", Font.BOLD, 14));
+        table.getTableHeader().setBackground(new Color(52, 152, 219));
         table.getTableHeader().setForeground(Color.WHITE);
+        table.getTableHeader().setOpaque(false);
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        tableCard.add(scrollPane, BorderLayout.CENTER);
 
-        String[] detailColumns = {"Tên Thuốc", "Số Lượng", "Đơn Giá"};
-        detailTableModel = new DefaultTableModel(detailColumns, 0) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+        gbc.gridx = 0; gbc.gridy = 1; gbc.weighty = 1.0;
+        add(tableCard, gbc);
 
-        detailTable = new JTable(detailTableModel);
-        detailTable.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        detailTable.setRowHeight(30);
-        detailTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        detailTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
-        detailTable.getTableHeader().setBackground(new Color(0, 102, 204));
-        detailTable.getTableHeader().setForeground(Color.WHITE);
+        // Form and Buttons Panel
+        JPanel formCard = new JPanel(new GridBagLayout());
+        formCard.setBackground(Color.WHITE);
+        formCard.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                BorderFactory.createEmptyBorder(15, 15, 15, 15)));
 
-        JScrollPane detailScrollPane = new JScrollPane(detailTable);
-        detailScrollPane.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
-        detailScrollPane.setPreferredSize(new Dimension(0, 200));
+        GridBagConstraints formGbc = new GridBagConstraints();
+        formGbc.insets = new Insets(8, 8, 8, 8);
+        formGbc.fill = GridBagConstraints.HORIZONTAL;
 
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
-        centerPanel.add(detailScrollPane, BorderLayout.SOUTH);
+        JLabel titleLabel = new JLabel("Quản Lý Phiếu Nhập");
+        titleLabel.setFont(new Font("Roboto", Font.BOLD, 16));
+        titleLabel.setForeground(new Color(44, 62, 80));
+        formGbc.gridx = 0; formGbc.gridy = 0; formGbc.gridwidth = 2;
+        formCard.add(titleLabel, formGbc);
 
-        table.getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting() && table.getSelectedRow() >= 0) {
-                int selectedRow = table.getSelectedRow();
-                PhieuNhap pn = phieuNhapList.get(selectedRow);
-                txtIdPN.setText(pn.getIdPN());
-                cbNhaCungCap.setSelectedItem(pn.getNhaCungCap());
-                dateChooserNgayNhap.setDate(
-                        pn.getThoiGian() != null ? Date.from(pn.getThoiGian().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant()) : null                );
+        formGbc.gridwidth = 1;
+        formGbc.gridx = 0; formGbc.gridy = 1;
+        formCard.add(new JLabel("Mã Phiếu Nhập:"), formGbc);
+        txtIdPN = createStyledTextField("Nhập mã phiếu nhập...");
+        formGbc.gridx = 1;
+        formCard.add(txtIdPN, formGbc);
 
-                try {
-                    refreshDetailTable(pn.getIdPN());
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Lỗi tải chi tiết: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
+        formGbc.gridx = 0; formGbc.gridy = 2;
+        formCard.add(new JLabel("Nhà Cung Cấp:"), formGbc);
+        cbNhaCungCap = new JComboBox<>();
+        cbNhaCungCap.setFont(new Font("Roboto", Font.PLAIN, 14));
+        cbNhaCungCap.setBackground(Color.WHITE);
+        formGbc.gridx = 1;
+        formCard.add(cbNhaCungCap, formGbc);
 
-        return centerPanel;
-    }
-
-    private JPanel createRightPanel() {
-        JPanel rightPanel = new JPanel(new BorderLayout());
-        rightPanel.setBackground(new Color(248, 249, 250));
-        rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        rightPanel.setPreferredSize(new Dimension(350, 0));
-
-        JPanel formPanel = new JPanel(new GridBagLayout());
-        formPanel.setBackground(new Color(255, 255, 255));
-        formPanel.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(200, 200, 200)),
-                BorderFactory.createEmptyBorder(15, 15, 15, 15)
-        ));
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        gbc.gridx = 0; gbc.gridy = 0;
-        formPanel.add(new JLabel("Mã Phiếu Nhập:"), gbc);
-        txtIdPN = createStyledTextField();
-        gbc.gridx = 1;
-        formPanel.add(txtIdPN, gbc);
-
-        gbc.gridx = 0; gbc.gridy = 1;
-        formPanel.add(new JLabel("Nhà Cung Cấp:"), gbc);
-        cbNhaCungCap = new JComboBox<>(nhaCungCapList.toArray(new NhaCungCap[0]));
-        cbNhaCungCap.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        gbc.gridx = 1;
-        formPanel.add(cbNhaCungCap, gbc);
-
-        gbc.gridx = 0; gbc.gridy = 2;
-        formPanel.add(new JLabel("Ngày Nhập:"), gbc);
+        formGbc.gridx = 0; formGbc.gridy = 3;
+        formCard.add(new JLabel("Ngày Nhập:"), formGbc);
         dateChooserNgayNhap = createStyledDateChooser();
-        gbc.gridx = 1;
-        formPanel.add(dateChooserNgayNhap, gbc);
+        formGbc.gridx = 1;
+        formCard.add(dateChooserNgayNhap, formGbc);
 
-        gbc.gridx = 0; gbc.gridy = 3;
-        formPanel.add(new JLabel("Thuốc:"), gbc);
-        cbThuoc = new JComboBox<>(thuocList.toArray(new Thuoc[0]));
-        cbThuoc.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        gbc.gridx = 1;
-        formPanel.add(cbThuoc, gbc);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 0));
+        buttonPanel.setOpaque(false);
 
-        gbc.gridx = 0; gbc.gridy = 4;
-        formPanel.add(new JLabel("Số Lượng:"), gbc);
-        txtSoLuong = createStyledTextField();
-        gbc.gridx = 1;
-        formPanel.add(txtSoLuong, gbc);
-
-        gbc.gridx = 0; gbc.gridy = 5;
-        formPanel.add(new JLabel("Đơn Giá:"), gbc);
-        txtDonGia = createStyledTextField();
-        gbc.gridx = 1;
-        formPanel.add(txtDonGia, gbc);
-
-        JButton btnAddDetail = createStyledButton("Thêm Chi Tiết", new Color(0, 153, 0));
-        btnAddDetail.addActionListener(e -> addChiTiet());
-        gbc.gridx = 0; gbc.gridy = 6; gbc.gridwidth = 2;
-        formPanel.add(btnAddDetail, gbc);
-
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
-        buttonPanel.setBackground(new Color(255, 255, 255));
-
-        JButton btnAdd = createStyledButton("Thêm", new Color(0, 102, 204));
-        JButton btnUpdate = createStyledButton("Sửa", new Color(0, 153, 0));
-        JButton btnDelete = createStyledButton("Xóa", new Color(204, 0, 0));
-        JButton btnClear = createStyledButton("Làm mới", new Color(100, 100, 100));
+        JButton btnAdd = createStyledButton("Thêm", new Color(52, 152, 219));
+        JButton btnUpdate = createStyledButton("Sửa", new Color(39, 174, 96));
+        JButton btnDelete = createStyledButton("Xóa", new Color(192, 57, 43));
+        JButton btnClear = createStyledButton("Làm mới", new Color(127, 140, 141));
 
         btnAdd.addActionListener(e -> addPhieuNhap());
         btnUpdate.addActionListener(e -> updatePhieuNhap());
@@ -240,41 +160,76 @@ public class PhieuNhapPanel extends JPanel {
         buttonPanel.add(btnDelete);
         buttonPanel.add(btnClear);
 
-        gbc.gridx = 0; gbc.gridy = 7; gbc.gridwidth = 2;
-        formPanel.add(buttonPanel, gbc);
+        formGbc.gridx = 0; formGbc.gridy = 4; formGbc.gridwidth = 2;
+        formCard.add(buttonPanel, formGbc);
 
-        rightPanel.add(formPanel, BorderLayout.NORTH);
-        return rightPanel;
+        gbc.gridx = 0; gbc.gridy = 2; gbc.weighty = 0.0;
+        add(formCard, gbc);
+
+        table.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting() && table.getSelectedRow() >= 0) {
+                int selectedRow = table.getSelectedRow();
+                PhieuNhap pn = phieuNhapList.get(selectedRow);
+                txtIdPN.setText(pn.getIdPN());
+                cbNhaCungCap.setSelectedItem(pn.getNhaCungCap());
+                dateChooserNgayNhap.setDate(
+                        pn.getThoiGian() != null ? Date.from(pn.getThoiGian().toInstant().atZone(ZoneId.systemDefault()).toInstant()) : null
+                );
+            }
+        });
     }
 
-    private JTextField createStyledTextField() {
-        JTextField textField = new JTextField();
-        textField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    private JTextField createStyledTextField(String placeholder) {
+        JTextField textField = new JTextField(20);
+        textField.setFont(new Font("Roboto", Font.PLAIN, 14));
         textField.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(200, 200, 200)),
-                BorderFactory.createEmptyBorder(8, 8, 8, 8)
-        ));
+                BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                BorderFactory.createEmptyBorder(8, 8, 8, 8)));
+        textField.setBackground(Color.WHITE);
+        textField.setForeground(new Color(44, 62, 80));
+        textField.setText(placeholder);
+        textField.setForeground(new Color(149, 165, 166));
+        textField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(new Color(44, 62, 80));
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setText(placeholder);
+                    textField.setForeground(new Color(149, 165, 166));
+                }
+            }
+        });
+
         return textField;
     }
 
     private JDateChooser createStyledDateChooser() {
         JDateChooser dateChooser = new JDateChooser();
-        dateChooser.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        dateChooser.setFont(new Font("Roboto", Font.PLAIN, 14));
         dateChooser.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(200, 200, 200)),
-                BorderFactory.createEmptyBorder(8, 8, 8, 8)
-        ));
+                BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                BorderFactory.createEmptyBorder(8, 8, 8, 8)));
+        dateChooser.setBackground(Color.WHITE);
         dateChooser.setDateFormatString("dd/MM/yyyy");
         return dateChooser;
     }
 
     private JButton createStyledButton(String text, Color color) {
         JButton button = new JButton(text);
-        button.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        button.setFont(new Font("Roboto", Font.BOLD, 14));
         button.setBackground(color);
         button.setForeground(Color.WHITE);
-        button.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
+        button.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
         button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+        button.setOpaque(true);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         button.addMouseListener(new MouseAdapter() {
@@ -287,6 +242,16 @@ public class PhieuNhapPanel extends JPanel {
             public void mouseExited(MouseEvent e) {
                 button.setBackground(color);
             }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button.setBackground(color.darker());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                button.setBackground(color);
+            }
         });
 
         return button;
@@ -295,17 +260,17 @@ public class PhieuNhapPanel extends JPanel {
     private void loadDataFromDatabase() {
         try {
             phieuNhapList = phieuNhapDAO.getAll();
-            chiTietList = chiTietPhieuNhapDAO.getAll();
-            thuocList = thuocDAO.getAll();
             nhaCungCapList = nhaCungCapDAO.getAll();
 
-            cbThuoc.setModel(new DefaultComboBoxModel<>(thuocList.toArray(new Thuoc[0])));
             cbNhaCungCap.setModel(new DefaultComboBoxModel<>(nhaCungCapList.toArray(new NhaCungCap[0])));
-
             refreshTable();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Lỗi tải dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Không thể tải dữ liệu từ cơ sở dữ liệu: " + e.getMessage(),
+                    "Lỗi Cơ Sở Dữ Liệu",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 
@@ -320,30 +285,18 @@ public class PhieuNhapPanel extends JPanel {
         }
     }
 
-    private void refreshDetailTable(String idPN) throws Exception {
-        detailTableModel.setRowCount(0);
-        List<ChiTietPhieuNhap> details = phieuNhapDAO.getChiTietByPhieuNhap(idPN);
-        for (ChiTietPhieuNhap ct : details) {
-            detailTableModel.addRow(new Object[]{
-                    ct.getThuoc().getTenThuoc(),
-                    ct.getSoLuong(),
-                    ct.getDonGia()
-            });
-        }
-    }
-
     private void addPhieuNhap() {
         try {
+            if (txtIdPN.getText().equals("Nhập mã phiếu nhập...")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mã phiếu nhập!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             PhieuNhap pn = new PhieuNhap();
             pn.setIdPN(txtIdPN.getText());
             pn.setNhaCungCap((NhaCungCap) cbNhaCungCap.getSelectedItem());
             Date ngayNhap = dateChooserNgayNhap.getDate();
             pn.setThoiGian(ngayNhap != null ? new java.sql.Timestamp(ngayNhap.getTime()) : null);
-            for (ChiTietPhieuNhap ct : chiTietList) {
-                if (ct.getPhieuNhap().getIdPN().equals(pn.getIdPN())) {
-                    pn.getChiTietPhieuNhap().add(ct);
-                }
-            }
 
             phieuNhapDAO.add(pn);
             phieuNhapList.add(pn);
@@ -364,12 +317,6 @@ public class PhieuNhapPanel extends JPanel {
                 pn.setNhaCungCap((NhaCungCap) cbNhaCungCap.getSelectedItem());
                 Date ngayNhap = dateChooserNgayNhap.getDate();
                 pn.setThoiGian(ngayNhap != null ? new java.sql.Timestamp(ngayNhap.getTime()) : null);
-                pn.getChiTietPhieuNhap().clear();
-                for (ChiTietPhieuNhap ct : chiTietList) {
-                    if (ct.getPhieuNhap().getIdPN().equals(pn.getIdPN())) {
-                        pn.getChiTietPhieuNhap().add(ct);
-                    }
-                }
 
                 phieuNhapDAO.update(pn);
                 refreshTable();
@@ -397,9 +344,7 @@ public class PhieuNhapPanel extends JPanel {
                     PhieuNhap pn = phieuNhapList.get(selectedRow);
                     phieuNhapDAO.delete(pn);
                     phieuNhapList.remove(selectedRow);
-                    chiTietList.removeIf(ct -> ct.getPhieuNhap().getIdPN().equals(pn.getIdPN()));
                     refreshTable();
-                    refreshDetailTable("");
                     clearForm();
                     JOptionPane.showMessageDialog(this, "Xóa phiếu nhập thành công!");
                 } catch (Exception e) {
@@ -412,33 +357,15 @@ public class PhieuNhapPanel extends JPanel {
         }
     }
 
-    private void addChiTiet() {
-        try {
-            ChiTietPhieuNhap ct = new ChiTietPhieuNhap();
-            PhieuNhap pn = new PhieuNhap();
-            pn.setIdPN(txtIdPN.getText());
-            ct.setPhieuNhap(pn);
-            ct.setThuoc((Thuoc) cbThuoc.getSelectedItem());
-            ct.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-            ct.setDonGia(Double.parseDouble(txtDonGia.getText()));
-
-            chiTietList.add(ct);
-            refreshDetailTable(pn.getIdPN());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi: Vui lòng kiểm tra lại dữ liệu chi tiết! " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
-    }
-
     private void searchPhieuNhap() {
         String searchText = txtSearch.getText().toLowerCase();
+        if (searchText.equals("tìm kiếm phiếu nhập...")) searchText = "";
         try {
             phieuNhapList = phieuNhapDAO.findMany(
                     "SELECT pn FROM PhieuNhap pn WHERE LOWER(pn.idPN) LIKE ?1",
                     PhieuNhap.class, "%" + searchText + "%"
             );
             refreshTable();
-            refreshDetailTable("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi khi tìm kiếm: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
@@ -446,14 +373,10 @@ public class PhieuNhapPanel extends JPanel {
     }
 
     private void clearForm() {
-        txtIdPN.setText("");
+        txtIdPN.setText("Nhập mã phiếu nhập...");
+        txtIdPN.setForeground(new Color(149, 165, 166));
         cbNhaCungCap.setSelectedIndex(-1);
         dateChooserNgayNhap.setDate(null);
-        cbThuoc.setSelectedIndex(-1);
-        txtSoLuong.setText("");
-        txtDonGia.setText("");
         table.clearSelection();
-        detailTableModel.setRowCount(0);
-        chiTietList.clear();
     }
 }

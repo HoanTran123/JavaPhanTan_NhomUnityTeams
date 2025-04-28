@@ -3,6 +3,7 @@ package entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -31,5 +32,9 @@ public class NhaCungCap {
 
     // Default constructor
     public NhaCungCap() {
+    }
+    @Override
+    public String toString() {
+        return "NhaCungCap{idNCC='" + idNCC + "', tenNCC='" + tenNCC + "'}";
     }
 }
