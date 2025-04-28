@@ -6,6 +6,7 @@
 //import jakarta.persistence.Persistence;
 //import net.datafaker.Faker;
 //
+//import java.sql.Timestamp;
 //import java.time.LocalDate;
 //import java.time.ZoneId;
 //import java.util.ArrayList;
@@ -20,6 +21,9 @@
 //    public static int maKHCount = 1;
 //    public static int maThuocCount = 1;
 //    public static int maVTCount = 1;
+//    public static int maNCCCount = 1;
+//    public static int maPNCount = 1;
+//    private static long chiTietHoaDonIdCount = 1;
 //
 //    public DataGenerator() {
 //        this.faker = new Faker();
@@ -41,36 +45,16 @@
 //        return String.format("SP%06d", maThuocCount++);
 //    }
 //
-//    private String generateMaDM() {
-//        return String.format("DM%03d", faker.number().numberBetween(1, 100));
-//    }
-//
-//    private String generateMaDVT() {
-//        return String.format("DVT%03d", faker.number().numberBetween(1, 100));
-//    }
-//
-//    private String generateMaXX() {
-//        return String.format("XX%03d", faker.number().numberBetween(1, 100));
-//    }
-//
 //    private String generateMaNCC() {
-//        return String.format("NCC%03d", faker.number().numberBetween(1, 100));
-//    }
-//
-//    private String generateMaPDH() {
-//        return String.format("PDH%06d", faker.number().numberBetween(1, 1000000));
+//        return String.format("NCC%06d", maNCCCount++);
 //    }
 //
 //    private String generateMaPN() {
-//        return String.format("PN%06d", faker.number().numberBetween(1, 1000000));
+//        return String.format("PN%06d", maPNCount++);
 //    }
 //
-//    private String generateMaDT() {
-//        return String.format("DT%06d", faker.number().numberBetween(1, 1000000));
-//    }
-//
-//    private String generateMaVT() {
-//        return String.format("VT%03d", maVTCount++);
+//    private Long generateChiTietHoaDonId() {
+//        return chiTietHoaDonIdCount++;
 //    }
 //
 //    private Date generateRandomDateWithinLast10Years() {
@@ -82,111 +66,88 @@
 //        return Date.from(LocalDate.ofEpochDay(randomDay).atStartOfDay(ZoneId.systemDefault()).toInstant());
 //    }
 //
-//    public KhachHang generateKH() {
-//        KhachHang khachHang = new KhachHang();
-//        khachHang.setIdKH(generateMaKH());
-//        khachHang.setHoTen(faker.name().fullName());
-//        khachHang.setSdt(faker.phoneNumber().phoneNumber());
-//        khachHang.setGioiTinh(faker.options().option("Nam", "Nữ"));
-//        khachHang.setNgayThamGia(generateRandomDateWithinLast10Years());
-//        khachHang.setHangMuc(faker.options().option("Thường", "VIP", "Premium"));
-//        khachHang.setTongChiTieu(faker.number().randomDouble(2, 1000, 1000000));
-//        return khachHang;
-//    }
-//
-//    public NhanVien generateNV() {
-//        NhanVien nhanVien = new NhanVien(idNV);
-//        nhanVien.setIdNV(generateMaNV());
-//        nhanVien.setHoTen(faker.name().fullName());
-//        nhanVien.setSdt(faker.phoneNumber().phoneNumber());
-//        nhanVien.setEmail(faker.internet().emailAddress());
-//        nhanVien.setGioiTinh(faker.options().option("Nam", "Nữ"));
-//        nhanVien.setNamSinh(faker.number().numberBetween(1930, 2020));
-//        nhanVien.setNgayVaoLam(generateRandomDateWithinLast10Years());
-//        return nhanVien;
-//    }
-//
-//    public VaiTro generateVaiTro() {
-//        VaiTro vaiTro = new VaiTro();
-//        vaiTro.setIdVT(generateMaVT());
-//        vaiTro.setTen(faker.options().option("Nhân viên bán hàng", "Quản lý"));
-//        return vaiTro;
-//    }
-//
-//    public TaiKhoan generateTK(NhanVien nhanVien) {
-//        TaiKhoan taiKhoan = new TaiKhoan();
-//        taiKhoan.setIdTK("TK" + nhanVien.getIdNV());
-//        taiKhoan.setUsername(faker.name().username());
-//        taiKhoan.setPassword(faker.internet().password(8, 16));
-//        taiKhoan.setNhanVien(nhanVien);
-//        taiKhoan.setVaiTro(new VaiTro());
-//        return taiKhoan;
-//    }
-//
-//    private Thuoc generateThuoc() {
-//        Thuoc thuoc = new Thuoc();
-//        thuoc.setIdThuoc(generateMaThuoc());
-//        thuoc.setTenThuoc(faker.medication().drugName());
-//        thuoc.setThanhPhan(String.join(", ", faker.lorem().words(3)));
-//        thuoc.setSoLuongTon(faker.number().numberBetween(10, 1000));
-//        thuoc.setGiaNhap(faker.number().randomDouble(2, 1000, 100000));
-//        thuoc.setDonGia(faker.number().randomDouble(2, 10000, 1000000));
-//        thuoc.setHanSuDung(LocalDate.now().plusDays(faker.number().numberBetween(30, 365)));
-//        return thuoc;
-//    }
-//
-//    public HoaDon generateHD(KhachHang khachHang, NhanVien nhanVien) {
-//        HoaDon hoaDon = new HoaDon();
-//        hoaDon.setIdHD(generateMaHD());
-//        hoaDon.setThoiGian(new Date());
-//        hoaDon.setKhachHang(khachHang);
-//        hoaDon.setNhanVien(nhanVien);
-//        hoaDon.setTongTien(0.0);
-//        return hoaDon;
-//    }
-//
-//    public ChiTietHoaDon generateChiTietHD(Thuoc thuoc, HoaDon hoaDon) {
-//        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
-//        chiTietHoaDon.setHoaDon(hoaDon);
-//        chiTietHoaDon.setThuoc(thuoc);
-//        chiTietHoaDon.setSoLuong(faker.number().numberBetween(1, 10));
-//        chiTietHoaDon.setDonGia(thuoc.getDonGia());
-//        return chiTietHoaDon;
-//    }
-//
 //    public void generateData() {
 //        EntityManager em = Persistence.createEntityManagerFactory("mariadb").createEntityManager();
 //        EntityTransaction tr = em.getTransaction();
 //        try {
 //            tr.begin();
 //            for (int i = 0; i < 10; i++) {
-//                KhachHang khachHang = generateKH();
+//                // Generate and persist supporting entities
+//                KhachHang khachHang = new KhachHang();
+//                khachHang.setIdKH(generateMaKH());
+//                khachHang.setHoTen(faker.name().fullName());
+//                khachHang.setSdt(faker.phoneNumber().phoneNumber());
+//                khachHang.setGioiTinh(faker.options().option("Nam", "Nữ").equals("Nam"));
+//                khachHang.setEmail(faker.internet().emailAddress());
+//                khachHang.setNgayThamGia(generateRandomDateWithinLast10Years());
 //                em.persist(khachHang);
 //
-//                NhanVien nhanVien = generateNV();
+//                NhanVien nhanVien = new NhanVien();
+//                nhanVien.setIdNV(generateMaNV());
+//                nhanVien.setHoTen(faker.name().fullName());
+//                nhanVien.setSdt(faker.phoneNumber().phoneNumber());
+//                nhanVien.setEmail(faker.internet().emailAddress());
+//                nhanVien.setGioiTinh(faker.options().option("Nam", "Nữ"));
 //                em.persist(nhanVien);
 //
-//                VaiTro vaiTro = generateVaiTro();
-//                em.persist(vaiTro);
+//                NhaCungCap nhaCungCap = new NhaCungCap();
+//                nhaCungCap.setIdNCC(generateMaNCC());
+//                nhaCungCap.setTenNCC(faker.company().name());
+//                nhaCungCap.setSdt(faker.phoneNumber().phoneNumber());
+//                nhaCungCap.setDiaChi(faker.address().fullAddress());
+//                em.persist(nhaCungCap);
 //
-//                TaiKhoan taiKhoan = generateTK(nhanVien);
-//                taiKhoan.setVaiTro(vaiTro);
-//                em.persist(taiKhoan);
-//
+//                // Generate and persist Thuoc
 //                List<Thuoc> thuocList = new ArrayList<>();
 //                for (int j = 0; j < 10; j++) {
-//                    Thuoc thuoc = generateThuoc();
-//                    em.persist(thuoc);
+//                    Thuoc thuoc = new Thuoc();
+//                    thuoc.setIdThuoc(generateMaThuoc());
+//                    thuoc.setTenThuoc(faker.lorem().word());
+//                    thuoc.setSoLuongTon(faker.number().numberBetween(10, 1000));
+//                    thuoc.setDonGia(faker.number().randomDouble(2, 10000, 1000000));
 //                    thuocList.add(thuoc);
 //                }
 //
-//                HoaDon hoaDon = generateHD(khachHang, nhanVien);
+//                // Generate and persist HoaDon and ChiTietHoaDon
+//                HoaDon hoaDon = new HoaDon();
+//                hoaDon.setIdHD(generateMaHD());
+//                hoaDon.setThoiGian(new Date());
+//                hoaDon.setKhachHang(khachHang);
+//                hoaDon.setNhanVien(nhanVien);
+//                hoaDon.setTongTien(0.0);
 //                em.persist(hoaDon);
 //
-//                for (Thuoc thuoc : thuocList) {
-//                    ChiTietHoaDon chiTietHoaDon = generateChiTietHD(thuoc, hoaDon);
+//                for (Thuoc thuoc : thuocList.subList(0, Math.min(3, thuocList.size()))) {
+//                    ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
+//                    chiTietHoaDon.setId(generateChiTietHoaDonId());
+//                    chiTietHoaDon.setHoaDon(hoaDon);
+//                    chiTietHoaDon.setThuoc(thuoc);
+//                    chiTietHoaDon.setSoLuong(faker.number().numberBetween(1, 10));
+//                    chiTietHoaDon.setDonGia(thuoc.getDonGia());
 //                    em.persist(chiTietHoaDon);
+//                    hoaDon.setTongTien(hoaDon.getTongTien() + (chiTietHoaDon.getSoLuong() * chiTietHoaDon.getDonGia()));
 //                }
+//                em.merge(hoaDon); // Update HoaDon with new tongTien
+//
+//                // Generate and persist PhieuNhap and ChiTietPhieuNhap
+//                PhieuNhap phieuNhap = new PhieuNhap();
+//                phieuNhap.setIdPN(generateMaPN());
+//                phieuNhap.setThoiGian(new Timestamp(System.currentTimeMillis()));
+//                phieuNhap.setNhaCungCap(nhaCungCap);
+//                phieuNhap.setNhanVien(nhanVien);
+//                phieuNhap.setTongTien(0.0);
+//                em.persist(phieuNhap);
+//
+//                for (Thuoc thuoc : thuocList.subList(0, Math.min(3, thuocList.size()))) {
+//                    ChiTietPhieuNhap chiTietPhieuNhap = new ChiTietPhieuNhap();
+//                    chiTietPhieuNhap.setPhieuNhap(phieuNhap);
+//                    chiTietPhieuNhap.setThuoc(thuoc);
+//                    chiTietPhieuNhap.setSoLuong(faker.number().numberBetween(10, 100));
+//                    chiTietPhieuNhap.setDonGia(thuoc.getDonGia());
+//                    em.persist(chiTietPhieuNhap);
+//                    phieuNhap.setTongTien(phieuNhap.getTongTien() + (chiTietPhieuNhap.getSoLuong() * chiTietPhieuNhap.getDonGia()));
+//                }
+//                em.merge(phieuNhap);
 //            }
 //            tr.commit();
 //        } catch (Exception e) {
@@ -198,7 +159,20 @@
 //            em.close();
 //        }
 //    }
-//
+//    public Thuoc generateThuoc(DonViTinh donViTinh, DanhMuc danhMuc, XuatXu xuatXu) {
+//        Thuoc thuoc = new Thuoc();
+//        thuoc.setIdThuoc(generateMaThuoc());
+//        thuoc.setTenThuoc(faker.lorem().word());
+//        thuoc.setThanhPhan(String.join(", ", faker.lorem().words(3))); // Ensure thanhPhan is not null
+//        thuoc.setDonvi(donViTinh);
+//        thuoc.setDanhmuc(danhMuc);
+//        thuoc.setXuatxu(xuatXu);
+//        thuoc.setSoLuongTon(faker.number().numberBetween(10, 1000));
+//        thuoc.setGiaNhap(faker.number().randomDouble(2, 1000, 100000));
+//        thuoc.setDonGia(faker.number().randomDouble(2, 10000, 1000000));
+//        thuoc.setHanSuDung(LocalDate.now().plusDays(faker.number().numberBetween(30, 365)));
+//        return thuoc;
+//    }
 //    public static void main(String[] args) {
 //        DataGenerator dg = new DataGenerator();
 //        dg.generateData();

@@ -274,7 +274,6 @@ public class HoaDonPanel extends JPanel {
             }
             String maNV = txtMaNV.getText().trim();
             if (!maNV.isEmpty()) {
-                // Giả định có phương thức getNhanVienById trong HoaDonDAO
                 hd.setNhanVien(hoaDonDao.getNhanVienById(maNV));
             }
 
@@ -346,33 +345,36 @@ public class HoaDonPanel extends JPanel {
             }
 
             String idHD = tableModel.getValueAt(selectedRow, 0).toString();
-            HoaDon hd = hoaDonDao.getById(idHD);
+            entityManager.getTransaction().begin();
+            // Fetch the HoaDon entity within the current persistence context
+            HoaDon hd = entityManager.find(HoaDon.class, idHD);
             if (hd == null) {
+                entityManager.getTransaction().rollback();
                 showError("Hóa đơn không tồn tại!");
                 return;
             }
 
             int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa hóa đơn này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
             if (confirm != JOptionPane.YES_OPTION) {
+                entityManager.getTransaction().rollback();
                 return;
             }
 
-            entityManager.getTransaction().begin();
+            // Delete associated ChiTietHoaDon records
             entityManager.createQuery("DELETE FROM ChiTietHoaDon c WHERE c.hoaDon.idHD = :idHD")
                     .setParameter("idHD", idHD)
                     .executeUpdate();
-            if (hoaDonDao.delete(hd)) {
-                entityManager.getTransaction().commit();
-                showSuccess("Xóa hóa đơn thành công!");
-                loadHoaDon();
-            } else {
-                entityManager.getTransaction().rollback();
-                showError("Xóa hóa đơn thất bại!");
-            }
+            // Delete the HoaDon entity
+            entityManager.remove(hd);
+            entityManager.getTransaction().commit();
+            showSuccess("Xóa hóa đơn thành công!");
+            loadHoaDon();
         } catch (Exception e) {
-            entityManager.getTransaction().rollback();
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
             e.printStackTrace();
-            showError("Lỗi: " + e.getMessage());
+            showError("Lỗi khi xóa hóa đơn: " + e.getMessage());
         } finally {
             entityManager.close();
         }

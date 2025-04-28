@@ -20,24 +20,21 @@ import java.util.List;
 import com.toedter.calendar.JDateChooser;
 
 public class PhieuNhapPanel extends JPanel {
-    private static final Color PRIMARY_COLOR = new Color(33, 150, 243); // Màu chính (xanh dương)
-    private static final Color ERROR_COLOR = new Color(244, 67, 54); // Màu lỗi
-    private static final Color NEUTRAL_COLOR = new Color(120, 144, 156); // Màu trung tính
+    private static final Color PRIMARY_COLOR = new Color(33, 150, 243); // Blue
+    private static final Color ERROR_COLOR = new Color(244, 67, 54); // Red
+    private static final Color NEUTRAL_COLOR = new Color(120, 144, 156); // Gray
     private static final Font MAIN_FONT = new Font("Roboto", Font.PLAIN, 14);
     private static final Font TITLE_FONT = new Font("Roboto", Font.BOLD, 20);
     private static final Font BUTTON_FONT = new Font("Roboto", Font.BOLD, 14);
 
     private JTable table;
-    private JTable thuocTable;
     private DefaultTableModel tableModel;
-    private DefaultTableModel thuocTableModel;
     private JTextField txtSearch, txtIdPN, txtSoLuong;
     private JComboBox<NhaCungCap> cbNhaCungCap;
     private JComboBox<Thuoc> cbThuoc;
     private JDateChooser dateChooserNgayNhap;
     private List<PhieuNhap> phieuNhapList;
     private List<NhaCungCap> nhaCungCapList;
-    private List<Thuoc> selectedThuocList;
     private List<ChiTietPhieuNhap> chiTietPhieuNhapList;
     private PhieuNhapDAO phieuNhapDAO;
     private NhaCungCapDAO nhaCungCapDAO;
@@ -49,7 +46,6 @@ public class PhieuNhapPanel extends JPanel {
             setBackground(new Color(245, 245, 245));
             phieuNhapList = new ArrayList<>();
             nhaCungCapList = new ArrayList<>();
-            selectedThuocList = new ArrayList<>();
             chiTietPhieuNhapList = new ArrayList<>();
 
             // Initialize DAOs
@@ -73,20 +69,7 @@ public class PhieuNhapPanel extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.BOTH;
 
-        // Search Panel (Row 0)
-        JPanel searchCard = new JPanel(new BorderLayout(10, 0));
-        searchCard.setBackground(Color.WHITE);
-        searchCard.setBorder(new EmptyBorder(10, 10, 10, 10));
-        txtSearch = createStyledTextField("Tìm kiếm phiếu nhập...");
-        txtSearch.setPreferredSize(new Dimension(300, 36));
-        JButton btnSearch = createStyledButton("Tìm", PRIMARY_COLOR, "Tìm kiếm phiếu nhập");
-        btnSearch.addActionListener(e -> searchPhieuNhap());
-        searchCard.add(txtSearch, BorderLayout.CENTER);
-        searchCard.add(btnSearch, BorderLayout.EAST);
-        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2; gbc.weightx = 1.0; gbc.weighty = 0.05;
-        add(searchCard, gbc);
-
-        // Input Panel (Row 1)
+        // Input Panel (Row 0)
         JPanel inputCard = new JPanel(new GridBagLayout());
         inputCard.setBackground(Color.WHITE);
         inputCard.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -102,32 +85,33 @@ public class PhieuNhapPanel extends JPanel {
         inputGbc.gridx = 0; inputGbc.gridy = 0; inputGbc.gridwidth = 4; inputGbc.weightx = 1.0;
         inputCard.add(titleLabel, inputGbc);
 
-        // Left Frame: PhieuNhap Details
-        JPanel leftFrame = new JPanel(new GridBagLayout());
-        leftFrame.setBackground(Color.WHITE);
-        leftFrame.setBorder(BorderFactory.createTitledBorder(
+        // Input Frame
+        JPanel inputFrame = new JPanel(new GridBagLayout());
+        inputFrame.setBackground(Color.WHITE);
+        inputFrame.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(new Color(189, 195, 199)), "Thông Tin Phiếu Nhập"));
-        GridBagConstraints leftGbc = new GridBagConstraints();
-        leftGbc.insets = new Insets(10, 10, 10, 10);
-        leftGbc.fill = GridBagConstraints.HORIZONTAL;
-        leftGbc.weightx = 1.0;
+        GridBagConstraints frameGbc = new GridBagConstraints();
+        frameGbc.insets = new Insets(10, 10, 10, 10);
+        frameGbc.fill = GridBagConstraints.HORIZONTAL;
+        frameGbc.weightx = 1.0;
 
-        leftGbc.gridx = 0; leftGbc.gridy = 0;
-        leftFrame.add(new JLabel("Mã Phiếu Nhập:"), leftGbc);
+        // 2x3 Grid Layout for Input Fields
+        frameGbc.gridx = 0; frameGbc.gridy = 0;
+        inputFrame.add(new JLabel("Mã Phiếu Nhập:"), frameGbc);
         txtIdPN = createStyledTextField("Nhập mã phiếu nhập...");
         txtIdPN.setPreferredSize(new Dimension(200, 36));
-        leftGbc.gridx = 1;
-        leftFrame.add(txtIdPN, leftGbc);
+        frameGbc.gridx = 1;
+        inputFrame.add(txtIdPN, frameGbc);
 
-        leftGbc.gridx = 0; leftGbc.gridy = 1;
-        leftFrame.add(new JLabel("Ngày Nhập:"), leftGbc);
+        frameGbc.gridx = 2; frameGbc.gridy = 0;
+        inputFrame.add(new JLabel("Ngày Nhập:"), frameGbc);
         dateChooserNgayNhap = createStyledDateChooser();
-        dateChooserNgayNhap.setPreferredSize(new Dimension(200, 36));
-        leftGbc.gridx = 1;
-        leftFrame.add(dateChooserNgayNhap, leftGbc);
+        dateChooserNgayNhap.setPreferredSize(new Dimension(200, 50));
+        frameGbc.gridx = 3;
+        inputFrame.add(dateChooserNgayNhap, frameGbc);
 
-        leftGbc.gridx = 0; leftGbc.gridy = 2;
-        leftFrame.add(new JLabel("Nhà Cung Cấp:"), leftGbc);
+        frameGbc.gridx = 0; frameGbc.gridy = 1;
+        inputFrame.add(new JLabel("Nhà Cung Cấp:"), frameGbc);
         cbNhaCungCap = new JComboBox<>();
         cbNhaCungCap.setFont(MAIN_FONT);
         cbNhaCungCap.setBackground(Color.WHITE);
@@ -142,24 +126,11 @@ public class PhieuNhapPanel extends JPanel {
                 return this;
             }
         });
-        leftGbc.gridx = 1;
-        leftFrame.add(cbNhaCungCap, leftGbc);
+        frameGbc.gridx = 1;
+        inputFrame.add(cbNhaCungCap, frameGbc);
 
-        inputGbc.gridx = 0; inputGbc.gridy = 1; inputGbc.gridwidth = 2; inputGbc.weightx = 0.5; inputGbc.weighty = 1.0;
-        inputCard.add(leftFrame, inputGbc);
-
-        // Right Frame: Medicine Management
-        JPanel rightFrame = new JPanel(new GridBagLayout());
-        rightFrame.setBackground(Color.WHITE);
-        rightFrame.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(189, 195, 199)), "Quản Lý Thuốc"));
-        GridBagConstraints rightGbc = new GridBagConstraints();
-        rightGbc.insets = new Insets(10, 10, 10, 10);
-        rightGbc.fill = GridBagConstraints.HORIZONTAL;
-        rightGbc.weightx = 1.0;
-
-        rightGbc.gridx = 0; rightGbc.gridy = 0;
-        rightFrame.add(new JLabel("Thuốc:"), rightGbc);
+        frameGbc.gridx = 2; frameGbc.gridy = 1;
+        inputFrame.add(new JLabel("Thuốc:"), frameGbc);
         cbThuoc = new JComboBox<>();
         cbThuoc.setFont(MAIN_FONT);
         cbThuoc.setBackground(Color.WHITE);
@@ -174,49 +145,30 @@ public class PhieuNhapPanel extends JPanel {
                 return this;
             }
         });
-        rightGbc.gridx = 1;
-        rightFrame.add(cbThuoc, rightGbc);
+        frameGbc.gridx = 3;
+        inputFrame.add(cbThuoc, frameGbc);
 
-        rightGbc.gridx = 0; rightGbc.gridy = 1;
-        rightFrame.add(new JLabel("Số Lượng:"), rightGbc);
+        frameGbc.gridx = 0; frameGbc.gridy = 2;
+        inputFrame.add(new JLabel("Số Lượng:"), frameGbc);
         txtSoLuong = createStyledTextField("Nhập số lượng...");
         txtSoLuong.setPreferredSize(new Dimension(200, 36));
-        rightGbc.gridx = 1;
-        rightFrame.add(txtSoLuong, rightGbc);
+        frameGbc.gridx = 1;
+        inputFrame.add(txtSoLuong, frameGbc);
 
-        JPanel thuocButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
-        thuocButtonPanel.setOpaque(false);
-        JButton btnAddThuoc = createStyledButton("Thêm Thuốc", PRIMARY_COLOR, "Thêm thuốc vào danh sách");
-        JButton btnRemoveThuoc = createStyledButton("Xóa Thuốc", ERROR_COLOR, "Xóa thuốc khỏi danh sách");
-        btnAddThuoc.addActionListener(e -> addThuocToList());
-        btnRemoveThuoc.addActionListener(e -> removeThuocFromList());
-        thuocButtonPanel.add(btnAddThuoc);
-        thuocButtonPanel.add(btnRemoveThuoc);
-        rightGbc.gridx = 0; rightGbc.gridy = 2; rightGbc.gridwidth = 2;
-        rightFrame.add(thuocButtonPanel, rightGbc);
+        inputGbc.gridx = 0; inputGbc.gridy = 1; inputGbc.gridwidth = 4; inputGbc.weightx = 1.0; inputGbc.weighty = 1.0;
+        inputCard.add(inputFrame, inputGbc);
 
-        thuocTableModel = new DefaultTableModel(new String[]{"ID Thuốc", "Tên Thuốc", "Số Lượng"}, 0) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        thuocTable = createStyledTable(thuocTableModel);
-        JScrollPane thuocScrollPane = new JScrollPane(thuocTable);
-        thuocScrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-        rightGbc.gridx = 0; rightGbc.gridy = 3; rightGbc.gridwidth = 2; rightGbc.weighty = 1.0;
-        rightFrame.add(thuocScrollPane, rightGbc);
-
-        inputGbc.gridx = 2; inputGbc.gridy = 1; inputGbc.gridwidth = 2; inputGbc.weightx = 0.5;
-        inputCard.add(rightFrame, inputGbc);
-
-        gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 2; gbc.weightx = 1.0; gbc.weighty = 0.2;
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 1; gbc.weightx = 1.0; gbc.weighty = 0.2;
         add(inputCard, gbc);
 
-        // Button Panel (Row 2)
+        // Button Panel with Search (Row 1)
         JPanel buttonCard = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         buttonCard.setBackground(Color.WHITE);
         buttonCard.setBorder(new EmptyBorder(10, 10, 10, 10));
+        txtSearch = createStyledTextField("Tìm kiếm phiếu nhập...");
+        txtSearch.setPreferredSize(new Dimension(200, 36));
+        JButton btnSearch = createStyledButton("Tìm", PRIMARY_COLOR, "Tìm kiếm phiếu nhập");
+        btnSearch.addActionListener(e -> searchPhieuNhap());
         JButton btnAdd = createStyledButton("Thêm", PRIMARY_COLOR, "Thêm phiếu nhập mới");
         JButton btnUpdate = createStyledButton("Sửa", new Color(46, 204, 113), "Chỉnh sửa phiếu nhập");
         JButton btnDelete = createStyledButton("Xóa", ERROR_COLOR, "Xóa phiếu nhập");
@@ -225,18 +177,20 @@ public class PhieuNhapPanel extends JPanel {
         btnUpdate.addActionListener(e -> updatePhieuNhap());
         btnDelete.addActionListener(e -> deletePhieuNhap());
         btnClear.addActionListener(e -> clearForm());
+        buttonCard.add(txtSearch);
+        buttonCard.add(btnSearch);
         buttonCard.add(btnAdd);
         buttonCard.add(btnUpdate);
         buttonCard.add(btnDelete);
         buttonCard.add(btnClear);
-        gbc.gridx = 0; gbc.gridy = 2; gbc.gridwidth = 2; gbc.weightx = 1.0; gbc.weighty = 0.05;
+        gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 1; gbc.weightx = 1.0; gbc.weighty = 0.05;
         add(buttonCard, gbc);
 
-        // Table Panel (Row 3)
+        // Table Panel (Row 2)
         JPanel tableCard = new JPanel(new BorderLayout());
         tableCard.setBackground(Color.WHITE);
         tableCard.setBorder(new EmptyBorder(10, 10, 10, 10));
-        String[] columns = {"Mã PN", "Nhà Cung Cấp", "Ngày Nhập", "Thuốc"};
+        String[] columns = {"Mã PN", "Nhà Cung Cấp", "Ngày Nhập", "Tên Thuốc", "Số Lượng"};
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -247,7 +201,7 @@ public class PhieuNhapPanel extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         tableCard.add(scrollPane, BorderLayout.CENTER);
-        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2; gbc.weightx = 1.0; gbc.weighty = 0.7;
+        gbc.gridx = 0; gbc.gridy = 2; gbc.gridwidth = 1; gbc.weightx = 1.0; gbc.weighty = 0.75; // Larger weighty for table
         add(tableCard, gbc);
 
         // Selection Listener
@@ -260,16 +214,15 @@ public class PhieuNhapPanel extends JPanel {
                 dateChooserNgayNhap.setDate(
                         pn.getThoiGian() != null ? Date.from(pn.getThoiGian().toInstant().atZone(ZoneId.systemDefault()).toInstant()) : null
                 );
-                chiTietPhieuNhapList = phieuNhapDAO.getChiTietByPhieuNhap(pn.getIdPN());
-                selectedThuocList.clear();
-                thuocTableModel.setRowCount(0);
-                for (ChiTietPhieuNhap ctpn : chiTietPhieuNhapList) {
-                    selectedThuocList.add(ctpn.getThuoc());
-                    thuocTableModel.addRow(new Object[]{
-                            ctpn.getThuoc().getIdThuoc(),
-                            ctpn.getThuoc().getTenThuoc(),
-                            ctpn.getSoLuong()
-                    });
+                List<ChiTietPhieuNhap> chiTietList = phieuNhapDAO.getChiTietByPhieuNhap(pn.getIdPN());
+                if (!chiTietList.isEmpty()) {
+                    ChiTietPhieuNhap ctpn = chiTietList.get(0); // Assume one medicine per phiếu nhập
+                    cbThuoc.setSelectedItem(ctpn.getThuoc());
+                    txtSoLuong.setText(String.valueOf(ctpn.getSoLuong()));
+                } else {
+                    cbThuoc.setSelectedIndex(-1);
+                    txtSoLuong.setText("Nhập số lượng...");
+                    txtSoLuong.setForeground(NEUTRAL_COLOR);
                 }
             }
         });
@@ -383,69 +336,6 @@ public class PhieuNhapPanel extends JPanel {
         return table;
     }
 
-    private void addThuocToList() {
-        try {
-            Thuoc selectedThuoc = (Thuoc) cbThuoc.getSelectedItem();
-            String soLuongStr = txtSoLuong.getText();
-            if (selectedThuoc == null) {
-                JOptionPane.showMessageDialog(this, "Vui lòng chọn một thuốc!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (soLuongStr.equals("Nhập số lượng...") || soLuongStr.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            int soLuong;
-            try {
-                soLuong = Integer.parseInt(soLuongStr);
-                if (soLuong <= 0) {
-                    JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            for (ChiTietPhieuNhap ctpn : chiTietPhieuNhapList) {
-                if (ctpn.getThuoc().getIdThuoc().equals(selectedThuoc.getIdThuoc())) {
-                    JOptionPane.showMessageDialog(this, "Thuốc đã được thêm, vui lòng chỉnh sửa số lượng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            }
-
-            ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap();
-            ctpn.setThuoc(selectedThuoc);
-            ctpn.setSoLuong(soLuong);
-            ctpn.setDonGia(selectedThuoc.getGiaNhap());
-            chiTietPhieuNhapList.add(ctpn);
-            selectedThuocList.add(selectedThuoc);
-
-            thuocTableModel.addRow(new Object[]{
-                    selectedThuoc.getIdThuoc(),
-                    selectedThuoc.getTenThuoc(),
-                    soLuong
-            });
-
-            txtSoLuong.setText("Nhập số lượng...");
-            txtSoLuong.setForeground(NEUTRAL_COLOR);
-            cbThuoc.setSelectedIndex(-1);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Lỗi khi thêm thuốc: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private void removeThuocFromList() {
-        int selectedRow = thuocTable.getSelectedRow();
-        if (selectedRow >= 0) {
-            chiTietPhieuNhapList.remove(selectedRow);
-            selectedThuocList.remove(selectedRow);
-            thuocTableModel.removeRow(selectedRow);
-        } else {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn một thuốc để xóa!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-
     private void loadDataFromDatabase() {
         try {
             phieuNhapList = phieuNhapDAO.getAll();
@@ -466,50 +356,82 @@ public class PhieuNhapPanel extends JPanel {
     private void refreshTable() {
         tableModel.setRowCount(0);
         for (PhieuNhap pn : phieuNhapList) {
-            StringBuilder thuocInfo = new StringBuilder();
             List<ChiTietPhieuNhap> chiTietList = phieuNhapDAO.getChiTietByPhieuNhap(pn.getIdPN());
-            for (ChiTietPhieuNhap ctpn : chiTietList) {
-                thuocInfo.append(ctpn.getThuoc().getTenThuoc()).append(" (").append(ctpn.getSoLuong()).append("), ");
-            }
-            String thuocText = thuocInfo.length() > 0 ? thuocInfo.toString().replaceAll(", $", "") : "Không có thuốc";
+            String tenThuoc = chiTietList.isEmpty() ? "Không có thuốc" : chiTietList.get(0).getThuoc().getTenThuoc();
+            int soLuong = chiTietList.isEmpty() ? 0 : chiTietList.get(0).getSoLuong();
             tableModel.addRow(new Object[]{
                     pn.getIdPN(),
                     pn.getNhaCungCap() != null ? pn.getNhaCungCap().getTenNCC() : "",
                     pn.getThoiGian(),
-                    thuocText
+                    tenThuoc,
+                    soLuong
             });
         }
     }
 
     private void addPhieuNhap() {
         try {
+            // Validate inputs
             if (txtIdPN.getText().equals("Nhập mã phiếu nhập...") || txtIdPN.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập mã phiếu nhập!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (chiTietPhieuNhapList.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng thêm ít nhất một thuốc!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            if (cbNhaCungCap.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà cung cấp!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (dateChooserNgayNhap.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày nhập!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Thuoc selectedThuoc = (Thuoc) cbThuoc.getSelectedItem();
+            if (selectedThuoc == null) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn một thuốc!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            String soLuongStr = txtSoLuong.getText();
+            if (soLuongStr.equals("Nhập số lượng...") || soLuongStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int soLuong;
+            try {
+                soLuong = Integer.parseInt(soLuongStr);
+                if (soLuong <= 0) {
+                    JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
+            // Create PhieuNhap
             PhieuNhap pn = new PhieuNhap();
             pn.setIdPN(txtIdPN.getText());
             pn.setNhaCungCap((NhaCungCap) cbNhaCungCap.getSelectedItem());
             Date ngayNhap = dateChooserNgayNhap.getDate();
             pn.setThoiGian(ngayNhap != null ? new java.sql.Timestamp(ngayNhap.getTime()) : null);
+
+            // Create ChiTietPhieuNhap
+            ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap();
+            ctpn.setThuoc(selectedThuoc);
+            ctpn.setSoLuong(soLuong);
+            ctpn.setDonGia(selectedThuoc.getGiaNhap());
+            ctpn.setPhieuNhap(pn);
+            chiTietPhieuNhapList = new ArrayList<>();
+            chiTietPhieuNhapList.add(ctpn);
+
             pn.setChiTietPhieuNhap(chiTietPhieuNhapList);
-            double tongTien = chiTietPhieuNhapList.stream()
-                    .mapToDouble(ctpn -> ctpn.getSoLuong() * ctpn.getDonGia())
-                    .sum();
+            double tongTien = soLuong * selectedThuoc.getGiaNhap();
             pn.setTongTien(tongTien);
 
-            for (ChiTietPhieuNhap ctpn : chiTietPhieuNhapList) {
-                ctpn.setPhieuNhap(pn);
-                Thuoc thuoc = thuocDAO.getById(ctpn.getThuoc().getIdThuoc());
-                thuoc.setSoLuongTon(thuoc.getSoLuongTon() + ctpn.getSoLuong());
-                thuocDAO.update(thuoc);
-            }
+            // Update medicine stock
+            Thuoc thuoc = thuocDAO.getById(selectedThuoc.getIdThuoc());
+            thuoc.setSoLuongTon(thuoc.getSoLuongTon() + soLuong);
+            thuocDAO.update(thuoc);
 
+            // Save to database
             phieuNhapDAO.add(pn);
             phieuNhapList.add(pn);
             refreshTable();
@@ -528,8 +450,33 @@ public class PhieuNhapPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn một phiếu nhập để sửa!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if (chiTietPhieuNhapList.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Vui lòng thêm ít nhất một thuốc!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            if (cbNhaCungCap.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà cung cấp!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (dateChooserNgayNhap.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày nhập!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Thuoc selectedThuoc = (Thuoc) cbThuoc.getSelectedItem();
+            if (selectedThuoc == null) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn một thuốc!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            String soLuongStr = txtSoLuong.getText();
+            if (soLuongStr.equals("Nhập số lượng...") || soLuongStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int soLuong;
+            try {
+                soLuong = Integer.parseInt(soLuongStr);
+                if (soLuong <= 0) {
+                    JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -538,6 +485,7 @@ public class PhieuNhapPanel extends JPanel {
             Date ngayNhap = dateChooserNgayNhap.getDate();
             pn.setThoiGian(ngayNhap != null ? new java.sql.Timestamp(ngayNhap.getTime()) : null);
 
+            // Revert old stock
             List<ChiTietPhieuNhap> oldChiTietList = phieuNhapDAO.getChiTietByPhieuNhap(pn.getIdPN());
             for (ChiTietPhieuNhap oldCtpn : oldChiTietList) {
                 Thuoc thuoc = thuocDAO.getById(oldCtpn.getThuoc().getIdThuoc());
@@ -545,18 +493,23 @@ public class PhieuNhapPanel extends JPanel {
                 thuocDAO.update(thuoc);
             }
 
+            // Create new ChiTietPhieuNhap
+            ChiTietPhieuNhap ctpn = new ChiTietPhieuNhap();
+            ctpn.setThuoc(selectedThuoc);
+            ctpn.setSoLuong(soLuong);
+            ctpn.setDonGia(selectedThuoc.getGiaNhap());
+            ctpn.setPhieuNhap(pn);
+            chiTietPhieuNhapList = new ArrayList<>();
+            chiTietPhieuNhapList.add(ctpn);
+
             pn.setChiTietPhieuNhap(chiTietPhieuNhapList);
-            double tongTien = chiTietPhieuNhapList.stream()
-                    .mapToDouble(ctpn -> ctpn.getSoLuong() * ctpn.getDonGia())
-                    .sum();
+            double tongTien = soLuong * selectedThuoc.getGiaNhap();
             pn.setTongTien(tongTien);
 
-            for (ChiTietPhieuNhap ctpn : chiTietPhieuNhapList) {
-                ctpn.setPhieuNhap(pn);
-                Thuoc thuoc = thuocDAO.getById(ctpn.getThuoc().getIdThuoc());
-                thuoc.setSoLuongTon(thuoc.getSoLuongTon() + ctpn.getSoLuong());
-                thuocDAO.update(thuoc);
-            }
+            // Update stock
+            Thuoc thuoc = thuocDAO.getById(selectedThuoc.getIdThuoc());
+            thuoc.setSoLuongTon(thuoc.getSoLuongTon() + soLuong);
+            thuocDAO.update(thuoc);
 
             phieuNhapDAO.update(pn);
             refreshTable();
@@ -622,9 +575,8 @@ public class PhieuNhapPanel extends JPanel {
         txtSoLuong.setText("Nhập số lượng...");
         txtSoLuong.setForeground(NEUTRAL_COLOR);
         cbThuoc.setSelectedIndex(-1);
-        selectedThuocList.clear();
-        chiTietPhieuNhapList.clear();
-        thuocTableModel.setRowCount(0);
+        txtSearch.setText("Tìm kiếm phiếu nhập...");
+        txtSearch.setForeground(NEUTRAL_COLOR);
         table.clearSelection();
     }
 }
