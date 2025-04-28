@@ -27,6 +27,10 @@ public class PhieuNhap {
     @JoinColumn(name = "idNCC")
     private NhaCungCap nhaCungCap;
 
+    @OneToMany
+    @JoinColumn(name = "idThuoc")
+    private List<Thuoc> thuoc;
+
     @OneToMany(mappedBy = "phieuNhap")
     private List<ChiTietPhieuNhap> chiTietPhieuNhap;
     @Override

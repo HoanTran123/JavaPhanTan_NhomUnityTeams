@@ -266,22 +266,35 @@ public class NhaCungCapPanel extends JPanel {
 
     private void deleteNhaCungCap() {
         try {
-            String maNCC = txtMaNCC.getText().trim();
-
-            if (maNCC.isEmpty()) {
-                showError("Vui lòng nhập mã nhà cung cấp cần xóa.");
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow == -1) {
+                showError("Vui lòng chọn nhà cung cấp cần xóa.");
                 return;
             }
 
-            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa nhà cung cấp này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
+            String maNCC = tableModel.getValueAt(selectedRow, 0).toString();
+            if (maNCC == null || maNCC.isEmpty()) {
+                showError("Không thể xác định mã nhà cung cấp.");
+                return;
+            }
+
+            NhaCungCap ncc = nhaCungCapDao.getById(maNCC);
+            if (ncc == null) {
+                showError("Không tìm thấy nhà cung cấp với mã đã chọn.");
+                return;
+            }
+
+            if (ncc.getPhieuNhap() != null && !ncc.getPhieuNhap().isEmpty()) {
+                showError("Không thể xóa nhà cung cấp vì có phiếu nhập liên quan.");
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Bạn có chắc chắn muốn xóa nhà cung cấp này?",
+                    "Xác nhận xóa",
+                    JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
-                NhaCungCap ncc = nhaCungCapDao.getById(maNCC);
-                if (ncc == null) {
-                    showError("Không tìm thấy nhà cung cấp với mã đã nhập.");
-                    return;
-                }
-
                 if (nhaCungCapDao.delete(ncc)) {
                     loadNhaCungCap();
                     JOptionPane.showMessageDialog(this, "Xóa nhà cung cấp thành công!");
