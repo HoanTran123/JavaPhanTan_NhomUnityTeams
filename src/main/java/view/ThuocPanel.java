@@ -70,7 +70,7 @@ public class ThuocPanel extends JPanel {
                 new EmptyBorder(20, 25, 20, 25)
         ));
 
-        JPanel gridPanel = new JPanel(new GridLayout(4, 2, 15, 15));
+        JPanel gridPanel = new JPanel(new GridLayout(2, 4, 15, 15));
         gridPanel.setBackground(Color.WHITE);
 
         txtMaThuoc = createStyledTextField();
