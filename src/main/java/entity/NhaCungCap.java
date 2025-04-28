@@ -19,7 +19,7 @@ public class NhaCungCap {
     private String sdt;
     private String diaChi;
 
-    @OneToMany(mappedBy = "nhaCungCap")
+    @OneToMany(mappedBy = "nhaCungCap", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PhieuNhap> phieuNhap;
 
     // Add this constructor
