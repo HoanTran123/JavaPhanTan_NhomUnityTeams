@@ -79,7 +79,7 @@ public class KhachHangPanel extends JPanel {
         lblSearch.setForeground(new Color(70, 70, 70));
 
         txtSearch = createStyledTextField(true);
-        txtSearch.setPreferredSize(new Dimension(700s, 40));
+        txtSearch.setPreferredSize(new Dimension(700, 40));
 
         JButton btnSearch = createActionButton("Tìm", new Color(255, 193, 7));
         btnSearch.addActionListener(e -> searchKhachHang());
