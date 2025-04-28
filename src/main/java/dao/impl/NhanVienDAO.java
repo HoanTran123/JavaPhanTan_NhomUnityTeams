@@ -41,4 +41,18 @@ public class NhanVienDAO extends GenericDAO<NhanVien> implements INhanVienDAO {
     public boolean delete(NhanVien nhanVien) {
         return super.delete(nhanVien);
     }
+
+    public int countTotal() {
+        return ((Long) entityManager.createQuery("SELECT COUNT(n) FROM NhanVien n").getSingleResult()).intValue();
+    }
+
+    public void deleteRelatedTaiKhoan(String maNV) {
+        entityManager.createQuery("DELETE FROM TaiKhoan t WHERE t.nhanVien.idNV = :maNV")
+                .setParameter("maNV", maNV)
+                .executeUpdate();
+    }
+
+    public boolean save(NhanVien nv) {
+        return super.add(nv);
+    }
 }

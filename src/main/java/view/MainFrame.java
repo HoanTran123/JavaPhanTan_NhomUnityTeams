@@ -11,7 +11,7 @@ public class MainFrame extends JFrame {
     private JPanel contentPanel;
     private DefaultListModel<String> menuModel;
     private HoaDonPanel hoaDonPanel;
-    private NhanVienPanel nhanVienPanel; // Added for NhanVienPanel
+    private NhanVienPanel nhanVienPanel;
 
     public MainFrame() {
         setTitle("Quản Lý Nhà Thuốc - UnityTeams");
@@ -82,16 +82,14 @@ public class MainFrame extends JFrame {
         JPanel toolbarPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         toolbarPanel.setOpaque(false);
 
-        // Remove the "Cài đặt" button and only keep the "Đăng xuất" button
         JButton btnLogout = createToolbarButton("Đăng xuất", "/icons/logout.png");
 
-        // Add logout functionality
         btnLogout.addActionListener(e -> {
             int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
-                this.dispose(); // Close the current frame
+                this.dispose();
                 SwingUtilities.invokeLater(() -> {
-                    LoginFrame loginFrame = new LoginFrame(); // Return to the login screen
+                    LoginFrame loginFrame = new LoginFrame();
                     loginFrame.setVisible(true);
                 });
             }
@@ -106,7 +104,7 @@ public class MainFrame extends JFrame {
         String[] menuItems = {
                 "Quản Lý Khách Hàng",
                 "Quản Lý Hóa Đơn",
-                "Quản Lý Nhân Viên", // Added
+                "Quản Lý Nhân Viên",
                 "Quản Lý Nhà Cung Cấp",
                 "Quản Lý Thuốc",
                 "Quản Lý Phiếu Nhập",
@@ -183,9 +181,6 @@ public class MainFrame extends JFrame {
                     case 6:
                         showPanel(new KhuyenMaiPanel());
                         break;
-//                    case 7:
-//                        showPanel(new ThongKePanel());
-//                        break;
                     default:
                         contentPanel.removeAll();
                         JLabel placeholder = new JLabel("💡 Vui lòng chọn một mục từ menu để hiển thị", SwingConstants.CENTER);
@@ -230,13 +225,13 @@ public class MainFrame extends JFrame {
     private JButton createToolbarButton(String text, String iconPath) {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        button.setBackground(new Color(0, 102, 204)); // Set a solid background color
-        button.setForeground(Color.WHITE); // Ensure the text is white for visibility
+        button.setBackground(new Color(0, 102, 204));
+        button.setForeground(Color.WHITE);
         button.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
         button.setFocusPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setBorderPainted(false);
-        button.setOpaque(true); // Ensure the background color is applied
+        button.setOpaque(true);
 
         ImageIcon icon = loadIcon(iconPath);
         if (icon != null) {
@@ -248,12 +243,12 @@ public class MainFrame extends JFrame {
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                button.setBackground(new Color(0, 153, 255)); // Change background on hover
+                button.setBackground(new Color(0, 153, 255));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                button.setBackground(new Color(0, 102, 204)); // Revert background on exit
+                button.setBackground(new Color(0, 102, 204));
             }
         });
 
@@ -270,18 +265,5 @@ public class MainFrame extends JFrame {
         contentPanel.add(panel, BorderLayout.CENTER);
         contentPanel.revalidate();
         contentPanel.repaint();
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            MainFrame frame = new MainFrame();
-            frame.setVisible(true);
-
-            try {
-                com.sun.jna.platform.WindowUtils.setWindowTransparent(frame, true);
-            } catch (Exception e) {
-                System.err.println("Shadow effect not supported on this platform.");
-            }
-        });
     }
 }
