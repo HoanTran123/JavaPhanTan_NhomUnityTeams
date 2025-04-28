@@ -12,14 +12,19 @@ public class TaiKhoan {
     @EqualsAndHashCode.Include
     private String idTK;
 
-    private String username;
-    private String password;
+    private String tenDangNhap;
+    private String matKhau;
 
     @ManyToOne
     @JoinColumn(name = "idNV")
     private NhanVien nhanVien;
 
-    @ManyToOne
-    @JoinColumn(name = "idVT")
-    private VaiTro vaiTro;
-} 
+    @Override
+    public String toString() {
+        return "TaiKhoan{" +
+                "idTK='" + idTK + '\'' +
+                ", tenDangNhap='" + tenDangNhap + '\'' +
+                ", idNV='" + (nhanVien != null ? nhanVien.getIdNV() : "null") + '\'' +
+                '}';
+    }
+}

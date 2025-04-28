@@ -35,7 +35,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
 // https://mvnrepository.com/artifact/net.datafaker/datafaker
     implementation 'net.datafaker:datafaker:2.4.2'
-
+    implementation 'org.apache.poi:poi:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

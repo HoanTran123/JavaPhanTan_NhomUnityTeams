@@ -1,8 +1,10 @@
 package entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class NhanVien {
     @Id
     @EqualsAndHashCode.Include
@@ -34,4 +38,8 @@ public class NhanVien {
 
     @OneToMany(mappedBy = "nhanVien")
     private List<DoiTra> doiTra;
+
+
+    public NhanVien(String idNV) {
+    }
 }
