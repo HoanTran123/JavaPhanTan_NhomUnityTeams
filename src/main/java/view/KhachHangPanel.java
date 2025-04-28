@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class KhachHangPanel extends JPanel {
     private JTable table;
     private DefaultTableModel tableModel;
-    private JTextField txtMaKH, txtHoTen, txtSDT, txtEmail, txtNgayThamGia, txtTongChiTieu;
+    private JTextField txtMaKH, txtHoTen, txtSDT, txtEmail, txtNgayThamGia, txtTongChiTieu, txtSearch;
     private JComboBox<String> cboGioiTinh;
     private KhachHangDAO khachHangDao;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
@@ -70,6 +70,25 @@ public class KhachHangPanel extends JPanel {
                 new EmptyBorder(20, 25, 20, 25)
         ));
 
+        // Search panel
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 5));
+        searchPanel.setBackground(Color.WHITE);
+
+        JLabel lblSearch = new JLabel("Tìm kiếm:");
+        lblSearch.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        lblSearch.setForeground(new Color(70, 70, 70));
+
+        txtSearch = createStyledTextField(true);
+        txtSearch.setPreferredSize(new Dimension(700s, 40));
+
+        JButton btnSearch = createActionButton("Tìm", new Color(255, 193, 7));
+        btnSearch.addActionListener(e -> searchKhachHang());
+
+        searchPanel.add(lblSearch);
+        searchPanel.add(txtSearch);
+        searchPanel.add(btnSearch);
+
+        // Form fields panel
         JPanel gridPanel = new JPanel(new GridLayout(2, 4, 15, 15));
         gridPanel.setBackground(Color.WHITE);
 
@@ -101,6 +120,8 @@ public class KhachHangPanel extends JPanel {
         gridPanel.add(createFieldPanel(labels[6], txtTongChiTieu));
         gridPanel.add(new JLabel());
 
+        formPanel.add(searchPanel);
+        formPanel.add(Box.createVerticalStrut(15));
         formPanel.add(gridPanel);
         return formPanel;
     }
@@ -176,7 +197,10 @@ public class KhachHangPanel extends JPanel {
         JButton btnXoa = createActionButton("Xóa", new Color(220, 53, 69));
         JButton btnLamMoi = createActionButton("Làm mới", new Color(108, 117, 125));
 
-        btnLamMoi.addActionListener(e -> loadKhachHang());
+        btnLamMoi.addActionListener(e -> {
+            txtSearch.setText("");
+            loadKhachHang();
+        });
         btnThem.addActionListener(e -> addKhachHang());
         btnSua.addActionListener(e -> updateKhachHang());
         btnXoa.addActionListener(e -> deleteKhachHang());
@@ -220,6 +244,39 @@ public class KhachHangPanel extends JPanel {
             clearForm();
         } catch (Exception e) {
             showError("Lỗi khi tải dữ liệu: " + e.getMessage());
+        }
+    }
+
+    private void searchKhachHang() {
+        try {
+            String searchText = txtSearch.getText().trim().toLowerCase();
+            tableModel.setRowCount(0);
+
+            List<KhachHang> list = khachHangDao.getAll();
+            for (KhachHang kh : list) {
+                boolean matches = searchText.isEmpty() ||
+                        kh.getHoTen().toLowerCase().contains(searchText) ||
+                        (kh.getSdt() != null && kh.getSdt().toLowerCase().contains(searchText)) ||
+                        (kh.getEmail() != null && kh.getEmail().toLowerCase().contains(searchText));
+
+                if (matches) {
+                    tableModel.addRow(new Object[]{
+                            kh.getIdKH(),
+                            kh.getHoTen(),
+                            kh.getSdt(),
+                            kh.getEmail(),
+                            kh.getGioiTinh() == null ? "Không xác định" : (kh.getGioiTinh() ? "Nam" : "Nữ"),
+                            kh.getNgayThamGia() != null ? DATE_FORMAT.format(kh.getNgayThamGia()) : "",
+                            kh.getTongChiTieu()
+                    });
+                }
+            }
+
+            if (tableModel.getRowCount() == 0) {
+                showWarning("Không tìm thấy khách hàng phù hợp!");
+            }
+        } catch (Exception e) {
+            showError("Lỗi khi tìm kiếm: " + e.getMessage());
         }
     }
 

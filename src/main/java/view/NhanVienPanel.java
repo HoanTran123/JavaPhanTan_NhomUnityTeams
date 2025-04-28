@@ -72,6 +72,25 @@ public class NhanVienPanel extends JPanel {
                 new EmptyBorder(20, 25, 20, 25)
         ));
 
+        // Search panel
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        searchPanel.setBackground(Color.WHITE);
+
+        JLabel lblSearch = new JLabel("Tìm kiếm:");
+        lblSearch.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        lblSearch.setForeground(new Color(70, 70, 70));
+
+        JTextField txtSearch = createStyledTextField(true);
+        txtSearch.setPreferredSize(new Dimension(800, 36)); // Reduced width to prevent stretching
+
+        JButton btnSearch = createActionButton("Tìm", new Color(0, 123, 255));
+        btnSearch.addActionListener(e -> searchNhanVien(txtSearch.getText().trim()));
+
+        searchPanel.add(lblSearch);
+        searchPanel.add(txtSearch);
+        searchPanel.add(btnSearch);
+
+        // Form fields
         JPanel gridPanel = new JPanel(new GridLayout(2, 4, 15, 15));
         gridPanel.setBackground(Color.WHITE);
 
@@ -104,11 +123,12 @@ public class NhanVienPanel extends JPanel {
         gridPanel.add(createFieldPanel(labels[6], txtNgayVaoLam));
         gridPanel.add(createFieldPanel(labels[7], cboChucVu));
 
+        formPanel.add(Box.createVerticalStrut(20));
+        formPanel.add(searchPanel);
+        formPanel.add(Box.createVerticalStrut(20));
         formPanel.add(gridPanel);
         return formPanel;
-    }
-
-    private JPanel createFieldPanel(JLabel label, JComponent field) {
+    }    private JPanel createFieldPanel(JLabel label, JComponent field) {
         JPanel panel = new JPanel(new BorderLayout(5, 5));
         panel.setBackground(Color.WHITE);
         panel.add(label, BorderLayout.NORTH);
@@ -547,7 +567,55 @@ public class NhanVienPanel extends JPanel {
             }
         }
     }
+    private void searchNhanVien(String searchTerm) {
+        EntityManager em = null;
+        try {
+            em = HibernateUtil.getEntityManager();
+            nhanVienDao.setEntityManager(em);
 
+            tableModel.setRowCount(0); // Clear current table
+            if (searchTerm.isEmpty()) {
+                loadNhanVien(); // If search term is empty, load all employees
+                return;
+            }
+
+            // Create a JPQL query for searching
+            String jpql = "SELECT n FROM NhanVien n WHERE LOWER(n.idNV) LIKE :searchTerm " +
+                    "OR LOWER(n.hoTen) LIKE :searchTerm " +
+                    "OR LOWER(n.sdt) LIKE :searchTerm " +
+                    "OR LOWER(n.email) LIKE :searchTerm";
+            List<NhanVien> list = em.createQuery(jpql, NhanVien.class)
+                    .setParameter("searchTerm", "%" + searchTerm.toLowerCase() + "%")
+                    .getResultList();
+
+            // Populate table with search results
+            for (NhanVien nv : list) {
+                tableModel.addRow(new Object[]{
+                        nv.getIdNV(),
+                        nv.getHoTen(),
+                        nv.getSdt(),
+                        nv.getEmail(),
+                        nv.getGioiTinh(),
+                        nv.getNamSinh(),
+                        nv.getNgayVaoLam() != null ? DATE_FORMAT.format(nv.getNgayVaoLam()) : "",
+                        nv.getChucVu()
+                });
+            }
+
+            if (list.isEmpty()) {
+                showError("Không tìm thấy nhân viên nào khớp với từ khóa!");
+            }
+
+            clearForm(); // Clear form after search
+        } catch (Exception e) {
+            e.printStackTrace();
+            showError("Lỗi khi tìm kiếm nhân viên: " + e.getMessage());
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
     private void populateFormFromTable() {
         int selectedRow = table.getSelectedRow();
         if (selectedRow == -1) return;
