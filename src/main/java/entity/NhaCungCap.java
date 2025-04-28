@@ -19,7 +19,7 @@ public class NhaCungCap {
     private String sdt;
     private String diaChi;
 
-    @OneToMany(mappedBy = "nhaCungCap")
+    @OneToMany(mappedBy = "nhaCungCap", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PhieuNhap> phieuNhap;
 
     // Add this constructor
@@ -32,6 +32,10 @@ public class NhaCungCap {
 
     // Default constructor
     public NhaCungCap() {
+    }
+    public static String generateRandomId() {
+        int randomNum = (int) (Math.random() * 9000) + 1000; // Generate a random 4-digit number
+        return "NCC" + randomNum;
     }
     @Override
     public String toString() {

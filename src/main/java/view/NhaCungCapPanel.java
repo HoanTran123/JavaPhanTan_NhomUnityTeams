@@ -70,10 +70,10 @@ public class NhaCungCapPanel extends JPanel {
         JPanel gridPanel = new JPanel(new GridLayout(2, 2, 15, 15));
         gridPanel.setBackground(Color.WHITE);
 
-        txtMaNCC = createStyledTextField();
-        txtTenNCC = createStyledTextField();
-        txtSDT = createStyledTextField();
-        txtDiaChi = createStyledTextField();
+        txtMaNCC = createStyledTextField(false);
+        txtTenNCC = createStyledTextField(true);
+        txtSDT = createStyledTextField(true);
+        txtDiaChi = createStyledTextField(true);
 
         JLabel[] labels = {
                 new JLabel("Mã NCC:"), new JLabel("Tên NCC:"),
@@ -102,13 +102,14 @@ public class NhaCungCapPanel extends JPanel {
         return panel;
     }
 
-    private JTextField createStyledTextField() {
+    private JTextField createStyledTextField(boolean editable) {
         JTextField field = new JTextField();
         field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         field.setBorder(BorderFactory.createCompoundBorder(
                 new MatteBorder(1, 1, 1, 1, new Color(220, 220, 220)),
                 new EmptyBorder(10, 12, 10, 12)
         ));
+        field.setEditable(editable); // Set editable state
         return field;
     }
 
@@ -214,12 +215,12 @@ public class NhaCungCapPanel extends JPanel {
 
     private void addNhaCungCap() {
         try {
-            String maNCC = txtMaNCC.getText().trim();
+            String maNCC = NhaCungCap.generateRandomId(); // Generate random ID
             String tenNCC = txtTenNCC.getText().trim();
             String sdt = txtSDT.getText().trim();
             String diaChi = txtDiaChi.getText().trim();
 
-            if (maNCC.isEmpty() || tenNCC.isEmpty() || sdt.isEmpty() || diaChi.isEmpty()) {
+            if (tenNCC.isEmpty() || sdt.isEmpty() || diaChi.isEmpty()) {
                 showError("Vui lòng nhập đầy đủ thông tin.");
                 return;
             }
@@ -266,22 +267,35 @@ public class NhaCungCapPanel extends JPanel {
 
     private void deleteNhaCungCap() {
         try {
-            String maNCC = txtMaNCC.getText().trim();
-
-            if (maNCC.isEmpty()) {
-                showError("Vui lòng nhập mã nhà cung cấp cần xóa.");
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow == -1) {
+                showError("Vui lòng chọn nhà cung cấp cần xóa.");
                 return;
             }
 
-            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa nhà cung cấp này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
+            String maNCC = tableModel.getValueAt(selectedRow, 0).toString();
+            if (maNCC == null || maNCC.isEmpty()) {
+                showError("Không thể xác định mã nhà cung cấp.");
+                return;
+            }
+
+            NhaCungCap ncc = nhaCungCapDao.getById(maNCC);
+            if (ncc == null) {
+                showError("Không tìm thấy nhà cung cấp với mã đã chọn.");
+                return;
+            }
+
+            if (ncc.getPhieuNhap() != null && !ncc.getPhieuNhap().isEmpty()) {
+                showError("Không thể xóa nhà cung cấp vì có phiếu nhập liên quan.");
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Bạn có chắc chắn muốn xóa nhà cung cấp này?",
+                    "Xác nhận xóa",
+                    JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
-                NhaCungCap ncc = nhaCungCapDao.getById(maNCC);
-                if (ncc == null) {
-                    showError("Không tìm thấy nhà cung cấp với mã đã nhập.");
-                    return;
-                }
-
                 if (nhaCungCapDao.delete(ncc)) {
                     loadNhaCungCap();
                     JOptionPane.showMessageDialog(this, "Xóa nhà cung cấp thành công!");
