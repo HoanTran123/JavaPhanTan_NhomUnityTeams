@@ -33,6 +33,10 @@ public class NhaCungCap {
     // Default constructor
     public NhaCungCap() {
     }
+    public static String generateRandomId() {
+        int randomNum = (int) (Math.random() * 9000) + 1000; // Generate a random 4-digit number
+        return "NCC" + randomNum;
+    }
     @Override
     public String toString() {
         return "NhaCungCap{idNCC='" + idNCC + "', tenNCC='" + tenNCC + "'}";
