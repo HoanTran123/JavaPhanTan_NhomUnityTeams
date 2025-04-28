@@ -4,30 +4,90 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="" />
-=======
-<<<<<<< HEAD
-    <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="" />
-=======
     <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/HoaDonPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/HoaDonPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/KhachHangPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/KhachHangPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-=======
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ChiTietDoiTraDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ChiTietHoaDonDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ChiTietPhieuDatHangDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ChiTietPhieuNhapDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DanhMucDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DoiTraDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DonViTinhDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/GenericDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/HoaDonDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/KhachHangDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/KhuyenMaiDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/NhaCungCapDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/NhanVienDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/PhieuDatHangDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/PhieuNhapDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/TaiKhoanDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ThuocDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/VaiTroDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/XuatXuDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IChiTietDoiTraDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IChiTietHoaDonDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IChiTietPhieuDatHangDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IChiTietPhieuNhapDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IDanhMucDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IDoiTraDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IDonViTinhDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IHoaDonDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IKhachHangDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IKhuyenMaiDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/INhaCungCapDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/INhanVienDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IPhieuDatHangDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IPhieuNhapDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/ITaiKhoanDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IThuocDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IVaiTroDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/remote/IXuatXuDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/KhuyenMai.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rmi/RMIClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/rmi/RMIServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/EntityManagerUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/HibernateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/BanThuocDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/ChiTietHoaDonPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/HoaDonPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/KhachHangPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/KhuyenMaiPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/LoginFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/view/NhaCungCapPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/NhanVienPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/PhieuNhapPanel.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/view/ThuocPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/81eee738-49ef-4ad1-9b2c-e561ff3e3cd1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/connectDB/JDBCConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/connectDB/JDBCConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/KhachHang_dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/NhanVien_dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/datafaker/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/datafaker/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/ChiTietDoiTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/ChiTietDoiTra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/ChiTietHoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/ChiTietHoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/DanhMuc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/DanhMuc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/DoiTra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/DoiTra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/HoaDon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/KhachHang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/KhachHang.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/NhaCungCap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/NhaCungCap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" afterDir="false" />
->>>>>>> 8881e68c4509781151592b4224e11c4cbe83978a
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/NhanVien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/PhieuNhap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/PhieuNhap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/TaiKhoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/TaiKhoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Thuoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Thuoc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/VaiTro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/VaiTro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/iuh/fit/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testCRUD/TestKhachHang.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testCRUD/testNhanVien.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
->>>>>>> 3f7faa94cc21a4a988ed2326cbc3b5a8279edaab
->>>>>>> origin/master
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +121,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -83,96 +142,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-<<<<<<< HEAD
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:Runner.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:datafaker.DataGenerator.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.TestKhachHang.main()].executor&quot;: &quot;Run&quot;,
-=======
-<<<<<<< HEAD
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-=======
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.Build JavaPhanTan_NhomUnityTeams.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:Runner.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:datafaker.DataGenerator.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:gui.Login.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.TestKhachHang.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.testNhanVien.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.JavaPhanTan_NhomUnityTeams [:view.MainFrame.main()].executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.lib in JavaPhanTan_NhomUnityTeams.main.executor&quot;: &quot;Run&quot;,
->>>>>>> origin/master
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Hoan&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-<<<<<<< HEAD
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Java/jdk-17&quot;,
-=======
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ACER/Downloads/gradle-8.12&quot;,
->>>>>>> 3f7faa94cc21a4a988ed2326cbc3b5a8279edaab
->>>>>>> origin/master
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/HocKyII_2024/JavaPhanTan_NhomUnityTeams/src/main/java/iuh/fit/Main.java&quot;,
-<<<<<<< HEAD
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-=======
-<<<<<<< HEAD
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="RunManager">
-=======
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
->>>>>>> origin/master
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.JavaPhanTan_NhomUnityTeams [:Runner.main()].executor": "Run",
+    "Gradle.JavaPhanTan_NhomUnityTeams [:datafaker.DataGenerator.main()].executor": "Run",
+    "Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.TestKhachHang.main()].executor": "Run",
+    "Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.testNhaCungCap.main()].executor": "Run",
+    "Gradle.JavaPhanTan_NhomUnityTeams [:testCRUD.testThuoc.main()].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Merging Huy",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ACER/Downloads/gradle-8.12",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "D:/HocKyII_2024/JavaPhanTan_NhomUnityTeams/src/main/java/iuh/fit/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
     ]
   }
-}</component>
-<<<<<<< HEAD
-  <component name="RunManager" selected="Application.TestKhachHang">
+}]]></component>
+  <component name="RunManager" selected="Application.testThuoc">
     <configuration name="DataGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="datafaker.DataGenerator" />
-=======
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="dao.impl" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\HocKyII_2024\Java_PhanTan\JavaPhanTan_NhomUnityTeams\src\main\java" />
-      <recent name="D:\HocKyII_2024\Java_PhanTan\JavaPhanTan_NhomUnityTeams\src\main\java\ui" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.MainFrame">
-    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.Login" />
->>>>>>> origin/master
       <module name="JavaPhanTan_NhomUnityTeams.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gui.*" />
+          <option name="PATTERN" value="datafaker.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -180,25 +191,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
->>>>>>> 3f7faa94cc21a4a988ed2326cbc3b5a8279edaab
-    <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="view.MainFrame" />
+    <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Runner" />
       <module name="JavaPhanTan_NhomUnityTeams.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-<<<<<<< HEAD
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.MainFrame" />
-=======
     <configuration name="TestKhachHang" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="testCRUD.TestKhachHang" />
       <module name="JavaPhanTan_NhomUnityTeams.main" />
@@ -212,8 +211,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testNhanVien" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testCRUD.testNhanVien" />
+    <configuration name="testNhaCungCap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testCRUD.testNhaCungCap" />
       <module name="JavaPhanTan_NhomUnityTeams.main" />
       <extension name="coverage">
         <pattern>
@@ -225,36 +224,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="lib in JavaPhanTan_NhomUnityTeams.main" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="testThuoc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testCRUD.testThuoc" />
       <module name="JavaPhanTan_NhomUnityTeams.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lib.*" />
+          <option name="PATTERN" value="testCRUD.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="lib" />
-      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainFrame" />
-        <item itemvalue="JUnit.lib in JavaPhanTan_NhomUnityTeams.main" />
-        <item itemvalue="Application.Login" />
-        <item itemvalue="Application.testNhanVien" />
+        <item itemvalue="Application.testNhaCungCap" />
+        <item itemvalue="Application.testThuoc" />
         <item itemvalue="Application.TestKhachHang" />
->>>>>>> 3f7faa94cc21a4a988ed2326cbc3b5a8279edaab
+        <item itemvalue="Application.DataGenerator" />
+        <item itemvalue="Application.Runner" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
       </set>
     </attachedChunks>
   </component>
@@ -302,37 +299,8 @@
       <workItem from="1737535634463" duration="1507000" />
       <workItem from="1737537396844" duration="1837000" />
       <workItem from="1737539376407" duration="7000" />
-      <workItem from="1737554890205" duration="2451000" />
-      <workItem from="1737557477063" duration="63000" />
-      <workItem from="1737557602795" duration="888000" />
-      <workItem from="1737559142217" duration="4691000" />
-      <workItem from="1739353568926" duration="188000" />
-      <workItem from="1745162328534" duration="724000" />
-      <workItem from="1745163271280" duration="97000" />
-      <workItem from="1745165545722" duration="41000" />
-      <workItem from="1745204971664" duration="2708000" />
-      <workItem from="1745230361095" duration="725000" />
-      <workItem from="1745249744177" duration="598000" />
-      <workItem from="1745250369880" duration="2263000" />
-      <workItem from="1745252788414" duration="100000" />
-      <workItem from="1745329653367" duration="4178000" />
-      <workItem from="1745387805162" duration="3070000" />
-      <workItem from="1745463746314" duration="1757000" />
-      <workItem from="1745501639039" duration="120000" />
-      <workItem from="1745653754308" duration="21000" />
-      <workItem from="1745653848375" duration="5000" />
-      <workItem from="1745653877491" duration="12000" />
-      <workItem from="1745654828377" duration="22000" />
-      <workItem from="1745655377299" duration="3894000" />
-<<<<<<< HEAD
-      <workItem from="1745660069606" duration="4720000" />
-      <workItem from="1745664956499" duration="2462000" />
-=======
-      <workItem from="1745660069606" duration="2445000" />
-      <workItem from="1745663120253" duration="2715000" />
-      <workItem from="1745667017304" duration="1411000" />
-      <workItem from="1745668498829" duration="2000" />
->>>>>>> 8881e68c4509781151592b4224e11c4cbe83978a
+      <workItem from="1737554890205" duration="1785000" />
+      <workItem from="1737562860886" duration="728000" />
     </task>
     <servers />
   </component>

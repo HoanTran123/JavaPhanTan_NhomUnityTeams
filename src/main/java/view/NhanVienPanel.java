@@ -190,6 +190,109 @@ public class NhanVienPanel extends JPanel {
         return buttonPanel;
     }
 
+    private void addNhanVien() {
+        try {
+            // Validate input fields
+            String hoTen = txtHoTen.getText().trim();
+            String sdt = txtSDT.getText().trim();
+            String email = txtEmail.getText().trim();
+            String gioiTinh = cboGioiTinh.getSelectedItem().toString();
+            String namSinhText = txtNamSinh.getText().trim();
+            String chucVu = txtChucVu.getText().trim();
+
+            if (hoTen.isEmpty() || sdt.isEmpty() || email.isEmpty() || namSinhText.isEmpty() || chucVu.isEmpty()) {
+                showError("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            // Validate phone number
+            if (!sdt.matches("\\d{10,11}")) {
+                showError("Số điện thoại phải có 10-11 chữ số!");
+                return;
+            }
+
+            // Validate email
+            String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+            if (!Pattern.matches(emailRegex, email)) {
+                showError("Email không hợp lệ!");
+                return;
+            }
+
+            // Validate birth year
+            int namSinh;
+            try {
+                namSinh = Integer.parseInt(namSinhText);
+                int currentYear = java.time.Year.now().getValue();
+                if (namSinh < 1900 || namSinh > currentYear) {
+                    showError("Năm sinh phải nằm trong khoảng từ 1900 đến " + currentYear + "!");
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                showError("Năm sinh phải là số nguyên hợp lệ!");
+                return;
+            }
+
+            // Create and populate NhanVien object
+            NhanVien nv = new NhanVien();
+            nv.setIdNV(generateEmployeeId()); // Generate unique ID
+            nv.setHoTen(hoTen);
+            nv.setSdt(sdt);
+            nv.setEmail(email);
+            nv.setGioiTinh(gioiTinh);
+            nv.setNamSinh(namSinh);
+            nv.setNgayVaoLam(new Date()); // Set current date
+            nv.setChucVu(chucVu);
+
+            // Save to database
+            if (nhanVienDao.save(nv)) {
+                loadNhanVien(); // Reload table data
+                showSuccess("Thêm nhân viên thành công!");
+            } else {
+                showError("Thêm nhân viên thất bại!");
+            }
+        } catch (Exception e) {
+            showError("Lỗi khi thêm nhân viên: " + e.getMessage());
+        }
+    }
+
+    private String generateEmployeeId() {
+        return "NV" + System.currentTimeMillis();
+    }
+
+    private void updateNhanVien() {
+        try {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow == -1) {
+                showError("Vui lòng chọn nhân viên để cập nhật!");
+                return;
+            }
+
+            String maNV = txtMaNV.getText();
+            NhanVien nv = nhanVienDao.getById(maNV);
+            if (nv == null) {
+                showError("Nhân viên không tồn tại!");
+                return;
+            }
+
+            nv.setHoTen(txtHoTen.getText());
+            nv.setSdt(txtSDT.getText());
+            nv.setEmail(txtEmail.getText());
+            nv.setGioiTinh(cboGioiTinh.getSelectedItem().toString());
+            nv.setNamSinh(Integer.parseInt(txtNamSinh.getText()));
+            nv.setNgayVaoLam(DATE_FORMAT.parse(txtNgayVaoLam.getText()));
+            nv.setChucVu(txtChucVu.getText());
+
+            if (nhanVienDao.update(nv)) {
+                loadNhanVien();
+                showSuccess("Cập nhật nhân viên thành công!");
+            } else {
+                showError("Cập nhật nhân viên thất bại!");
+            }
+        } catch (Exception e) {
+            showError("Lỗi khi cập nhật nhân viên: " + e.getMessage());
+        }
+    }
+
     private JButton createActionButton(String text, Color bgColor) {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -201,6 +304,40 @@ public class NhanVienPanel extends JPanel {
         ));
         button.setFocusPainted(false);
         return button;
+    }
+
+    private void deleteNhanVien() {
+        try {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow == -1) {
+                showError("Vui lòng chọn nhân viên để xóa!");
+                return;
+            }
+
+            String maNV = tableModel.getValueAt(selectedRow, 0).toString();
+            NhanVien nv = nhanVienDao.getById(maNV);
+            if (nv == null) {
+                showError("Nhân viên không tồn tại!");
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Bạn có chắc chắn muốn xóa nhân viên này? Tài khoản liên quan cũng sẽ bị xóa!",
+                    "Xác nhận xóa",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirm != JOptionPane.YES_OPTION) {
+                return;
+            }
+
+            if (nhanVienDao.delete(nv)) {
+                loadNhanVien();
+                showSuccess("Xóa nhân viên thành công!");
+            } else {
+                showError("Xóa nhân viên thất bại!");
+            }
+        } catch (Exception e) {
+            showError("Lỗi khi xóa nhân viên: " + e.getMessage());
+        }
     }
 
     private void loadNhanVien() {
@@ -225,18 +362,6 @@ public class NhanVienPanel extends JPanel {
         }
     }
 
-    private void addNhanVien() {
-        // Similar to addKhachHang() in KhachHangPanel
-    }
-
-    private void updateNhanVien() {
-        // Similar to updateKhachHang() in KhachHangPanel
-    }
-
-    private void deleteNhanVien() {
-        // Similar to deleteKhachHang() in KhachHangPanel
-    }
-
     private void populateFormFromTable() {
         int selectedRow = table.getSelectedRow();
         txtMaNV.setText(tableModel.getValueAt(selectedRow, 0).toString());
@@ -249,6 +374,14 @@ public class NhanVienPanel extends JPanel {
         txtChucVu.setText(tableModel.getValueAt(selectedRow, 7).toString());
     }
 
+    private void showError(String message) {
+        JOptionPane.showMessageDialog(this, message, "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void showSuccess(String message) {
+        JOptionPane.showMessageDialog(this, message, "Thành công", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     private void clearForm() {
         txtMaNV.setText("");
         txtHoTen.setText("");
@@ -258,9 +391,5 @@ public class NhanVienPanel extends JPanel {
         txtNamSinh.setText("");
         txtNgayVaoLam.setText("");
         txtChucVu.setText("");
-    }
-
-    private void showError(String message) {
-        JOptionPane.showMessageDialog(this, message, "Lỗi", JOptionPane.ERROR_MESSAGE);
     }
 }
