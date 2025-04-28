@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="760dde0f-69d9-4e1e-8864-63e1e65999b1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/NhanVienDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/impl/NhanVienDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/NhanVienPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/NhanVienPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +65,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.DataGenerator.executor": "Run",
     "Application.LoginFrame.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle.JavaPhanTan_NhomUnityTeams [:Runner.main()].executor": "Run",
@@ -167,18 +169,18 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LoginFrame" />
+        <item itemvalue="Application.DataGenerator" />
         <item itemvalue="Application.testNhaCungCap" />
         <item itemvalue="Application.testThuoc" />
         <item itemvalue="Application.TestKhachHang" />
-        <item itemvalue="Application.DataGenerator" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -228,6 +230,7 @@
       <workItem from="1737539376407" duration="7000" />
       <workItem from="1737554890205" duration="1785000" />
       <workItem from="1737562860886" duration="728000" />
+      <workItem from="1745844506954" duration="7388000" />
     </task>
     <servers />
   </component>

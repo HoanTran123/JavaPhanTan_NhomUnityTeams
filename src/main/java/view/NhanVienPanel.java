@@ -3,6 +3,7 @@ package view;
 import dao.impl.NhanVienDAO;
 import entity.NhanVien;
 import util.HibernateUtil;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -12,19 +13,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
+import jakarta.persistence.EntityManager;
 
 public class NhanVienPanel extends JPanel {
     private JTable table;
     private DefaultTableModel tableModel;
-    private JTextField txtMaNV, txtHoTen, txtSDT, txtEmail, txtNamSinh, txtNgayVaoLam, txtChucVu;
-    private JComboBox<String> cboGioiTinh;
+    private JTextField txtMaNV, txtHoTen, txtSDT, txtEmail, txtNamSinh;
+    private JDateChooser txtNgayVaoLam;
+    private JComboBox<String> cboGioiTinh, cboChucVu;
     private NhanVienDAO nhanVienDao;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     public NhanVienPanel() {
         try {
             nhanVienDao = new NhanVienDAO();
-            nhanVienDao.setEntityManager(HibernateUtil.getEntityManager());
         } catch (Exception e) {
             showError("Lỗi khởi tạo NhanVienDAO: " + e.getMessage());
         }
@@ -79,8 +81,8 @@ public class NhanVienPanel extends JPanel {
         txtEmail = createStyledTextField(true);
         cboGioiTinh = createStyledComboBox(new String[]{"Nam", "Nữ", "Không xác định"});
         txtNamSinh = createStyledTextField(true);
-        txtNgayVaoLam = createStyledTextField(false);
-        txtChucVu = createStyledTextField(true);
+        txtNgayVaoLam = createStyledDateChooser();
+        cboChucVu = createStyledComboBox(new String[]{"Nhân viên", "Quản lý"});
 
         JLabel[] labels = {
                 new JLabel("Mã NV:"), new JLabel("Họ Tên:"), new JLabel("SĐT:"),
@@ -100,7 +102,7 @@ public class NhanVienPanel extends JPanel {
         gridPanel.add(createFieldPanel(labels[4], cboGioiTinh));
         gridPanel.add(createFieldPanel(labels[5], txtNamSinh));
         gridPanel.add(createFieldPanel(labels[6], txtNgayVaoLam));
-        gridPanel.add(createFieldPanel(labels[7], txtChucVu));
+        gridPanel.add(createFieldPanel(labels[7], cboChucVu));
 
         formPanel.add(gridPanel);
         return formPanel;
@@ -134,6 +136,18 @@ public class NhanVienPanel extends JPanel {
         ));
         combo.setBackground(Color.WHITE);
         return combo;
+    }
+
+    private JDateChooser createStyledDateChooser() {
+        JDateChooser dateChooser = new JDateChooser();
+        dateChooser.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        dateChooser.setBorder(BorderFactory.createCompoundBorder(
+                new MatteBorder(1, 1, 1, 1, new Color(220, 220, 220)),
+                new EmptyBorder(10, 12, 10, 12)
+        ));
+        dateChooser.setDateFormatString("dd/MM/yyyy");
+        dateChooser.setMaxSelectableDate(new Date()); // Prevent future dates
+        return dateChooser;
     }
 
     private JScrollPane createTablePanel() {
@@ -190,109 +204,6 @@ public class NhanVienPanel extends JPanel {
         return buttonPanel;
     }
 
-    private void addNhanVien() {
-        try {
-            // Validate input fields
-            String hoTen = txtHoTen.getText().trim();
-            String sdt = txtSDT.getText().trim();
-            String email = txtEmail.getText().trim();
-            String gioiTinh = cboGioiTinh.getSelectedItem().toString();
-            String namSinhText = txtNamSinh.getText().trim();
-            String chucVu = txtChucVu.getText().trim();
-
-            if (hoTen.isEmpty() || sdt.isEmpty() || email.isEmpty() || namSinhText.isEmpty() || chucVu.isEmpty()) {
-                showError("Vui lòng nhập đầy đủ thông tin!");
-                return;
-            }
-
-            // Validate phone number
-            if (!sdt.matches("\\d{10,11}")) {
-                showError("Số điện thoại phải có 10-11 chữ số!");
-                return;
-            }
-
-            // Validate email
-            String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-            if (!Pattern.matches(emailRegex, email)) {
-                showError("Email không hợp lệ!");
-                return;
-            }
-
-            // Validate birth year
-            int namSinh;
-            try {
-                namSinh = Integer.parseInt(namSinhText);
-                int currentYear = java.time.Year.now().getValue();
-                if (namSinh < 1900 || namSinh > currentYear) {
-                    showError("Năm sinh phải nằm trong khoảng từ 1900 đến " + currentYear + "!");
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                showError("Năm sinh phải là số nguyên hợp lệ!");
-                return;
-            }
-
-            // Create and populate NhanVien object
-            NhanVien nv = new NhanVien();
-            nv.setIdNV(generateEmployeeId()); // Generate unique ID
-            nv.setHoTen(hoTen);
-            nv.setSdt(sdt);
-            nv.setEmail(email);
-            nv.setGioiTinh(gioiTinh);
-            nv.setNamSinh(namSinh);
-            nv.setNgayVaoLam(new Date()); // Set current date
-            nv.setChucVu(chucVu);
-
-            // Save to database
-            if (nhanVienDao.save(nv)) {
-                loadNhanVien(); // Reload table data
-                showSuccess("Thêm nhân viên thành công!");
-            } else {
-                showError("Thêm nhân viên thất bại!");
-            }
-        } catch (Exception e) {
-            showError("Lỗi khi thêm nhân viên: " + e.getMessage());
-        }
-    }
-
-    private String generateEmployeeId() {
-        return "NV" + System.currentTimeMillis();
-    }
-
-    private void updateNhanVien() {
-        try {
-            int selectedRow = table.getSelectedRow();
-            if (selectedRow == -1) {
-                showError("Vui lòng chọn nhân viên để cập nhật!");
-                return;
-            }
-
-            String maNV = txtMaNV.getText();
-            NhanVien nv = nhanVienDao.getById(maNV);
-            if (nv == null) {
-                showError("Nhân viên không tồn tại!");
-                return;
-            }
-
-            nv.setHoTen(txtHoTen.getText());
-            nv.setSdt(txtSDT.getText());
-            nv.setEmail(txtEmail.getText());
-            nv.setGioiTinh(cboGioiTinh.getSelectedItem().toString());
-            nv.setNamSinh(Integer.parseInt(txtNamSinh.getText()));
-            nv.setNgayVaoLam(DATE_FORMAT.parse(txtNgayVaoLam.getText()));
-            nv.setChucVu(txtChucVu.getText());
-
-            if (nhanVienDao.update(nv)) {
-                loadNhanVien();
-                showSuccess("Cập nhật nhân viên thành công!");
-            } else {
-                showError("Cập nhật nhân viên thất bại!");
-            }
-        } catch (Exception e) {
-            showError("Lỗi khi cập nhật nhân viên: " + e.getMessage());
-        }
-    }
-
     private JButton createActionButton(String text, Color bgColor) {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -306,7 +217,221 @@ public class NhanVienPanel extends JPanel {
         return button;
     }
 
+    // Helper method to validate input fields
+    private boolean validateNhanVienInput(String hoTen, String sdt, String email, String namSinhText, String chucVu, Date ngayVaoLam, String maNV, boolean isAdd) {
+        if (hoTen.isEmpty() || sdt.isEmpty() || email.isEmpty() || namSinhText.isEmpty() || chucVu == null || ngayVaoLam == null) {
+            showError("Vui lòng nhập đầy đủ thông tin!");
+            return false;
+        }
+
+        // Validate phone number
+        if (!sdt.matches("\\d{10,11}")) {
+            showError("Số điện thoại phải có 10-11 chữ số!");
+            return false;
+        }
+
+        // Validate email
+        String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        if (!Pattern.matches(emailRegex, email)) {
+            showError("Email không hợp lệ!");
+            return false;
+        }
+
+        // Validate birth year
+        int namSinh;
+        try {
+            namSinh = Integer.parseInt(namSinhText);
+            int currentYear = java.time.Year.now().getValue();
+            if (namSinh < 1900 || namSinh > currentYear) {
+                showError("Năm sinh phải nằm trong khoảng từ 1900 đến " + currentYear + "!");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showError("Năm sinh phải là số nguyên hợp lệ!");
+            return false;
+        }
+
+        // Validate ngayVaoLam
+        Date currentDate = new Date();
+        if (ngayVaoLam.after(currentDate)) {
+            showError("Ngày vào làm không được lớn hơn ngày hiện tại!");
+            return false;
+        }
+
+        // Check for duplicate email or phone number
+        EntityManager em = null;
+        try {
+            em = HibernateUtil.getEntityManager();
+            nhanVienDao.setEntityManager(em);
+            // Check email
+            String emailQuery = isAdd ? "SELECT COUNT(n) FROM NhanVien n WHERE n.email = :email" :
+                    "SELECT COUNT(n) FROM NhanVien n WHERE n.email = :email AND n.idNV != :maNV";
+            var emailQueryObj = em.createQuery(emailQuery, Long.class)
+                    .setParameter("email", email);
+            if (!isAdd) {
+                emailQueryObj.setParameter("maNV", maNV);
+            }
+            long emailCount = emailQueryObj.getSingleResult();
+            if (emailCount > 0) {
+                showError("Email đã được sử dụng!");
+                return false;
+            }
+            // Check phone number
+            String sdtQuery = isAdd ? "SELECT COUNT(n) FROM NhanVien n WHERE n.sdt = :sdt" :
+                    "SELECT COUNT(n) FROM NhanVien n WHERE n.sdt = :sdt AND n.idNV != :maNV";
+            var sdtQueryObj = em.createQuery(sdtQuery, Long.class)
+                    .setParameter("sdt", sdt);
+            if (!isAdd) {
+                sdtQueryObj.setParameter("maNV", maNV);
+            }
+            long sdtCount = sdtQueryObj.getSingleResult();
+            if (sdtCount > 0) {
+                showError("Số điện thoại đã được sử dụng!");
+                return false;
+            }
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+
+        return true;
+    }
+
+    private void addNhanVien() {
+        EntityManager em = null;
+        try {
+            // Get input fields
+            String hoTen = txtHoTen.getText().trim();
+            String sdt = txtSDT.getText().trim();
+            String email = txtEmail.getText().trim();
+            String gioiTinh = cboGioiTinh.getSelectedItem().toString();
+            String namSinhText = txtNamSinh.getText().trim();
+            Date ngayVaoLam = txtNgayVaoLam.getDate();
+            String chucVu = cboChucVu.getSelectedItem().toString();
+
+            // Validate inputs
+            if (!validateNhanVienInput(hoTen, sdt, email, namSinhText, chucVu, ngayVaoLam, null, true)) {
+                return;
+            }
+
+            // Create and populate NhanVien object
+            NhanVien nv = new NhanVien();
+            String maNV = generateEmployeeId();
+            nv.setIdNV(maNV);
+            nv.setHoTen(hoTen);
+            nv.setSdt(sdt);
+            nv.setEmail(email);
+            nv.setGioiTinh(gioiTinh);
+            nv.setNamSinh(Integer.parseInt(namSinhText));
+            nv.setNgayVaoLam(ngayVaoLam);
+            nv.setChucVu(chucVu);
+
+            // Save to database
+            em = HibernateUtil.getEntityManager();
+            nhanVienDao.setEntityManager(em);
+            em.getTransaction().begin();
+            try {
+                boolean success = nhanVienDao.save(nv);
+                em.getTransaction().commit();
+                if (success) {
+                    loadNhanVien();
+                    showSuccess("Thêm nhân viên thành công!");
+                } else {
+                    showError("Thêm nhân viên thất bại!");
+                }
+            } catch (Exception e) {
+                em.getTransaction().rollback();
+                throw e;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showError("Lỗi khi thêm nhân viên: " + e.getMessage());
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
+    private String generateEmployeeId() {
+        return "NV" + System.currentTimeMillis();
+    }
+
+    private void updateNhanVien() {
+        EntityManager em = null;
+        try {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow == -1) {
+                showError("Vui lòng chọn nhân viên để cập nhật!");
+                return;
+            }
+
+            String maNV = txtMaNV.getText().trim();
+            if (maNV.isEmpty()) {
+                showError("Mã nhân viên không hợp lệ!");
+                return;
+            }
+
+            // Get input fields
+            String hoTen = txtHoTen.getText().trim();
+            String sdt = txtSDT.getText().trim();
+            String email = txtEmail.getText().trim();
+            String gioiTinh = cboGioiTinh.getSelectedItem().toString();
+            String namSinhText = txtNamSinh.getText().trim();
+            Date ngayVaoLam = txtNgayVaoLam.getDate();
+            String chucVu = cboChucVu.getSelectedItem().toString();
+
+            // Validate inputs
+            if (!validateNhanVienInput(hoTen, sdt, email, namSinhText, chucVu, ngayVaoLam, maNV, false)) {
+                return;
+            }
+
+            // Fetch existing NhanVien
+            em = HibernateUtil.getEntityManager();
+            nhanVienDao.setEntityManager(em);
+            NhanVien nv = nhanVienDao.getById(maNV);
+            if (nv == null) {
+                showError("Nhân viên không tồn tại!");
+                return;
+            }
+
+            // Update NhanVien
+            nv.setHoTen(hoTen);
+            nv.setSdt(sdt);
+            nv.setEmail(email);
+            nv.setGioiTinh(gioiTinh);
+            nv.setNamSinh(Integer.parseInt(namSinhText));
+            nv.setNgayVaoLam(ngayVaoLam);
+            nv.setChucVu(chucVu);
+
+            // Save to database
+            em.getTransaction().begin();
+            try {
+                boolean success = nhanVienDao.updateWithoutTransaction(nv);
+                em.getTransaction().commit();
+                if (success) {
+                    loadNhanVien();
+                    showSuccess("Cập nhật nhân viên thành công!");
+                } else {
+                    showError("Cập nhật nhân viên thất bại!");
+                }
+            } catch (Exception e) {
+                em.getTransaction().rollback();
+                throw e;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showError("Lỗi khi cập nhật nhân viên: " + e.getMessage());
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
     private void deleteNhanVien() {
+        EntityManager em = null;
         try {
             int selectedRow = table.getSelectedRow();
             if (selectedRow == -1) {
@@ -315,33 +440,89 @@ public class NhanVienPanel extends JPanel {
             }
 
             String maNV = tableModel.getValueAt(selectedRow, 0).toString();
+
+            // Create a new EntityManager for this operation
+            em = HibernateUtil.getEntityManager();
+            nhanVienDao.setEntityManager(em);
+
+            // Fetch NhanVien
             NhanVien nv = nhanVienDao.getById(maNV);
             if (nv == null) {
                 showError("Nhân viên không tồn tại!");
                 return;
             }
 
+            // Check for critical records
+            long chiTietHoaDonCount = (Long) em.createQuery("SELECT COUNT(ct) FROM ChiTietHoaDon ct WHERE ct.hoaDon IN (SELECT h FROM HoaDon h WHERE h.nhanVien.idNV = :maNV)")
+                    .setParameter("maNV", maNV)
+                    .getSingleResult();
+            long phieuNhapCount = (Long) em.createQuery("SELECT COUNT(pn) FROM PhieuNhap pn WHERE pn.nhanVien.idNV = :maNV")
+                    .setParameter("maNV", maNV)
+                    .getSingleResult();
+            long chiTietPhieuNhapCount = (Long) em.createQuery("SELECT COUNT(ctpn) FROM ChiTietPhieuNhap ctpn WHERE ctpn.phieuNhap IN (SELECT pn FROM PhieuNhap pn WHERE pn.nhanVien.idNV = :maNV)")
+                    .setParameter("maNV", maNV)
+                    .getSingleResult();
+            if (chiTietHoaDonCount > 0 || phieuNhapCount > 0 || chiTietPhieuNhapCount > 0) {
+                int confirmCritical = JOptionPane.showConfirmDialog(this,
+                        "Nhân viên này có " + chiTietHoaDonCount + " chi tiết hóa đơn, " + phieuNhapCount + " phiếu nhập, và " + chiTietPhieuNhapCount + " chi tiết phiếu nhập liên quan. Bạn vẫn muốn xóa?",
+                        "Cảnh báo xóa",
+                        JOptionPane.YES_NO_OPTION);
+                if (confirmCritical != JOptionPane.YES_OPTION) {
+                    return;
+                }
+            }
+
             int confirm = JOptionPane.showConfirmDialog(this,
-                    "Bạn có chắc chắn muốn xóa nhân viên này? Tài khoản liên quan cũng sẽ bị xóa!",
+                    "Bạn có chắc chắn muốn xóa nhân viên " + nv.getHoTen() + "? Tài khoản, hóa đơn, chi tiết hóa đơn, phiếu nhập và chi tiết phiếu nhập liên quan cũng sẽ bị xóa!",
                     "Xác nhận xóa",
                     JOptionPane.YES_NO_OPTION);
             if (confirm != JOptionPane.YES_OPTION) {
                 return;
             }
 
-            if (nhanVienDao.delete(nv)) {
-                loadNhanVien();
-                showSuccess("Xóa nhân viên thành công!");
-            } else {
-                showError("Xóa nhân viên thất bại!");
+            // Begin transaction
+            em.getTransaction().begin();
+            try {
+                // Delete related records
+                System.out.println("Deleting related records for NhanVien: " + maNV);
+                nhanVienDao.deleteRelatedTaiKhoan(maNV);
+                System.out.println("Deleted TaiKhoan for NhanVien: " + maNV);
+                nhanVienDao.deleteRelatedHoaDon(maNV);
+                System.out.println("Deleted HoaDon and ChiTietHoaDon for NhanVien: " + maNV);
+                nhanVienDao.deleteRelatedPhieuNhap(maNV);
+                System.out.println("Deleted PhieuNhap and ChiTietPhieuNhap for NhanVien: " + maNV);
+                boolean success = nhanVienDao.deleteWithoutTransaction(nv);
+                System.out.println("Deleted NhanVien: " + maNV + ", Success: " + success);
+                em.getTransaction().commit();
+                System.out.println("Transaction committed for NhanVien: " + maNV);
+
+                if (success) {
+                    loadNhanVien();
+                    showSuccess("Xóa nhân viên thành công!");
+                } else {
+                    showError("Xóa nhân viên thất bại!");
+                }
+            } catch (Exception e) {
+                em.getTransaction().rollback();
+                e.printStackTrace();
+                showError("Lỗi khi xóa nhân viên: " + e.getMessage());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             showError("Lỗi khi xóa nhân viên: " + e.getMessage());
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     private void loadNhanVien() {
+        EntityManager em = null;
         try {
+            em = HibernateUtil.getEntityManager();
+            nhanVienDao.setEntityManager(em);
+
             tableModel.setRowCount(0);
             List<NhanVien> list = nhanVienDao.getAll();
             for (NhanVien nv : list) {
@@ -358,20 +539,40 @@ public class NhanVienPanel extends JPanel {
             }
             clearForm();
         } catch (Exception e) {
+            e.printStackTrace();
             showError("Lỗi khi tải dữ liệu: " + e.getMessage());
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     private void populateFormFromTable() {
         int selectedRow = table.getSelectedRow();
-        txtMaNV.setText(tableModel.getValueAt(selectedRow, 0).toString());
-        txtHoTen.setText(tableModel.getValueAt(selectedRow, 1).toString());
-        txtSDT.setText(tableModel.getValueAt(selectedRow, 2).toString());
-        txtEmail.setText(tableModel.getValueAt(selectedRow, 3).toString());
-        cboGioiTinh.setSelectedItem(tableModel.getValueAt(selectedRow, 4).toString());
-        txtNamSinh.setText(tableModel.getValueAt(selectedRow, 5).toString());
-        txtNgayVaoLam.setText(tableModel.getValueAt(selectedRow, 6).toString());
-        txtChucVu.setText(tableModel.getValueAt(selectedRow, 7).toString());
+        if (selectedRow == -1) return;
+
+        txtMaNV.setText(getSafeString(tableModel.getValueAt(selectedRow, 0)));
+        txtHoTen.setText(getSafeString(tableModel.getValueAt(selectedRow, 1)));
+        txtSDT.setText(getSafeString(tableModel.getValueAt(selectedRow, 2)));
+        txtEmail.setText(getSafeString(tableModel.getValueAt(selectedRow, 3)));
+        cboGioiTinh.setSelectedItem(getSafeString(tableModel.getValueAt(selectedRow, 4)));
+        txtNamSinh.setText(getSafeString(tableModel.getValueAt(selectedRow, 5)));
+        String ngayVaoLamStr = getSafeString(tableModel.getValueAt(selectedRow, 6));
+        if (!ngayVaoLamStr.isEmpty()) {
+            try {
+                txtNgayVaoLam.setDate(DATE_FORMAT.parse(ngayVaoLamStr));
+            } catch (Exception e) {
+                txtNgayVaoLam.setDate(null);
+            }
+        } else {
+            txtNgayVaoLam.setDate(null);
+        }
+        cboChucVu.setSelectedItem(getSafeString(tableModel.getValueAt(selectedRow, 7)));
+    }
+
+    private String getSafeString(Object value) {
+        return value != null ? value.toString() : "";
     }
 
     private void showError(String message) {
@@ -389,7 +590,7 @@ public class NhanVienPanel extends JPanel {
         txtEmail.setText("");
         cboGioiTinh.setSelectedIndex(0);
         txtNamSinh.setText("");
-        txtNgayVaoLam.setText("");
-        txtChucVu.setText("");
+        txtNgayVaoLam.setDate(null);
+        cboChucVu.setSelectedIndex(0);
     }
 }
